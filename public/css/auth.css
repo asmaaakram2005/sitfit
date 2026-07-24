@@ -149,6 +149,79 @@ body{
     color:var(--secondary);
 }
 
+/* ERROR STYLE */
+
+/* حاوي العنصر لتنظيم المسافات */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.25rem;
+    position: relative;
+}
+
+/* التنسيق الأساسي لحقل الإدخال */
+.form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+    background-color: #ffffff;
+}
+
+/* حالة التركيز الطبيعية (Focus) */
+.form-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+/* ⚠️ كلاس الخطأ الخاص بالـ Input */
+.form-input.input-error {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+/* حالة التركيز في حالة وجود خطأ */
+.form-input.input-error:focus {
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15);
+}
+
+/* ⚠️ كلاس رسالة الخطأ تحت الـ Input */
+.error-message {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: #dc2626;
+    font-size: 0.825rem;
+    font-weight: 500;
+    margin-top: 0.4rem;
+    
+    /* حركة انسيابية للظهور */
+    animation: slideDown 0.25s ease-out forwards;
+}
+
+/* إضافة أيقونة تنبيه قبل النص تلقائيًا */
+.error-message::before {
+    content: "⚠️";
+    font-size: 0.75rem;
+}
+
+/* انيميشن ظهور الرسالة */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* -------------------------------------------------------- */
+
 @media(max-width:900px){
 
     .auth-container{

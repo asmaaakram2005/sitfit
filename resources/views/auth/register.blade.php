@@ -41,7 +41,7 @@
 
                     <!-- Name -->
 
-                    <div class="input-group">
+                    <div class="input-group" class="form-group">
 
                         <label for="name">Full Name</label>
 
@@ -52,12 +52,13 @@
                             <input
                                 type="text"
                                 id="name"
+                                class="form-input @error('name') input-error @enderror"
                                 placeholder="Enter your full name"
                                 value="{{ old('name') }}"
                                 name="name"
                                 required>
                                 @error('name')
-                                    <small class="error">{{ $message }}</small>
+                                    <small class="error-message">{{ $message }}</small>
                                 @enderror
 
                         </div>
@@ -66,7 +67,7 @@
 
                     <!-- Email -->
 
-                    <div class="input-group">
+                    <div class="input-group" class="form-group">
 
                         <label for="email">Email Address</label>
 
@@ -77,12 +78,13 @@
                             <input
                                 type="email"
                                 id="email"
+                                class="form-input @error('email') input-error @enderror"
                                 placeholder="Enter your email"
                                 value="{{ old('email') }}"
                                 name="email"
                                 required>
                                 @error('email')
-                                    <small class="error">{{ $message }}</small>
+                                    <small class="error-message">{{ $message }}</small>
                                 @enderror
 
                         </div>
@@ -91,7 +93,7 @@
 
                     <!-- Phone -->
 
-                    <div class="input-group">
+                    <div class="input-group" class="form-group">
 
                         <label for="phone">Phone Number</label>
 
@@ -102,12 +104,13 @@
                             <input
                                 type="text"
                                 id="phone"
+                                class="form-input @error('phone') input-error @enderror"
                                 placeholder="Enter your phone number"
                                 value="{{ old('phone') }}"
                                 name="phone"
                                 required>
                                 @error('phone')
-                                    <small class="error">{{ $message }}</small>
+                                    <small class="error-message">{{ $message }}</small>
                                 @enderror
 
                         </div>
@@ -116,7 +119,7 @@
 
                     <!-- Password -->
 
-                    <div class="input-group">
+                    <div class="input-group" class="form-group">
 
                         <label for="password">Password</label>
 
@@ -127,11 +130,12 @@
                             <input
                                 type="password"
                                 id="password"
+                                class="form-input @error('password') input-error @enderror"
                                 placeholder="Enter your password"
                                 name="password"
                                 required>
                                 @error('password')
-                                    <small class="error">{{ $message }}</small>
+                                    <small class="error-message">{{ $message }}</small>
                                 @enderror
 
                         </div>

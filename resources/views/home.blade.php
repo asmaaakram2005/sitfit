@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>SitFit</title>
-</head>
-<body>
+@extends('layout.navbar')
 
-    <h1>Welcome To SitFit</h1>
+@section('title')
 
-    <!-- NEVER DELETE THIS FORM, IT IS VERY IMPORTANT "BY Ahmed" -->
-    <form action="{{ route('logout') }}" method="post">
-        @csrf
-        @method('DELETE')
-        <button type="submit">logout</button>
-    </form>
+<!-- write The title here like 'Home page' with out anything just string. "Ahmed" -->
 
-</body>
-</html>
+@endsection
+
+
+
+@section('content')
+
+<!-- Write all codes of page here without write <html> or <body>. "Ahmed" -->
+
+
+@endsection

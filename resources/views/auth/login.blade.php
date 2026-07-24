@@ -36,7 +36,7 @@
                     @csrf
 
                     <!-- Email -->
-                    <div class="input-group">
+                    <div class="input-group" class="form-group">
 
                         <label for="email">
                             Email Address
@@ -49,12 +49,13 @@
                             <input
                                 type="email"
                                 id="email"
+                                class="form-input @error('email') input-error @enderror"
                                 placeholder="Enter your email"
                                 value="{{ old('email') }}"
                                 name="email"
                                 required>
                                 @error('email')
-                                    <small class="error">{{ $message }}</small>
+                                    <small class="error-message">{{ $message }}</small>
                                 @enderror
 
                         </div>
@@ -62,7 +63,7 @@
                     </div>
 
                     <!-- Password -->
-                    <div class="input-group">
+                    <div class="input-group" class="form-group">
 
                         <label for="password">
                             Password
@@ -75,11 +76,12 @@
                             <input
                                 type="password"
                                 id="password"
+                                class="form-input @error('password') input-error @enderror"
                                 placeholder="Enter your password"
                                 name="password"
                                 required>
                                 @error('password')
-                                    <small class="error">{{ $message }}</small>
+                                    <small class="error-message">{{ $message }}</small>
                                 @enderror
 
                         </div>
