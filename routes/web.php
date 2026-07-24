@@ -5,8 +5,25 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\AuthenticatedSessionController;
 
+
+// ================================= Home ======================================
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+
+// ============================= Front Pages ===================================
+
+Route::get('/products', function () {
+    return view('products.index');})->name('products.index');
+
+Route::get('/products/{product}', function () {
+    return view('products.show');})->name('products.show');
+
+
+
+
+
+
+// ================================= Guest ====================================
 Route::middleware('guest')->group(function () {
 
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
@@ -19,6 +36,9 @@ Route::middleware('guest')->group(function () {
 
 });
 
+
+
+// ================================== Auth ================================
 Route::middleware('auth')->group(function () {
 
     Route::delete('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
