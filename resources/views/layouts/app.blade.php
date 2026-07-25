@@ -24,7 +24,9 @@
 
 @include('layouts.navbar')
 
-@yield('content')
+<main class="content">
+    @yield('content')
+</main>
 
 @include('layouts.footer')
 
