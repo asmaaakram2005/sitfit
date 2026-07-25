@@ -21,6 +21,12 @@ Route::get('/products/{product}', function () {
 Route::get('/cart', function () {
     return view('cart.index');})->name('cart.index');
 
+Route::get('/checkout', function () {
+    return view('checkout.index');})->name('checkout.index');
+
+Route::get('/checkout/success', function () {
+    return view('checkout.success');})->name('checkout.success');
+
 
 
 
