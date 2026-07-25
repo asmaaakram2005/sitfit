@@ -5,6 +5,10 @@
     --sf-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.navbar-space {
+    height: 90px;
+}
+
 /* Base Navbar Styles */
 .sf-navbar-wrapper {
     position: fixed;
@@ -24,7 +28,7 @@
 .sf-navbar-container {
     width: 90%;
     max-width: 80rem;
-    margin: 1rem auto;
+      margin: 1rem auto 2.5rem;
     padding: 0.875rem 2rem;
     display: flex;
     align-items: center;

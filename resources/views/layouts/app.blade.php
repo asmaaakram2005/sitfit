@@ -22,7 +22,9 @@
 
 <body>
 
-@include('layouts.navbar')
+<header class="navbar-space">
+    @include('layouts.navbar')
+</header>
 
 <main class="content">
     @yield('content')
