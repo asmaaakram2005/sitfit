@@ -1,0 +1,163 @@
+:root {
+    --sf-navy: #001F3F;
+    --sf-green: #2ECC71;
+    --sf-white: #FFFFFF;
+    --sf-light-gray: rgba(255, 255, 255, 0.7);
+    --sf-border: rgba(255, 255, 255, 0.1);
+    --sf-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Footer Container */
+
+.sf-footer {
+    width: 100%;
+    background-color: var(--sf-navy);
+    color: var(--sf-white);
+    padding: 4rem 0 2rem;
+    box-sizing: border-box;
+    border-radius: 0;
+}
+
+.sf-footer-container {
+    max-width: 80rem; 
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+/* Responsive 4-Column Grid */
+.sf-footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+    margin-bottom: 3.5rem;
+}
+
+/* Column Styling */
+.sf-footer-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.sf-footer-title {
+    color: var(--sf-white);
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.025em;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.sf-footer-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 2rem;
+    height: 0.125rem;
+    background-color: var(--sf-green);
+    border-radius: 0.125rem;
+}
+
+/* Lists and Links */
+.sf-footer-links,
+.sf-footer-contact {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+}
+
+.sf-footer-links a {
+    color: var(--sf-light-gray);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    transition: var(--sf-transition);
+    display: inline-block;
+}
+
+.sf-footer-links a:hover {
+    color: var(--sf-green);
+    transform: translateX(0.25rem);
+}
+
+/* Social Links Icon Formatting */
+.sf-social-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.sf-social-links i {
+    font-size: 1rem;
+    width: 1.25rem;
+    text-align: center;
+    color: var(--sf-light-gray);
+    transition: var(--sf-transition);
+}
+
+.sf-social-links a:hover i {
+    color: var(--sf-green);
+}
+
+/* Contact Details */
+.sf-footer-contact li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: var(--sf-light-gray);
+    font-size: 0.9375rem;
+}
+
+.sf-footer-contact i {
+    color: var(--sf-green);
+    font-size: 1rem;
+    margin-top: 0.1875rem;
+    width: 1.25rem;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.sf-footer-contact a {
+    color: var(--sf-light-gray);
+    text-decoration: none;
+    transition: var(--sf-transition);
+}
+
+.sf-footer-contact a:hover {
+    color: var(--sf-green);
+}
+
+/* Bottom Copyright Bar */
+.sf-footer-bottom {
+    border-top: 1px solid var(--sf-border);
+    padding-top: 2rem;
+    text-align: center;
+}
+
+.sf-footer-bottom p {
+    margin: 0;
+    color: var(--sf-light-gray);
+    font-size: 0.875rem;
+    letter-spacing: 0.025em;
+}
+
+/* Breakpoints for Responsive Design */
+@media (max-width: 64rem) {
+    .sf-footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem 2rem;
+    }
+}
+
+@media (max-width: 30rem) {
+    .sf-footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .sf-footer {
+        padding-top: 3rem;
+    }
+}
