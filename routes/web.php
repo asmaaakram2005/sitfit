@@ -18,6 +18,9 @@ Route::get('/products', function () {
 Route::get('/products/{product}', function () {
     return view('products.show');})->name('products.show');
 
+Route::get('/cart', function () {
+    return view('cart.index');})->name('cart.index');
+
 
 
 
