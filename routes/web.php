@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 
 // ================================= Home ======================================
@@ -47,8 +48,10 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-    Route::get('/cart', function () {
-    return view('cart.index');})->name('cart.index');
+    Route::get('/cart',[CartController::class, 'index'])->name('cart.index');
+
+    Route::post('/cart/{product}', [CartController::class, 'store'])
+    ->name('cart.store');
 
     Route::get('/checkout', function () {
     return view('checkout.index');})->name('checkout.index');
@@ -58,6 +61,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/profile/edit', function () {
     return view('profile.edit');})->name('profile.edit');
+
+    Route::get('/profile/address', function(){
+        return view('/profile/addresses');})
+    ->name('profile.address');
 
 
 });

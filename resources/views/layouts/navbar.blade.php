@@ -77,7 +77,7 @@
             @endguest
 
             @auth
-                <a href="#" class="sf-btn sf-btn-outline">
+                <a href="{{ route('profile.edit') }}" class="sf-btn sf-btn-outline">
                     <i class="fa-solid fa-circle-user"></i>
                     <span>My Profile</span>
                 </a>
