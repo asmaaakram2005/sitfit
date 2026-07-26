@@ -53,17 +53,22 @@
                     <span class="feature-tag">3D Adjustable Armrests</span>
                 </div>
 
-                <div class="quantity-selector">
+                <!-- <div class="quantity-selector">
                     <span>Quantity:</span>
                     <div class="quantity-controls">
                         <button class="qty-btn" onclick="decreaseQty()">-</button>
-                        <input type="text" id="qty-input" value="1" readonly>
+                        <input type="text" id="qty-input" value="1" name="quantity" readonly>
                         <button class="qty-btn" onclick="increaseQty()">+</button>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="action-buttons">
-                    <a href="{{ route('cart.index') }}"><button class="btn-cart">Add to Cart 🛒</button></a>
+                    <form action="{{ route('cart.store',$product->slug) }}" method="post">
+                        @csrf
+                        <input type="hidden" name="quantity" id="hidden-quantity" value="1">
+                            
+                        <button type="submit" class="btn-cart">Add to Cart 🛒</button>
+                    </form>
                     <a href="{{ route('checkout.index') }}"><button class="btn-buy">Buy Now</button></a>
                 </div>
             </div>

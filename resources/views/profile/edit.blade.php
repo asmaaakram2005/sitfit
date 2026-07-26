@@ -11,7 +11,6 @@
 
 @section('title')
 
-<!-- write The title here like 'Home page' with out anything just string. "Ahmed" -->
     Edit Profile
 @endsection
 
