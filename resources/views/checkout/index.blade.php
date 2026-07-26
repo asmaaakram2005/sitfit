@@ -9,11 +9,9 @@
 
 
 
-@section('title')
+@section('title', 'Checkout')
 
-<!-- write The title here like 'Home page' with out anything just string. "Ahmed" -->
-   Checkout
-@endsection
+
 
 
 

@@ -5,7 +5,7 @@
 @endsection
 
 @section('title')
-    {{ $product['name'] ?? 'Product Details' }} - SitFit
+    {{ $product->name }} - SitFit
 @endsection
 
 @section('content')
@@ -16,17 +16,17 @@
             
             <div class="product-gallery">
                 <div class="main-image-box">
-                    <img id="main-product-img" src="{{ asset('images/smart-chair-front.png') }}" alt="SitFit Smart Chair">
+                    <img id="main-product-img" src="{{ asset('images/'.$product->images->get(0)->image) }}" alt="SitFit Smart Chair">
                 </div>
                 <div class="thumbnails-grid">
-                    <img class="thumbnail active" src="{{ asset('images/smart-chair-front.png') }}" onclick="changeImage(this.src)">
-                    <img class="thumbnail" src="{{ asset('images/smart-chair-side.png') }}" onclick="changeImage(this.src)">
-                    <img class="thumbnail" src="{{ asset('images/smart-chair-sensor.png') }}" onclick="changeImage(this.src)">
+                    <img class="thumbnail active" src="{{ asset('images/'.$product->images->get(0)->image) }}" onclick="changeImage(this.src)">
+                    <img class="thumbnail" src="{{ asset('images/'.$product->images->get(1)->image) }}" onclick="changeImage(this.src)">
+                    <img class="thumbnail" src="{{ asset('images/'.$product->images->get(2)->image) }}" onclick="changeImage(this.src)">
                 </div>
             </div>
 
             <div class="product-info-box">
-                <h1 class="product-title">SitFit Smart Chair</h1>
+                <h1 class="product-title">{{$product->name}}</h1>
                 
                 <div class="rating-box">
                     <div class="stars">⭐⭐⭐⭐⭐</div>
@@ -34,12 +34,17 @@
                 </div>
 
                 <div class="price-box">
-                    <span class="price">EGP 15,000</span>
-                    <span class="stock-status in-stock">In Stock & Ready to Ship</span>
+                    <span class="price">{{ $product->price }} EGP</span>
+                    @if ($product->stock > 0)
+                        <span class="stock-status in-stock">In Stock & Ready to Ship</span>
+                    @else
+                        <span class="stock-status out-stock">Out of stock</span>
+                    @endif
+                    
                 </div>
 
                 <p class="short-desc">
-                    Experience the future of sitting comfort. The SitFit Smart Chair combines active lumbar correction with embedded AI sensors to optimize your posture throughout long working hours.
+                    {{ $product->description }}
                 </p>
 
                 <div class="features-preview" style="margin-bottom: 25px;">
@@ -58,8 +63,8 @@
                 </div>
 
                 <div class="action-buttons">
-                    <button class="btn-cart">Add to Cart 🛒</button>
-                    <button class="btn-buy">Buy Now </button>
+                    <a href="{{ route('cart.index') }}"><button class="btn-cart">Add to Cart 🛒</button></a>
+                    <a href="{{ route('checkout.index') }}"><button class="btn-buy">Buy Now</button></a>
                 </div>
             </div>
         </div>

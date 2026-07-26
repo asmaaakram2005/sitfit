@@ -9,13 +9,7 @@
 
 
 
-@section('title')
-
-<!-- write The title here like 'Home page' with out anything just string. "Ahmed" -->
- 
-       Order Placed Successfully
-@endsection
-
+@section('title',' Order Placed Successfully')
 
 
 
@@ -52,7 +46,7 @@
         {{-- Action Buttons --}}
         <div class="success-actions">
             <a href="#" class="btn-secondary">View My Orders</a>
-            <a href="#" class="btn-primary">Continue Shopping</a>
+            <a href="{{route('products.index')}}" class="btn-primary">Continue Shopping</a>
         </div>
 
     </div>
