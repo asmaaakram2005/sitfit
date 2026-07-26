@@ -1,25 +1,55 @@
 @extends('layouts.app')
 
-
-@section('css')
-
+@section('content')
 <link rel="stylesheet" href="{{ asset('css/team.css') }}">
 
-@endsection
+<div class="team-page">
+    <div class="glow-backdrop"></div>
+    
+    <div class="container">
+        <div class="team-header">
+            <span class="header-badge">Core Operations</span>
+            <h1 class="header-title">Team Directory</h1>
+            <p class="header-subtitle">Overview of active contributors and management members.</p>
+        </div>
 
-
-
-@section('title')
-
-<!-- write The title here like 'Home page' with out anything just string. "Ahmed" -->
-
-@endsection
-
-
-
-
-@section('content')
-
-<!-- Write all codes of page here without write <html> or <body>. "Ahmed" -->
-
+        <div class="table-card">
+            <div class="table-wrapper">
+                <table class="team-table">
+                    <thead>
+                        <tr>
+                            <th># ID</th>
+                            <th>Member</th>
+                            <th>Position</th>
+                            <th>Community</th>
+                            <th>Track</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-id">#01</td>
+                            <td>
+                                <div class="member-profile">
+                                    <div class="avatar-glow">KM</div>
+                                    <div class="member-details">
+                                        <span class="member-name">Karim Muhammed</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge badge-position">Frontend Member</span></td>
+                            <td><span class="community-tag">SitFit Management</span></td>
+                            <td><span class="badge badge-track">Web Development</span></td>
+                            <td>
+                                <a href="mailto:karim@sitfit.com" class="email-link">
+                                    karim@sitfit.com
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
