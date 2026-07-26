@@ -104,6 +104,37 @@ body {
     border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
+.stock-badge.out-stock {
+    background: rgba(239, 68, 68, 0.15);
+    color: #DC2626;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.stock-status{
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 10px;
+    transition: .3s;
+}
+
+/* In Stock */
+.stock-status.in-stock{
+    color: #10b981;
+    background: rgba(16,185,129,.12);
+    border: 1px solid rgba(16,185,129,.3);
+}
+
+/* Out of Stock */
+.stock-status.out-stock{
+    color: #ef4444;
+    background: rgba(239,68,68,.12);
+    border: 1px solid rgba(239,68,68,.3);
+}
+
 .card-media {
     position: relative;
     background: radial-gradient(circle at center, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);

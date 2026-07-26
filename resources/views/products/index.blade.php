@@ -4,11 +4,12 @@
     <link rel="stylesheet" href="{{ asset('css/products.css') }}">
 @endsection
 
-@section('title')
-    Products
-@endsection
+@section('title', 'Products')
+    
+
 
 @section('content')
+
 <div class="products-page">
     <header class="page-header">
         <h1 class="header-title">Our Products</h1>
@@ -18,50 +19,58 @@
     <div class="container">
         <section class="products-grid">
 
-            <div class="product-card">
-                <span class="stock-badge in-stock">In Stock</span>
-
-                <div class="card-media">
-                    <img class="img-main" src="{{ asset('images/smart-chair-front.png') }}" alt="SitFit Smart Chair">
-                </div>
-
-                <div class="card-details">
-                    <h2 class="product-name">SitFit Smart Chair</h2>
+            @foreach($products as $product)
+    
+                <div class="product-card">
+                        @if ($product->stock > 0)
+                            <span class="stock-badge in-stock">In Stock</span>
+                        @else
+                            <span class="stock-badge out-stock">Out of Stock</span>
+                        @endif
                     
-                    <p class="product-description">
-                        An ergonomic smart chair featuring real-time posture tracking, adjustable lumbar support, and automatic alerts to keep you active and sitting healthy.
-                    </p>
 
-                    <div class="rating-box">
-                        <div class="stars">⭐⭐⭐⭐⭐</div>
-                        <span class="reviews-count">(128 Customer Reviews)</span>
+                    <div class="card-media">
+                        <img class="img-main" src="{{ asset('images/'.$product->images->get(0)->image) }}" alt="{{ $product->name }}">
                     </div>
 
-                    <div class="price-section">
-                        <span class="price">EGP 12,499</span>
-                    </div>
+                    <div class="card-details">
+                        <h2 class="product-name">{{ $product->name }}</h2>
+                        
+                        <p class="product-description">
+                            {{ $product->description }}
+                        </p>
 
-                    <div class="features-preview">
-                        <span class="feature-tag">Posture Correction</span>
-                        <span class="feature-tag">Smart Sensors</span>
-                        <span class="feature-tag">App Integration</span>
-                    </div>
+                        <div class="rating-box">
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <span class="reviews-count">(128 Customer Reviews)</span>
+                        </div>
 
-                    <div class="specs-preview">
-                        <div class="spec-item"><strong>Material:</strong> Premium Breathable Mesh</div>
-                        <div class="spec-item"><strong>Weight Cap:</strong> Up to 150 kg</div>
-                        <div class="spec-item"><strong>Battery Life:</strong> Up to 7 Days</div>
-                        <div class="spec-item"><strong>Warranty:</strong> 3 Years Full Coverage</div>
-                    </div>
+                        <div class="price-section">
+                            <span class="price">{{$product->price}} EGP</span>
+                        </div>
 
-                    <div class="card-actions">
-                        <a href="{{ route('products.show', 1) }}" class="btn btn-primary">View Full Details</a>
-                        <a href="#" class="btn btn-outline">Quick Order</a>
+                        <div class="features-preview">
+                            <span class="feature-tag">Posture Correction</span>
+                            <span class="feature-tag">Smart Sensors</span>
+                            <span class="feature-tag">App Integration</span>
+                        </div>
+
+                        <div class="specs-preview">
+                            <div class="spec-item"><strong>Material:</strong> Premium Breathable Mesh</div>
+                            <div class="spec-item"><strong>Weight Cap:</strong> Up to 150 kg</div>
+                            <div class="spec-item"><strong>Battery Life:</strong> Up to 7 Days</div>
+                            <div class="spec-item"><strong>Warranty:</strong> 3 Years Full Coverage</div>
+                        </div>
+
+                        <div class="card-actions">
+                            <a href="{{ route('products.show', $product->slug) }}" class="btn btn-primary">View Full Details</a>
+                            <a href="{{ route('checkout.index') }}" class="btn btn-outline">Quick Order</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
 
-            <div class="product-card">
+            <!-- <div class="product-card">
                 <span class="stock-badge in-stock">In Stock</span>
 
                 <div class="card-media">
@@ -102,7 +111,7 @@
                         <a href="#" class="btn btn-outline">Quick Order</a>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
         </section>
 

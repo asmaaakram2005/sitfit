@@ -20,7 +20,7 @@ class AuthenticatedSessionController extends Controller
         if (Auth::attempt($request->only('email', 'password'))) {
 
             $request->session()->regenerate();
-            return to_route('home')->with('success', 'Logged in successfully.');;
+            return redirect()->intended(route('home'))->with('success','Account created successfully');
         }
 
             return back()->withErrors([

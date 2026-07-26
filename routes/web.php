@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\AuthenticatedSessionController;
+use App\Http\Controllers\ProductController;
 
 
 // ================================= Home ======================================
@@ -12,20 +13,14 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // ============================= Front Pages ===================================
 
-Route::get('/products', function () {
-    return view('products.index');})->name('products.index');
+Route::get('/products', [ProductController::class, 'index'])
+    ->name('products.index');
 
-Route::get('/products/{product}', function () {
-    return view('products.show');})->name('products.show');
+Route::get('/products/{product}', [ProductController::class, 'show'])
+    ->name('products.show');
 
-Route::get('/cart', function () {
-    return view('cart.index');})->name('cart.index');
-
-Route::get('/checkout', function () {
-    return view('checkout.index');})->name('checkout.index');
-
-Route::get('/checkout/success', function () {
-    return view('checkout.success');})->name('checkout.success');
+Route::get('/team', function () {
+    return view('team.index');})->name('team.index');
 
 
 
@@ -51,5 +46,18 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
 
     Route::delete('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+    Route::get('/cart', function () {
+    return view('cart.index');})->name('cart.index');
+
+    Route::get('/checkout', function () {
+    return view('checkout.index');})->name('checkout.index');
+
+    Route::get('/checkout/success', function () {
+    return view('checkout.success');})->name('checkout.success');
+
+    Route::get('/profile/edit', function () {
+    return view('profile.edit');})->name('profile.edit');
+
 
 });

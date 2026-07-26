@@ -19,6 +19,11 @@ class Product extends Model
         'is_active',
     ];
 
+        public function getRouteKeyName()
+    {
+        return 'slug';
+    }  
+
     public function reviews()
     {
         return $this->hasMany(Review::class);
@@ -32,5 +37,9 @@ class Product extends Model
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
+    }
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
     }
 }

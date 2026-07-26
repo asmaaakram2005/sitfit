@@ -3,7 +3,7 @@
    <header class="sf-navbar-wrapper" id="sfNavbar">
     <div class="sf-navbar-container">
         <!-- Logo -->
-        <a href="#" class="sf-brand" aria-label="SitFit Home">
+        <a href="{{ route('home') }}" class="sf-brand" aria-label="SitFit Home">
             <img src="{{ asset('images/sitfit_logo.png') }}" alt="SitFit Logo" class="sf-logo">
         </a>
 
@@ -12,10 +12,10 @@
             <ul class="sf-nav-list">
                  {{-- TODO: add active route when pages are created --}}
                 <li class="sf-nav-item">
-                    <a href="#" class="sf-nav-link ">Home</a>
+                    <a href="{{ route('home') }}" class="sf-nav-link ">Home</a>
                 </li>
                 <li class="sf-nav-item">
-                    <a href="#" class="sf-nav-link">Products</a>
+                    <a href="{{ route('products.index') }}" class="sf-nav-link">Products</a>
                 </li>
                 <li class="sf-nav-item">
                     <a href="#" class="sf-nav-link">About</a>
@@ -27,7 +27,7 @@
                     <a href="#" class="sf-nav-link">Contact</a>
                 </li>
                   <li class="sf-nav-item">
-                <a href="#" class="sf-nav-link">
+                <a href="{{ route('cart.index') }}" class="sf-nav-link">
                     <i class="fa-solid fa-cart-shopping"></i>
                     My Cart
                 </a>
