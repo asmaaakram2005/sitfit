@@ -35,7 +35,9 @@
         <div class="order-details-box">
             <div class="detail-item">
                 <span class="detail-label">Order Number</span>
-                <span class="detail-value highlighted">#SF-1025</span>
+                <span class="detail-value highlighted">
+                    #SF-{{ str_pad($order->id, 5, '0', STR_PAD_LEFT) }}
+                </span>
             </div>
             <div class="detail-item">
                 <span class="detail-label">Estimated Delivery</span>

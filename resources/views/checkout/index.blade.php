@@ -51,7 +51,11 @@
             
             {{-- Form Section (Left Column on Desktop) --}}
             <section class="checkout-main">
-                <form action="#" method="POST" class="checkout-form" id="checkout-form">
+                <form 
+                    action="{{ route('checkout.store') }}" 
+                    method="POST" 
+                    class="checkout-form" 
+                    id="checkout-form">
                     @csrf
                     
                     {{-- Shipping Information --}}
@@ -80,7 +84,7 @@
                                 name="phone"
                                 value="{{ old('phone', auth()->user()->phone) }}"
                                 required>
-                                
+
                             </div>
                             <div class="form-group">
                                 <label for="email">Email Address</label>
@@ -98,33 +102,73 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="country">Country</label>
-                                <input type="text" id="country" name="country" placeholder="Enter your country" required>
+                                
+                                <input
+                                type="text"
+                                id="country"
+                                name="country"
+                                value="{{ old('country', $address->country ?? '') }}"
+                                required>
+
                             </div>
                             <div class="form-group">
                                 <label for="city">City</label>
-                                <input type="text" id="city" name="city" placeholder="Enter your city" required>
+
+                                <input
+                                type="text"
+                                id="city"
+                                name="city"
+                                value="{{ old('city', $address->city ?? '') }}"
+                                required>
+
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group grid-span-2">
                                 <label for="street">Street Address</label>
-                                <input type="text" id="street" name="street" placeholder="Enter your street address" required>
+
+                                <input
+                                type="text"
+                                id="street"
+                                name="street"
+                                value="{{ old('street', $address->street ?? '') }}"
+                                required>
+
                             </div>
                             <div class="form-group">
                                 <label for="building">Building Number</label>
-                                <input type="text" id="building" name="building" placeholder="Enter your building number" required>
+
+                                <input
+                                type="text"
+                                id="building"
+                                name="building"
+                                value="{{ old('building', $address->building_number ?? '') }}"
+                                required>
+
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="apartment">Apartment (Optional)</label>
-                                <input type="text" id="apartment" name="apartment" placeholder="Enter your apartment number">
+                                <label for="apartment">Apartment number (Optional)</label>
+
+                                <input
+                                type="text"
+                                id="apartment"
+                                name="apartment"
+                                value="{{ old('apartment', $address->apartment_number ?? '') }}">
+
                             </div>
                             <div class="form-group">
                                 <label for="zip">ZIP Code (Optional)</label>
-                                <input type="text" id="zip" name="zip" placeholder="Enter your ZIP code">
+
+                                <input
+                                type="text"
+                                id="zip"
+                                name="zip"
+                                value="{{ old('zip', $address->postal_code ?? '') }}">
+
                             </div>
                         </div>
                     </fieldset>
@@ -202,36 +246,65 @@
                     <h2 class="summary-title">Order Summary</h2>
 
                     <div class="cart-items">
+
+                        @foreach($cartItems as $item)
+
                         <div class="item-row">
+
                             <div class="item-details">
-                                <span class="item-name">SitFit Smart Chair</span>
-                                <span class="item-qty">Qty: 1</span>
+
+                                <span class="item-name">
+                                    {{ $item->product->name }}
+                                </span>
+
+                                <span class="item-qty">
+                                    Qty : {{ $item->quantity }}
+                                </span>
+
                             </div>
-                            <span class="item-price">$499.00</span>
+
+                            <span class="item-price">
+
+                                {{ number_format($item->product->price * $item->quantity,2) }}
+                                EGP
+
+                            </span>
+
                         </div>
+
+                        @endforeach
+
                     </div>
 
                     <div class="summary-breakdown">
                         <div class="breakdown-row">
-                            <span>Unit Price</span>
-                            <span>$499.00</span>
+                            <span>Subtotal</span>
+                            <span>
+                                {{ number_format($subtotal,2) }} EGP
+                            </span>
                         </div>
                         <div class="breakdown-row">
                             <span>Shipping</span>
-                            <span>$15.00</span>
+                            <span>
+                                {{ number_format($shipping,2) }} EGP
+                            </span>
                         </div>
                         <div class="breakdown-row">
                             <span>Estimated Tax</span>
-                            <span>$25.00</span>
+                            <span>{{ number_format($tax,2) }} EGP</span>
                         </div>
                         <div class="breakdown-row discount">
                             <span>Discount</span>
-                            <span>-$39.00</span>
+                            <span>
+                                -{{ number_format($discount,2) }} EGP
+                            </span>
                         </div>
                         <hr class="summary-divider">
                         <div class="breakdown-row total">
                             <span>Total</span>
-                            <span>$500.00</span>
+                            <span>
+                                {{ number_format($total,2) }} EGP
+                            </span>
                         </div>
                     </div>
 

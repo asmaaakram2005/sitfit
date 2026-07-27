@@ -19,7 +19,7 @@ class AdminSeeder extends Seeder
             [   
             'name' => 'Admin', 
             'phone' => '+2010123456789',
-            'image' => 'images/admin.png',
+            'image' => 'images/adminPhoto/admin.png',
             'role' => 'admin',
             'password' => '123456789',
             ]

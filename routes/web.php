@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ProfileController;
 
 
 // ================================= Home ======================================
@@ -63,19 +64,26 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/cart', [CartController::class, 'clear'])->name('cart.clear');
 
+// ====================== Profile ======================
 
-    Route::get('/profile/edit', function () {
-    return view('profile.edit');})->name('profile.edit');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+
+    Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::get('/profile/address', function(){
         return view('/profile/addresses');})
     ->name('profile.address');
 
+    Route::get('/profile/orders', function () {
+        return view('profile.orders');})
+    ->name('profile.orders');
+
 // ====================== Checkout ======================
 
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 
-    Route::get('/checkout/success', function () {
-    return view('checkout.success');})->name('checkout.success');
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+
+    Route::get('/checkout/success/{order}', [CheckoutController::class, 'success'])->name('checkout.success');
 
 });

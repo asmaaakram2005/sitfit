@@ -1,27 +1,15 @@
 @extends('layouts.app')
 
-
 @section('css')
-
 <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
-
 @endsection
 
-
-
 @section('title')
-
     Edit Profile
 @endsection
 
-
-
-
 @section('content')
-
-<!-- Write all codes of page here without write <html> or <body>. "Ahmed" -->
-
-   <main class="profile-container">
+<main class="profile-container">
     {{-- Page Header --}}
     <header class="profile-header">
         <h1 class="profile-title">Edit Profile</h1>
@@ -32,22 +20,35 @@
     <section class="avatar-section">
         <div class="avatar-wrapper">
             <img 
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTxoJOzDhj-8nkfEfAibh9ZBeMDnUplrTgTBnScLo39A&s=10" 
+                src="{{ asset($user->image) }}" 
                 alt="Profile photo" 
                 class="avatar-image"
             >
-            <button type="button" class="avatar-upload-btn" aria-label="Change Photo">
-                <svg width="1.25rem" height="1.25rem" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h0.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                </svg>
-                <span>Change Photo</span>
-            </button>
         </div>
     </section>
 
-    <form action="#" method="POST" class="profile-form">
+    <form 
+        action="{{ route('profile.update') }}" 
+        method="POST"
+        enctype="multipart/form-data"
+        class="profile-form">
         @csrf
+        @method('PATCH')
+
+        <input
+            type="file"
+            id="image"
+            name="image"
+            hidden
+            accept="image/*">
+
+        <button
+            type="button"
+            class="avatar-upload-btn"
+            onclick="document.getElementById('image').click()">
+            <i class="fa-solid fa-camera"></i>
+            <span>Change Photo</span>
+        </button>
 
         {{-- Single Personal Information Card --}}
         <section class="form-card">
@@ -56,15 +57,17 @@
             <div class="form-stack">
                 {{-- 1. Full Name --}}
                 <div class="form-group">
-                    <label for="full_name" class="form-label">Full Name</label>
+                    <label for="name" class="form-label">Full Name</label>
                     <input 
                         type="text" 
-                        id="full_name" 
-                        name="full_name" 
-                        class="form-input" 
-                        value="john doe" 
-                        required
-                    >
+                        id="name" 
+                        name="name" 
+                        class="form-input @error('name') input-error @enderror" 
+                        value="{{ old('name', $user->name) }}" 
+                        required>
+                    @error('name')
+                        <small class="error-message">{{ $message }}</small>
+                    @enderror
                 </div>
 
                 {{-- 2. Email --}}
@@ -74,10 +77,12 @@
                         type="email" 
                         id="email" 
                         name="email" 
-                        class="form-input" 
-                        value="john.doe@example.com" 
-                        required
-                    >
+                        class="form-input @error('email') input-error @enderror" 
+                        value="{{ old('email', $user->email) }}" 
+                        required>
+                    @error('email')
+                        <small class="error-message">{{ $message }}</small>
+                    @enderror
                 </div>
 
                 {{-- 3. Phone Number --}}
@@ -87,66 +92,67 @@
                         type="tel" 
                         id="phone" 
                         name="phone" 
-                        class="form-input" 
-                        value="01012345678" 
-                        required
-                    >
+                        class="form-input @error('phone') input-error @enderror"
+                        value="{{ old('phone', $user->phone) }}" 
+                        required>
+                    @error('phone')
+                        <small class="error-message">{{ $message }}</small>
+                    @enderror
                 </div>
 
                 {{-- 4. Current Password --}}
-           <div class="form-group">
-             <label for="current_password" class="form-label">
-              Current Password
-             </label>
+                <div class="form-group">
+                    <label for="current_password" class="form-label">Current Password</label>
+                    <div class="password-wrapper">
+                        <input
+                            type="password"
+                            id="current_password"
+                            name="current_password"
+                            class="form-input @error('current_password') input-error @enderror"
+                            placeholder="••••••••"
+                        >
+                        <i class="fa-solid fa-eye toggle-password"></i>
+                    </div>
+                    @error('current_password')
+                        <small class="error-message">{{ $message }}</small>
+                    @enderror
+                </div>
 
-        <div class="password-wrapper">
-             <input
-            type="password"
-            id="current_password"
-            name="current_password"
-            class="form-input"
-            placeholder="••••••••"
-            >
-
-           <i class="fa-solid fa-eye toggle-password"></i>
-            </div>
-        </div>
                 {{-- 5. New Password --}}
-        <div class="form-group">
-           <label for="new_password" class="form-label">
-             New Password
-           </label>
+                <div class="form-group">
+                    <label for="password" class="form-label">New Password</label>
+                    <div class="password-wrapper">
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            class="form-input @error('password') input-error @enderror"
+                            placeholder="••••••••"
+                        >
+                        <i class="fa-solid fa-eye toggle-password"></i>
+                    </div>
+                    @error('password')
+                        <small class="error-message">{{ $message }}</small>
+                    @enderror
+                </div>
 
-        <div class="password-wrapper">
-           <input
-            type="password"
-            id="new_password"
-            name="new_password"
-            class="form-input"
-            placeholder="••••••••"
-           >
-
-          <i class="fa-solid fa-eye toggle-password"></i>
-        </div>
-     </div>
                 {{-- 6. Confirm Password --}}
-          <div class="form-group">
-                 <label for="new_password_confirmation" class="form-label">
-                      Confirm Password
-                 </label>
-
-          <div class="password-wrapper">
-             <input
-            type="password"
-            id="new_password_confirmation"
-            name="new_password_confirmation"
-            class="form-input"
-            placeholder="••••••••"
-            >
-
-           <i class="fa-solid fa-eye toggle-password"></i>
-         </div>
-       </div>
+                <div class="form-group">
+                    <label for="password_confirmation" class="form-label">Confirm Password</label>
+                    <div class="password-wrapper">
+                        <input
+                            type="password"
+                            id="password_confirmation"
+                            name="password_confirmation"
+                            class="form-input @error('password_confirmation') input-error @enderror"
+                            placeholder="••••••••"
+                        >
+                        <i class="fa-solid fa-eye toggle-password"></i>
+                    </div>
+                    @error('password_confirmation')
+                        <small class="error-message">{{ $message }}</small>
+                    @enderror
+                </div>
             </div>
         </section>
 
@@ -164,25 +170,16 @@
 
     toggles.forEach((toggle) => {
         toggle.addEventListener("click", () => {
-
-            const input =
-                toggle.parentElement.querySelector("input");
+            const input = toggle.parentElement.querySelector("input");
 
             if (input.type === "password") {
                 input.type = "text";
-                toggle.classList.replace(
-                    "fa-eye",
-                    "fa-eye-slash"
-                );
+                toggle.classList.replace("fa-eye", "fa-eye-slash");
             } else {
                 input.type = "password";
-                toggle.classList.replace(
-                    "fa-eye-slash",
-                    "fa-eye"
-                );
+                toggle.classList.replace("fa-eye-slash", "fa-eye");
             }
         });
     });
 </script>
-
 @endsection
