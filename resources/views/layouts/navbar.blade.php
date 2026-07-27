@@ -48,10 +48,32 @@
                 @endguest
 
                 @auth
-                    <a href="#" class="sf-btn sf-btn-outline">
-                        <i class="fa-solid fa-circle-user"></i>
-                        <span>MyProfile</span>
-                    </a>
+                    <div class="sf-mobile-profile">
+
+    <button type="button" class="sf-btn sf-btn-outline sf-mobile-profile-btn">
+        <i class="fa-solid fa-circle-user"></i>
+        <span>My Profile</span>
+        <i class="fa-solid fa-chevron-down"></i>
+    </button>
+
+ <div class="sf-mobile-profile-menu">
+    <a href="{{ route('profile.edit') }}">
+        <i class="fa-solid fa-user-pen"></i>
+        <span>Edit Profile</span>
+    </a>
+
+    <a href="#">
+        <i class="fa-solid fa-location-dot"></i>
+        <span>My Address</span>
+    </a>
+
+    <a href="#">
+        <i class="fa-solid fa-box"></i>
+        <span>My Orders</span>
+    </a>
+</div>
+
+</div>
                     <form method="POST" action="{{ route('logout') }}" class="sf-logout-form">
                         @csrf
                         <button type="submit" class="sf-btn sf-btn-danger">
@@ -77,10 +99,30 @@
             @endguest
 
             @auth
-                <a href="{{ route('profile.edit') }}" class="sf-btn sf-btn-outline">
-                    <i class="fa-solid fa-circle-user"></i>
-                    <span>My Profile</span>
-                </a>
+                <div class="sf-profile-dropdown">
+    <button type="button" class="sf-btn sf-btn-outline sf-profile-btn">
+        <i class="fa-solid fa-circle-user"></i>
+        <span>My Profile</span>
+        <i class="fa-solid fa-chevron-down"></i>
+    </button>
+
+    <div class="sf-profile-menu">
+    <a href="{{ route('profile.edit') }}">
+        <i class="fa-solid fa-user-pen"></i>
+        Edit Profile
+    </a>
+
+    <a href="#">
+        <i class="fa-solid fa-location-dot"></i>
+        My Address
+    </a>
+
+    <a href="#">
+        <i class="fa-solid fa-box"></i>
+        My Orders
+    </a>
+</div>
+</div>
                  <form action="{{ route('logout') }}" method="post" class="sf-logout-form">
                    @csrf
                    @method('DELETE')
@@ -101,6 +143,53 @@
         </button>
     </div>
 </header>
+
+
+   <!-- javascript -->
+     <script>
+
+        const navToggle = document.getElementById("sfNavToggle");
+        const navMenu = document.getElementById("sfNavMenu");
+
+     navToggle.addEventListener("click", () => {
+     navMenu.classList.toggle("sf-active");
+     navToggle.classList.toggle("sf-active");
+    });
+
+        //   desktop
+        const profileBtn = document.querySelector(".sf-profile-btn");
+         const profileMenu = document.querySelector(".sf-profile-menu");
+
+          if (profileBtn && profileMenu) {
+
+    profileBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        profileMenu.classList.toggle("show");
+    });
+
+    document.addEventListener("click", function () {
+        profileMenu.classList.remove("show");
+    });
+
+    profileMenu.addEventListener("click", function (e) {
+        e.stopPropagation();
+    });
+
+
+        //   mobile
+         const mobileProfileBtn = document.querySelector(".sf-mobile-profile-btn");
+         const mobileProfileMenu = document.querySelector(".sf-mobile-profile-menu");
+
+     if (mobileProfileBtn && mobileProfileMenu) {
+
+    mobileProfileBtn.addEventListener("click", () => {
+        mobileProfileMenu.classList.toggle("show");
+    });
+
+      }
+    }
+     </script>
+
 
         
 

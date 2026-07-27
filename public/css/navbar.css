@@ -224,20 +224,29 @@
     }
 
     .sf-nav-menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 80%;
-        max-width: 20rem;
-        height: 100vh;
-        background-color: var(--sf-bg);
-        box-shadow: -0.5rem 0 1.5rem rgba(0, 31, 63, 0.1);
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: stretch;
-        padding: 5rem 2rem 2rem;
-        transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 20rem;
+    height: 100dvh;
+    box-sizing: border-box;
+
+    display: flex; 
+
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+
+    padding: 5rem 2rem 2rem;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background-color: var(--sf-bg);
+    transition: right .3s;
+    overscroll-behavior: contain;
+}
 
     .sf-nav-menu.sf-active {
         right: 0;
@@ -300,4 +309,90 @@
     background-color: var(--sf-primary);
     color: var(--sf-bg);
     border-color: var(--sf-primary);
+}
+ 
+/* desktop menu */
+.sf-profile-dropdown {
+    position: relative;
+}
+
+.sf-profile-menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+
+    min-width: 13rem;
+
+    background: #fff;
+    border: 1px solid rgba(0,31,63,.1);
+    border-radius: .75rem;
+
+    box-shadow: 0 .5rem 1.5rem rgba(0,31,63,.15);
+
+    display: none;
+    overflow: hidden;
+    z-index: 2000;
+}
+
+.sf-profile-menu.show {
+    display: block;
+}
+
+.sf-profile-menu a {
+    display: block;
+    padding: .85rem 1rem;
+
+    text-decoration: none;
+    color: var(--sf-primary);
+
+    transition: var(--sf-transition);
+}
+
+.sf-profile-menu a:hover {
+    background: var(--sf-bg);
+    color: var(--sf-accent);
+}
+
+.sf-profile-btn {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+
+
+/* mobile menu  */
+
+.sf-mobile-profile-menu{
+    display:none;
+    margin-top:.5rem;
+    margin-left:1rem;
+}
+
+.sf-mobile-profile-menu.show{
+    display:flex;
+    flex-direction:column;
+}
+
+.sf-mobile-profile-menu a {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+
+    padding: .75rem 0;
+
+    text-decoration: none;
+    color: var(--sf-primary);
+
+    transition: var(--sf-transition);
+}
+
+.sf-mobile-profile-menu a i {
+    width: 1.25rem;
+    text-align: center;
+    color: var(--sf-accent);
+}
+
+.sf-mobile-profile-menu a:hover {
+    color: var(--sf-accent);
 }
