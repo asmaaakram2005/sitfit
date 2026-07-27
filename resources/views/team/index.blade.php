@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('title', 'Team')
+
+
+
+
 @section('content')
 <link rel="stylesheet" href="{{ asset('css/team.css') }}">
 
@@ -18,8 +23,8 @@
                 <table class="team-table">
                     <thead>
                         <tr>
-                            <th># ID</th>
-                            <th>Member</th>
+                            <th>ID</th>
+                            <th>Name</th>
                             <th>Position</th>
                             <th>Community</th>
                             <th>Track</th>
@@ -31,15 +36,15 @@
                             <td class="col-id">#01</td>
                             <td>
                                 <div class="member-profile">
-                                    <div class="avatar-glow">KM</div>
+                                    <div class="avatar-glow">K</div>
                                     <div class="member-details">
                                         <span class="member-name">Karim Muhammed</span>
                                     </div>
                                 </div>
                             </td>
-                            <td><span class="badge badge-position">Frontend Member</span></td>
-                            <td><span class="community-tag">SitFit Management</span></td>
-                            <td><span class="badge badge-track">Web Development</span></td>
+                            <td><span class="badge badge-position">Member</span></td>
+                            <td><span class="community-tag">Web Development</span></td>
+                            <td><span class="badge badge-track">Front-End</span></td>
                             <td>
                                 <a href="mailto:karim@sitfit.com" class="email-link">
                                     karim@sitfit.com

@@ -29,7 +29,18 @@
                   <li class="sf-nav-item">
                 <a href="{{ route('cart.index') }}" class="sf-nav-link">
                     <i class="fa-solid fa-cart-shopping"></i>
-                    My Cart
+                    <span>My Cart</span>
+                    @auth
+                        @php
+                            $cartCount = \App\Models\CartItem::where('user_id', auth()->id())->sum('quantity');
+                        @endphp
+
+                        @if($cartCount > 0)
+                            <span class="cart-badge">
+                                {{ $cartCount }}
+                            </span>
+                        @endif
+                    @endauth
                 </a>
                  </li>
             </ul>

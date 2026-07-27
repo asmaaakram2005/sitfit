@@ -10,7 +10,7 @@
                 <h3 class="sf-footer-title">Company</h3>
                 <ul class="sf-footer-links">
                     <li><a href="#">About</a></li>
-                    <li><a href="#">Team</a></li>
+                    <li><a href="{{route('team.index')}}">Team</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
             </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 
 
 // ================================= Home ======================================
@@ -48,16 +49,20 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-    Route::get('/cart',[CartController::class, 'index'])->name('cart.index');
+    
 
-    Route::post('/cart/{product}', [CartController::class, 'store'])
-    ->name('cart.store');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
-    Route::get('/checkout', function () {
-    return view('checkout.index');})->name('checkout.index');
+    Route::post('/cart/{product:slug}', [CartController::class, 'store'])->name('cart.store');
 
-    Route::get('/checkout/success', function () {
-    return view('checkout.success');})->name('checkout.success');
+    Route::patch('/cart/{cartItem}/increase', [CartController::class, 'increase'])->name('cart.increase');
+
+    Route::patch('/cart/{cartItem}/decrease', [CartController::class, 'decrease'])->name('cart.decrease');
+
+    Route::delete('/cart/{cartItem}', [CartController::class, 'destroy'])->name('cart.destroy');
+
+    Route::delete('/cart', [CartController::class, 'clear'])->name('cart.clear');
+
 
     Route::get('/profile/edit', function () {
     return view('profile.edit');})->name('profile.edit');
@@ -66,5 +71,11 @@ Route::middleware('auth')->group(function () {
         return view('/profile/addresses');})
     ->name('profile.address');
 
+// ====================== Checkout ======================
+
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+
+    Route::get('/checkout/success', function () {
+    return view('checkout.success');})->name('checkout.success');
 
 });

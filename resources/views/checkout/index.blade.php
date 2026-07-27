@@ -60,17 +60,38 @@
                         
                         <div class="form-group full-width">
                             <label for="fullname">Full Name</label>
-                            <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+
+                            <input
+                            type="text"
+                            id="fullname"
+                            name="fullname"
+                            value="{{ old('fullname', auth()->user()->name) }}"
+                            required>
+
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+                                <input
+                                type="tel"
+                                id="phone"
+                                name="phone"
+                                value="{{ old('phone', auth()->user()->phone) }}"
+                                required>
+                                
                             </div>
                             <div class="form-group">
                                 <label for="email">Email Address</label>
-                                <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+
+                                <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                value="{{ old('email', auth()->user()->email) }}"
+                                required>
+
                             </div>
                         </div>
 
