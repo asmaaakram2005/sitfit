@@ -27,7 +27,38 @@
    <!-- you can write test code down this comment "sondos" -->
     
 
+<!-- 1-no address
 
+@php
+    $address = null;
+    $isEditing = false;
+@endphp
+
+2-editing
+
+@php
+    $address = (object) [
+        'full_name' => 'Kylan Gentry',
+        'phone' => '+20 10123456789',
+        'city' => 'Giza',
+        'address' => 'Building 15, Nasr City, Apartment 7'
+    ];
+
+    $isEditing = true;
+@endphp
+
+3-address exists
+
+@php
+    $address = (object) [
+        'full_name' => 'Kylan Gentry',
+        'phone' => '+20 10123456789',
+        'city' => 'Giza',
+        'address' => 'Building 15, Nasr City, Apartment 7'
+    ];
+
+    $isEditing = false;
+@endphp -->
 
 
         <main class="address-page-container">
