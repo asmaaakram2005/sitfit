@@ -123,12 +123,12 @@
         Edit Profile
     </a>
 
-    <a href="#">
+    <a href="{{ route('profile.address') }}">
         <i class="fa-solid fa-location-dot"></i>
         My Address
     </a>
 
-    <a href="#">
+    <a href="{{ route('profile.orders') }}">
         <i class="fa-solid fa-box"></i>
         My Orders
     </a>
