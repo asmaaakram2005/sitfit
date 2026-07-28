@@ -9,6 +9,8 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ContactController;
 
 
 // ================================= Home ======================================
@@ -31,7 +33,7 @@ Route::get('/team', function () {
 
 
 
-// ================================= Guest ====================================
+// ================================= Guest ==============================================================
 Route::middleware('guest')->group(function () {
 
     Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
@@ -46,12 +48,12 @@ Route::middleware('guest')->group(function () {
 
 
 
-// ================================== Auth ================================
+// ================================== Auth =================================================================
 Route::middleware('auth')->group(function () {
 
     Route::delete('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-    
+// ====================== Cart ======================
 
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 
@@ -65,15 +67,16 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/cart', [CartController::class, 'clear'])->name('cart.clear');
 
+// ====================== contact ======================
+
+    Route::get('/contact', [ContactController::class,'index'])->name('contact.index');
+    Route::post('/contact', [ContactController::class,'store'])->name('contact.store');
+
 // ====================== Profile ======================
 
     Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
 
     Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-
-    Route::get('/profile/order', function(){
-        return view('profile.orders');
-    })->name('profile.orders');
 
 // ====================== Adress ======================
 
@@ -82,6 +85,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/address/edit', [AddressController::class, 'edit'])->name('profile.address.edit');
     Route::put('/profile/address', [AddressController::class, 'update'])->name('profile.address.update');
     Route::delete('/profile/address', [AddressController::class, 'destroy'])->name('profile.address.destroy');
+
+// ====================== Orders ======================
+
+    Route::get('/profile/orders', [OrderController::class, 'index'])->name('profile.orders');
 
 // ====================== Checkout ======================
 

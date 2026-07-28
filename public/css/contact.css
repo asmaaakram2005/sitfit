@@ -1,0 +1,154 @@
+.contact-container{
+    max-width:900px;
+    margin:70px auto;
+    padding:20px;
+}
+
+.contact-card{
+    background:#fff;
+    border-radius:18px;
+    padding:40px;
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+.contact-card h1{
+    font-size:32px;
+    margin-bottom:10px;
+    color:#222;
+}
+
+.subtitle{
+    color:#777;
+    margin-bottom:30px;
+}
+
+.form-group{
+    margin-bottom:22px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+    color:#333;
+}
+
+.form-group input,
+.form-group textarea{
+    width:100%;
+    border:1px solid #ddd;
+    border-radius:12px;
+    padding:14px 16px;
+    font-size:15px;
+    transition:.3s;
+    outline:none;
+    resize:vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus{
+    border-color:#3b82f6;
+    box-shadow:0 0 0 4px rgba(59,130,246,.15);
+}
+
+.send-btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:#3b82f6;
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.send-btn:hover{
+    background:#2563eb;
+}
+
+.success-message{
+    background:#d1fae5;
+    color:#065f46;
+    border:1px solid #10b981;
+    padding:14px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+small{
+    color:#dc2626;
+}
+
+/* ============================= ERROR STYLE ======================================= */
+
+/* حاوي العنصر لتنظيم المسافات */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.25rem;
+    position: relative;
+}
+
+/* التنسيق الأساسي لحقل الإدخال */
+.form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+    background-color: #ffffff;
+}
+
+/* حالة التركيز الطبيعية (Focus) */
+.form-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+/* ⚠️ كلاس الخطأ الخاص بالـ Input */
+.form-input.input-error {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+/* حالة التركيز في حالة وجود خطأ */
+.form-input.input-error:focus {
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15);
+}
+
+/* ⚠️ كلاس رسالة الخطأ تحت الـ Input */
+.error-message {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: #dc2626;
+    font-size: 0.825rem;
+    font-weight: 500;
+    margin-top: 0.4rem;
+    
+    /* حركة انسيابية للظهور */
+    animation: slideDown 0.25s ease-out forwards;
+}
+
+/* إضافة أيقونة تنبيه قبل النص تلقائيًا */
+.error-message::before {
+    content: "⚠️";
+    font-size: 0.75rem;
+}
+
+/* انيميشن ظهور الرسالة */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* ==================================================================== */

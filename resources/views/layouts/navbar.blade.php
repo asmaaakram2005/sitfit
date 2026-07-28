@@ -24,7 +24,7 @@
                     <a href="#" class="sf-nav-link">FAQ</a>
                 </li>
                 <li class="sf-nav-item">
-                    <a href="#" class="sf-nav-link">Contact</a>
+                    <a href="{{route('contact.index')}}" class="sf-nav-link">Contact Us</a>
                 </li>
                   <li class="sf-nav-item">
                 <a href="{{ route('cart.index') }}" class="sf-nav-link">
