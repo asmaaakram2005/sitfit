@@ -25,5 +25,7 @@ class ProductController extends Controller
         $product->load('images');
         return view('products.show', compact('product'));
     }
- 
+
+//============ Admin =====================
+
 }
