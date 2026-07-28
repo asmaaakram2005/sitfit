@@ -16,23 +16,16 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('user_id')
-                  ->constrained()
-                  ->cascadeOnDelete();
+                ->constrained()
+                ->cascadeOnDelete();
 
             $table->string('label');
-
             $table->string('country');
-
             $table->string('city');
-
             $table->string('street');
-
-            $table->string('building_number');
-
+            $table->string('building_number')->nullable();
             $table->string('floor')->nullable();
-
             $table->string('apartment_number')->nullable();
-
             $table->string('postal_code')->nullable();
 
             $table->timestamps();

@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AddressController;
 
 
 // ================================= Home ======================================
@@ -70,13 +71,17 @@ Route::middleware('auth')->group(function () {
 
     Route::patch('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
-    Route::get('/profile/address', function(){
-        return view('/profile/addresses');})
-    ->name('profile.address');
+    Route::get('/profile/order', function(){
+        return view('profile.orders');
+    })->name('profile.orders');
 
-    Route::get('/profile/orders', function () {
-        return view('profile.orders');})
-    ->name('profile.orders');
+// ====================== Adress ======================
+
+    Route::get('/profile/address', [AddressController::class, 'index'])->name('profile.address');
+    Route::post('/profile/address', [AddressController::class, 'store'])->name('profile.address.store');
+    Route::get('/profile/address/edit', [AddressController::class, 'edit'])->name('profile.address.edit');
+    Route::put('/profile/address', [AddressController::class, 'update'])->name('profile.address.update');
+    Route::delete('/profile/address', [AddressController::class, 'destroy'])->name('profile.address.destroy');
 
 // ====================== Checkout ======================
 

@@ -166,6 +166,7 @@
 </main>
 
 <script>
+    // 1. كود إخفاء وإظهار كلمة السر (الموجود عندك سابقاً)
     const toggles = document.querySelectorAll(".toggle-password");
 
     toggles.forEach((toggle) => {
@@ -181,5 +182,28 @@
             }
         });
     });
+
+    // 2. 📸 كود معاينة الصورة قبل الحفظ (Image Preview)
+    const imageInput = document.getElementById('image');
+    const avatarImage = document.querySelector('.avatar-image');
+
+    if (imageInput && avatarImage) {
+        imageInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+
+            // التأكد من أن المستخدم اختار ملفاً بالفعل
+            if (file) {
+                const reader = new FileReader();
+
+                // أول ما الملف يتقرأ، نغير مسار الصورة في الـ HTML
+                reader.onload = function(e) {
+                    avatarImage.src = e.target.result;
+                };
+
+                // قراءة الملف كرابط مؤقت (Data URL)
+                reader.readAsDataURL(file);
+            }
+        });
+    }
 </script>
 @endsection
