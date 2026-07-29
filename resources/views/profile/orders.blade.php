@@ -25,41 +25,41 @@
    {{-- TEMPORARY DUMMY DATA FOR DEVELOPMENT  "sondos"--}}
 @php
     $orders = collect([
-        [
-            'id' => 1025,
-            'date' => '15 Jul 2026',
-            'status' => 'Pending',
-            'items' => 3,
-            'total' => '820.00 EGP'
-        ],
-        [
-            'id' => 1024,
-            'date' => '12 Jul 2026',
-            'status' => 'Processing',
-            'items' => 1,
-            'total' => '450.00 EGP'
-        ],
-        [
-            'id' => 1021,
-            'date' => '08 Jul 2026',
-            'status' => 'Shipped',
-            'items' => 5,
-            'total' => '2,340.00 EGP'
-        ],
-        [
-            'id' => 1018,
-            'date' => '28 Jun 2026',
-            'status' => 'Delivered',
-            'items' => 2,
-            'total' => '1,150.00 EGP'
-        ],
-        [
-            'id' => 1005,
-            'date' => '14 May 2026',
-            'status' => 'Cancelled',
-            'items' => 4,
-            'total' => '1,890.00 EGP'
-        ],
+        // [
+        //     'id' => 1025,
+        //     'date' => '15 Jul 2026',
+        //     'status' => 'Pending',
+        //     'items' => 3,
+        //     'total' => '820.00 EGP'
+        // ],
+        // [
+        //     'id' => 1024,
+        //     'date' => '12 Jul 2026',
+        //     'status' => 'Processing',
+        //     'items' => 1,
+        //     'total' => '450.00 EGP'
+        // ],
+        // [
+        //     'id' => 1021,
+        //     'date' => '08 Jul 2026',
+        //     'status' => 'Shipped',
+        //     'items' => 5,
+        //     'total' => '2,340.00 EGP'
+        // ],
+        // [
+        //     'id' => 1018,
+        //     'date' => '28 Jun 2026',
+        //     'status' => 'Delivered',
+        //     'items' => 2,
+        //     'total' => '1,150.00 EGP'
+        // ],
+        // [
+        //     'id' => 1005,
+        //     'date' => '14 May 2026',
+        //     'status' => 'Cancelled',
+        //     'items' => 4,
+        //     'total' => '1,890.00 EGP'
+        // ],
     ]);
 @endphp
 
