@@ -129,6 +129,17 @@
     color: var(--sf-green);
 }
 
+/* ********* */
+
+.sf-footer-contact li{
+    transition: .3s;
+}
+
+.sf-footer-contact li:hover{
+    color: var(--sf-green);
+    transform: translateX(.2rem);
+}
+
 /* Bottom Copyright Bar */
 .sf-footer-bottom {
     border-top: 1px solid var(--sf-border);

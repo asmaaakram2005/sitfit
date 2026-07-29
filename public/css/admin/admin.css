@@ -1,0 +1,410 @@
+:root {
+    /* Brand Colors */
+    --sf-primary: #001F3F;
+    --sf-bg: #F1F5F9;
+    --sf-accent: #9DC183;
+
+    /* Extended Palette */
+    --sf-primary-hover: #003366;
+    --sf-accent-hover: #8ab370;
+    --sf-white: #FFFFFF;
+    --sf-text-main: #1E293B;
+    --sf-text-muted: #64748B;
+    --sf-border: #E2E8F0;
+    --sf-danger: #EF4444;
+    --sf-success: #10B981;
+    --sf-warning: #F59E0B;
+
+    /* Dimensions */
+    --sidebar-width: 16.25rem; /* 260px */
+    --topbar-height: 4.375rem; /* 70px */
+
+    /* Effects */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.625rem;
+    --radius-lg: 1rem;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+    --transition: all 0.25s ease-in-out;
+
+
+    --sidebar-width: 16.25rem;
+    --sidebar-collapsed-width: 5rem;
+}
+
+/*
+   2. Reset and Global Styles
+*/
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--sf-bg);
+    color: var(--sf-text-main);
+    line-height: 1.5;
+    direction: ltr;
+    text-align: left;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+/*
+   3. Admin Wrapper Layout
+*/
+.admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/*
+   4. Sidebar Fixed Left Layout
+*/
+aside.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--sf-primary);
+    color: var(--sf-white);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: var(--transition);
+    box-shadow: var(--shadow-lg);
+}
+
+.sidebar-logo {
+    height: var(--topbar-height);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--sf-accent);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-logo i {
+    font-size: 1.75rem;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    padding: 1.25rem 0.875rem;
+    flex-grow: 1;
+    /* overflow-y: auto; */
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.875rem 1.125rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+}
+
+.nav-item i {
+    font-size: 1.125rem;
+    width: 1.5rem;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.nav-item:hover {
+    color: var(--sf-white);
+    background-color: rgba(255, 255, 255, 0.08);
+    transform: translateX(3px);
+}
+
+.nav-item.active {
+    color: var(--sf-primary);
+    background-color: var(--sf-accent);
+    font-weight: 600;
+    box-shadow: var(--shadow-sm);
+}
+
+.nav-item.active i {
+    color: var(--sf-primary);
+}
+
+.sidebar-footer {
+    padding: 1rem 0.875rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.logout-link {
+    color: #F87171;
+}
+
+.logout-link:hover {
+    background-color: rgba(239, 68, 68, 0.15);
+    color: #FCA5A5;
+}
+
+/*
+   5. Main Area and Sticky Topbar
+*/
+main.main-content {
+    flex-grow: 1;
+    margin-left: var(--sidebar-width);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    transition: var(--transition);
+}
+
+header.topbar {
+    height: var(--topbar-height);
+    background-color: var(--sf-white);
+    border-bottom: 1px solid var(--sf-border);
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.75rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.25rem;
+    color: var(--sf-primary);
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-sm);
+    background-color: var(--sf-bg);
+}
+
+.menu-toggle:hover {
+    background-color: var(--sf-accent);
+    color: var(--sf-primary);
+}
+
+.page-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--sf-primary);
+}
+
+.topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+/* Notification Button */
+.notification-wrapper {
+    position: relative;
+}
+
+.icon-btn {
+    position: relative;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: var(--sf-bg);
+    color: var(--sf-text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.125rem;
+    transition: var(--transition);
+}
+
+.icon-btn:hover {
+    background-color: var(--sf-border);
+    color: var(--sf-primary);
+}
+
+.icon-btn .badge {
+    position: absolute;
+    top: -0.2rem;
+    right: -0.2rem;
+    background-color: var(--sf-danger);
+    color: var(--sf-white);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    padding: 0.15rem 0.4rem;
+    border-radius: 1rem;
+    border: 2px solid var(--sf-white);
+}
+
+/* Admin Profile Badge */
+.admin-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.375rem 0.625rem;
+    border-radius: var(--radius-lg);
+    background-color: var(--sf-bg);
+    transition: var(--transition);
+}
+
+.admin-profile:hover {
+    background-color: var(--sf-border);
+}
+
+.profile-img {
+    width: 2.375rem;
+    height: 2.375rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--sf-accent);
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--sf-primary);
+    line-height: 1.2;
+}
+
+.profile-role {
+    font-size: 0.75rem;
+    color: var(--sf-text-muted);
+}
+
+/*
+   6. Section Page Content
+*/
+section.page-content {
+    padding: 1.75rem;
+    flex-grow: 1;
+}
+
+/*
+   7. Utility Classes
+*/
+.card {
+    background-color: var(--sf-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--sf-border);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 31, 63, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 950;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.sidebar-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/*
+   8. Responsive Media Queries
+*/
+@media (max-width: 992px) {
+    aside.sidebar {
+        transform: translateX(-100%);
+    }
+
+    aside.sidebar.active {
+        transform: translateX(0);
+    }
+
+    main.main-content {
+        margin-left: 0;
+    }
+
+    .menu-toggle {
+        /* display: flex; */
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    header.topbar {
+        padding: 0 1rem;
+    }
+
+    section.page-content {
+        padding: 1rem;
+    }
+
+    .profile-info {
+        display: none;
+    }
+
+    .page-title {
+        font-size: 1.125rem;
+    }
+}
+
+
+
+.sidebar.collapsed {
+    width: var(--sidebar-collapsed-width);
+}
+
+.sidebar.collapsed .sidebar-logo span,
+.sidebar.collapsed .nav-item span {
+    display: none;
+}
+
+.sidebar.collapsed .sidebar-logo,
+.sidebar.collapsed .nav-item {
+    justify-content: center;
+}
+
+.sidebar.collapsed + .main-content {
+    margin-left: var(--sidebar-collapsed-width);
+}
