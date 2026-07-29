@@ -18,10 +18,10 @@
                     <a href="{{ route('products.index') }}" class="sf-nav-link">Products</a>
                 </li>
                 <li class="sf-nav-item">
-                    <a href="#" class="sf-nav-link">About</a>
+                    <a href="{{ route('home') }}#solution-section" class="sf-nav-link">About</a>
                 </li>
                 <li class="sf-nav-item">
-                    <a href="#" class="sf-nav-link">FAQ</a>
+                    <a href="{{ route('home') }}#faq-section" class="sf-nav-link">FAQ</a>
                 </li>
                 <li class="sf-nav-item">
                     <a href="{{route('contact.index')}}" class="sf-nav-link">Contact Us</a>

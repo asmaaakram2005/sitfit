@@ -41,8 +41,26 @@
                         </p>
 
                         <div class="rating-box">
-                            <div class="stars">⭐⭐⭐⭐⭐</div>
-                            <span class="reviews-count">(128 Customer Reviews)</span>
+                            @php
+                                // تقريب متوسط التقييم لأقرب رقم صحصح لحساب النجوم، ونضع 0 لو مفيش تقييمات
+                                $avgRating = round($product->reviews_avg_rating ?? 0);
+                                $ratingValue = number_format($product->reviews_avg_rating ?? 0, 1);
+                            @endphp
+
+                            <div class="stars">
+                                @for($i = 1; $i <= 5; $i++)
+                                    @if($i <= $avgRating)
+                                        <i class="fa-solid fa-star" style="color: #FFB800;"></i>
+                                    @else
+                                        <i class="fa-regular fa-star" style="color: #cbd5e1;"></i>
+                                    @endif
+                                @endfor
+                            </div>
+
+                            <span class="reviews-count">
+                                <strong>{{ $ratingValue }}</strong> 
+                                ({{ $product->reviews_count }} {{ $product->reviews_count == 1 ? 'Customer Review' : 'Customer Reviews' }})
+                            </span>
                         </div>
 
                         <div class="price-section">
@@ -64,7 +82,13 @@
 
                         <div class="card-actions">
                             <a href="{{ route('products.show', $product->slug) }}" class="btn btn-primary">View Full Details</a>
-                            <a href="{{ route('checkout.index') }}" class="btn btn-outline">Quick Order</a>
+                                <form action="{{ route('checkout.quick', $product) }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="btn btn-outline">
+                                        Quick Order
+                                    </button>
+                                </form>
                         </div>
                     </div>
                 </div>

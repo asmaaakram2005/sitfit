@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('position');
             $table->string('community');
             $table->string('track');
-            $table->string('email')->unique();       // unique عشان الإيميل متكررش
+            $table->string('email')->unique();  // unique عشان الإيميل متكررش
+            $table->string('linkedin')->unique()->nullable();
+            $table->string('github')->unique()->nullable();
             $table->char('first_letter', 1)->nullable(); // char(1) أنسب حاجة للحرف الواحد
             
             $table->timestamps();

@@ -23,8 +23,18 @@
             </p>
             
             <div class="hero-buttons">
-                <a href="#buy" class="btn btn-outline">Buy Now 🛒</a>
-                <a href="#features" class="btn btn-outline">Learn More &rarr;</a>
+                @if($product)
+                    <form action="{{ route('checkout.quick', $product) }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" class="btn btn-outline">
+                            Buy Now 🛒
+                        </button>
+                    </form>
+                    <a href="{{ route('products.show', $product->slug) }}" class="btn btn-outline">Learn More &rarr;</a>
+                @else
+                    <p>No product available</p>
+                @endif
             </div>
         </div>
 
@@ -416,108 +426,131 @@
         <div class="reviews-header">
             <span class="reviews-badge">TRUSTED BY HUNDREDS</span>
             
-            <!-- 1. الكلمة الكبيرة (تنور أزرق عند اللمس) -->
             <h2 class="main-title">
                 What Our Customers Say
             </h2>
             
-            <!-- 2. الكلمة الصغيرة تحتها (تطلع لفوق وتتلون أخضر عند اللمس) -->
             <p class="sub-title-hover">
                 Real stories from people who transformed their daily sitting posture with SitFit.
             </p>
             
-            <!-- 3. صندوق التقييم (4.9) (يرتفع وينور أزرق عند اللمس) -->
+            <!-- 📊 صندوق التقييم الديناميكي -->
             <div class="rating-summary-card">
                 <div class="rating-stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
+                    <!-- عرض النجوم بناءً على متوسط تقييم الشركة -->
+                    @for($i = 1; $i <= 5; $i++)
+                        @if($i <= round($companyRating))
+                            <i class="fa-solid fa-star"></i>
+                        @else
+                            <i class="fa-regular fa-star" style="color: #cbd5e1;"></i>
+                        @endif
+                    @endfor
                 </div>
+                
                 <div class="rating-score">
-                    <span class="score-num">4.9</span>
+                    <span class="score-num">{{ $companyRating }}</span>
                     <span class="score-total">/ 5</span>
                 </div>
-                <div class="rating-count">Based on <strong>500+ Reviews</strong></div>
+                
+                <div class="rating-count">Based on <strong>{{ $totalReviewsCount }} Reviews</strong></div>
             </div>
         </div>
 
-        <!-- Reviews Grid -->
+        <!-- 🟢 الجزء الجديد: كارت كتابة الريفيو / رسالة الـ Login -->
+        @auth
+            <div class="add-review-card">
+                <div class="review-form-header">
+                    <h3><i class="fa-solid fa-pen-to-square"></i> Share Your Experience</h3>
+                    <p>Tell us what you think about our products</p>
+                </div>
+
+                @if (session('success'))
+                    <div class="review-alert success-alert">
+                        <i class="fa-solid fa-circle-check"></i> {{ session('success') }}
+                    </div>
+                @endif
+
+                <form action="{{ route('reviews.store') }}" method="POST" class="review-form">
+                    @csrf
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="product_id">Select Product <span class="required">*</span></label>
+                            <div class="select-wrapper">
+                                <select name="product_id" id="product_id" class="form-control" required>
+                                    <option value="" disabled selected>Choose a product...</option>
+                                    @foreach($allProducts as $p)
+                                        <option value="{{ $p->id }}">{{ $p->name }}</option>
+                                    @endforeach
+                                </select>
+                                <i class="fa-solid fa-chevron-down select-icon"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rating">Your Rating <span class="required">*</span></label>
+                            <div class="select-wrapper">
+                                <select name="rating" id="rating" class="form-control" required>
+                                    <option value="5" selected>⭐⭐⭐⭐⭐ (5/5) - Excellent</option>
+                                    <option value="4">⭐⭐⭐⭐☆ (4/5) - Good</option>
+                                    <option value="3">⭐⭐⭐☆☆ (3/5) - Average</option>
+                                    <option value="2">⭐⭐☆☆☆ (2/5) - Poor</option>
+                                    <option value="1">⭐☆☆☆☆ (1/1) - Very Bad</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down select-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="comment">Your Review</label>
+                        <textarea name="comment" id="comment" rows="3" class="form-control" placeholder="Write your honest opinion..."></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-submit-review">
+                            <span>Submit Review</span>
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        @else
+            <div class="login-prompt-card">
+                <i class="fa-solid fa-comments"></i>
+                <p>Have you tried our products? <a href="{{ route('login') }}">Log in</a> to leave your review!</p>
+            </div>
+        @endauth
+
+        <!-- Reviews Grid (نفس كلاساتك القديمة مع الداتا الديناميك) -->
         <div class="reviews-grid">
-            
-            <!-- Review Card 1 -->
-            <div class="review-card">
-                <div class="card-top">
-                    <div class="user-info">
-                        <img src="{{ asset('images/user1.jpg') }}" alt="Ahmed Hassan" class="user-avatar">
-                        <div class="user-details">
-                            <h3>Ahmed Hassan</h3>
-                            <span class="user-role">Software Engineer</span>
+            @forelse($reviews as $review)
+                <div class="review-card">
+                    <div class="card-top">
+                        <div class="user-info">
+                            <img src="{{ asset($review->user->image) }}" alt="{{ $review->user->name }}" class="user-avatar">
+                            <div class="user-details">
+                                <h3>{{ $review->user->name }}</h3>
+                                <span class="user-role">{{ $review->product->name }}</span>
+                            </div>
                         </div>
+                        <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
                     </div>
-                    <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
-                </div>
-                <div class="review-stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-                <p class="review-text">
-                    "This product has completely changed the way I sit. I feel more comfortable and supported throughout my workday."
-                </p>
-            </div>
-
-            <!-- Review Card 2 -->
-            <div class="review-card">
-                <div class="card-top">
-                    <div class="user-info">
-                        <img src="{{ asset('images/user2.jpg') }}" alt="Sarah Omar" class="user-avatar">
-                        <div class="user-details">
-                            <h3>Sarah Omar</h3>
-                            <span class="user-role">Graphic Designer</span>
-                        </div>
+                    <div class="review-stars">
+                        @for($i = 1; $i <= 5; $i++)
+                            @if($i <= $review->rating)
+                                <i class="fa-solid fa-star"></i>
+                            @else
+                                <i class="fa-regular fa-star" style="color: #cbd5e1;"></i>
+                            @endif
+                        @endfor
                     </div>
-                    <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
+                    <p class="review-text">
+                        "{{ $review->comment }}"
+                    </p>
                 </div>
-                <div class="review-stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-                <p class="review-text">
-                    "I spend many hours working at my desk, and this has made sitting for long periods much more comfortable."
-                </p>
-            </div>
-
-            <!-- Review Card 3 -->
-            <div class="review-card">
-                <div class="card-top">
-                    <div class="user-info">
-                        <img src="{{ asset('images/user3.jpg') }}" alt="Mohamed Ali" class="user-avatar">
-                        <div class="user-details">
-                            <h3>Mohamed Ali</h3>
-                            <span class="user-role">Data Analysis</span>
-                        </div>
-                    </div>
-                    <span class="verified-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
-                </div>
-                <div class="review-stars">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-                <p class="review-text">
-                    "Easy to use, comfortable, and the smart reminders really help me improve my sitting posture."
-                </p>
-            </div>
-
+            @empty
+                <p style="grid-column: 1/-1; text-align: center; color: rgba(0,31,63,0.6);">No reviews available yet. Be the first to review!</p>
+            @endforelse
         </div>
 
     </div>
@@ -613,79 +646,39 @@
 
         <!-- Team Grid -->
         <div class="team-grid">
-            
-            <!-- Team Member 1 -->
-            <div class="team-card">
-                <div class="team-img-wrapper">
-                    <img src="{{ asset('images/team1.jpg') }}" alt="Ahmed Mahmoud" class="team-avatar">
-                </div>
-                <div class="team-info">
-                    <h3>Ahmed Mahmoud</h3>
-                    <span class="team-position">Leader Web /Backend Developer</span>
-                    <span class="team-council">Web Development</span>
+            @foreach ($teamMembers as $teamMember)
+                <div class="team-card">
                     
-                    <div class="team-socials">
-                        <a href="mailto:ahmed@sitfit.com" title="Email" class="social-btn"><i class="fa-solid fa-envelope"></i></a>
-                        <a href="https://linkedin.com" target="_blank" title="LinkedIn" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="https://github.com" target="_blank" title="GitHub" class="social-btn"><i class="fa-brands fa-github"></i></a>
-                    </div>
-                </div>
-            </div>
+                    <!-- 1. صورة العضو -->
+                    <!-- <div class="team-img-wrapper">
+                        <img src="{{ asset('images/' . ($teamMember->image ?? 'default-avatar.png')) }}" alt="{{ $teamMember->name }}" class="team-avatar">
+                    </div> -->
 
-            <!-- Team Member 2 -->
-            <div class="team-card">
-                <div class="team-img-wrapper">
-                    <img src="{{ asset('images/team2.jpg') }}" alt="Sondos" class="team-avatar">
-                </div>
-                <div class="team-info">
-                    <h3>sondos Hitham</h3>
-                    <span class="team-position">Frontend Developer</span>
-                    <span class="team-council">Web Development</span>
-                    
-                    <div class="team-socials">
-                        <a href="mailto:nouran@sitfit.com" title="Email" class="social-btn"><i class="fa-solid fa-envelope"></i></a>
-                        <a href="https://linkedin.com" target="_blank" title="LinkedIn" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <!-- 2. تفاصيل العضو (خارج ديف الصورة) -->
+                    <div class="team-info">
+                        <h3>{{ $teamMember->name }}</h3>
+                        <span class="team-position">{{ $teamMember->community }}</span>
+                        <span class="team-track">{{ $teamMember->track }}</span>
+                        <span class="team-council">{{ $teamMember->position }}</span>
                     </div>
-                </div>
-            </div>
 
-            <!-- Team Member 3 -->
-            <div class="team-card">
-                <div class="team-img-wrapper">
-                    <img src="{{ asset('images/team3.jpg') }}" alt="Karim Mohamed" class="team-avatar">
-                </div>
-                <div class="team-info">
-                    <h3>Karim Mohamed</h3>
-                    <span class="team-position">Frontend Developer</span>
-                    <span class="team-council">Web Development</span>
-                    
+                    <!-- 3. أزرار التواصل الاجتماعي (خارج ديف الصورة) -->
                     <div class="team-socials">
-                        <a href="mailto:tarek@sitfit.com" title="Email" class="social-btn"><i class="fa-solid fa-envelope"></i></a>
-                        <a href="https://linkedin.com" target="_blank" title="LinkedIn" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="mailto:{{ $teamMember->email }}" title="Email" class="social-btn"><i class="fa-solid fa-envelope"></i></a>
+                        <a href="{{ $teamMember->linkedin ?? 'https://linkedin.com' }}" target="_blank" title="LinkedIn" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="{{ $teamMember->github ?? 'https://github.com' }}" target="_blank" title="GitHub" class="social-btn"><i class="fa-brands fa-github"></i></a>
                     </div>
-                </div>
-            </div>
 
-            <!-- Team Member 4 -->
-            <div class="team-card">
-                <div class="team-img-wrapper">
-                    <img src="{{ asset('images/team4.jpg') }}" alt="Yasmina Mohamed" class="team-avatar">
                 </div>
-                <div class="team-info">
-                    <h3>Yasmina Mohamed</h3>
-                    <span class="team-position">Frontend Developer</span>
-                    <span class="team-council">Web Development</span>
-                    
-                    <div class="team-socials">
-                        <a href="mailto:yomna@sitfit.com" title="Email" class="social-btn"><i class="fa-solid fa-envelope"></i></a>
-                        <a href="https://linkedin.com" target="_blank" title="LinkedIn" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="https://github.com" target="_blank" title="GitHub" class="social-btn"><i class="fa-brands fa-github"></i></a>
-                    </div>
-                </div>
-            </div>
-
+            @endforeach
         </div>
-
+        <!-- 🟢 زرار الانتقال لصفحة الفريق بالكامل -->
+        <div class="team-footer-btn">
+            <a href="{{ route('team.index') }}" class="btn-team-more">
+                <span>View Full Team</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
     </div>
 </section>
 @endsection

@@ -12,3 +12,20 @@ body {
 .content {
     flex: 1;
 }
+/* ================================ Scrolling ======================================== */
+/* 1. جعل التنقل في الصفحة كلها ناعم ومريح للعين */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 2. حماية الـ FAQ Section من الاختفاء تحت الـ Navbar */
+#faq-section {
+    /* الـ 80px دي هي ارتفاع الـ Navbar بتاعك، عدلها حسب تصميمك */
+    scroll-margin-top: 80px; 
+}
+
+#solution-section {
+    scroll-margin-top: 20px; 
+}
+
+/* ================================  End-Scrolling ======================================== */

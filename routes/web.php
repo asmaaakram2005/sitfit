@@ -14,6 +14,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\ReviewController;
 
 // ================= Admin Controllers =================
 use App\Http\Controllers\Admin\AdminController;
@@ -146,6 +147,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/orders', [OrderController::class, 'index'])
         ->name('profile.orders');
 
+    // ================= Reviews =================
+
+    Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+
 
 
     // ================= Checkout =================
@@ -153,6 +158,8 @@ Route::middleware('auth')->group(function () {
     Route::controller(CheckoutController::class)->group(function () {
 
         Route::get('/checkout', 'index')->name('checkout.index');
+
+        Route::post('/checkout/quick/{product}', 'quickOrder')->name('checkout.quick');
 
         Route::post('/checkout', 'store')->name('checkout.store');
 

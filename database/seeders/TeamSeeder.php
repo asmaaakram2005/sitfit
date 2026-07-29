@@ -16,6 +16,8 @@ class TeamSeeder extends Seeder
                 'community' => 'WEB Development',
                 'track'     => 'Back-End',
                 'email'     => 'ahmedgf363@gmail.com',
+                'linkedin'  => 'https://www.linkedin.com/in/ahmed-mahmoud-36a346386?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+                'github'    => 'https://github.com/ahmedgf363',
             ],
             [
                 'name'      => 'Sondos Hitham Mostafa ',
@@ -23,6 +25,8 @@ class TeamSeeder extends Seeder
                 'community' => 'WEB Development',
                 'track'     => 'Front-End',
                 'email'     => 'sondoshitham66@gmail.com',
+                'linkedin'  => 'https://www.linkedin.com/in/sondos-hitham-089b21399?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+                'github'    => 'https://github.com/sondos05',
             ],
             [
                 'name'      => 'Karim muhammed abdellatif',

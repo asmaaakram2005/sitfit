@@ -17,6 +17,8 @@ class Team extends Model
         'track',
         'email',
         'first_letter',
+        'linkedin',
+        'github',
     ];
 
     /**

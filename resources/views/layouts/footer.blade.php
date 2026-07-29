@@ -47,9 +47,9 @@
                 <h3 class="sf-footer-title">Company</h3>
 
                 <ul class="sf-footer-links">
-                    <li><a href="#">About</a></li>
+                    <li><a href="{{ route('home') }}#solution-section">About</a></li>
                     <li><a href="{{ route('team.index') }}">Team</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="{{route('contact.index')}}">Contact</a></li>
                 </ul>
             </div>
 
@@ -58,7 +58,7 @@
                 <h3 class="sf-footer-title">Support</h3>
 
                 <ul class="sf-footer-links">
-                    <li><a href="#">FAQ</a></li>
+                    <li><a href="{{ route('home') }}#faq-section">FAQ</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Terms of Service</a></li>
                 </ul>

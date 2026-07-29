@@ -8,11 +8,37 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Address;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Product;
+
 use Illuminate\Support\Facades\DB;
 
 
 class CheckoutController extends Controller
 {
+
+    public function quickOrder(Product $product)
+    {
+        $userId = Auth::id();
+
+        // تشيك لو المنتج موجود في السلة أصلًا بنزود الكمية، لو مش موجود بنضيفه
+        $cartItem = CartItem::where('user_id', $userId)
+            ->where('product_id', $product->id)
+            ->first();
+
+        if ($cartItem) {
+            $cartItem->increment('quantity');
+        } else {
+            CartItem::create([
+                'user_id'    => $userId,
+                'product_id' => $product->id,
+                'quantity'   => 1,
+            ]);
+        }
+
+        // يوديه مباشرة لصفحة الـ Checkout اللي شغالة عندك بالـ CartItems
+        return redirect()->route('checkout.index');
+    }
+
     public function index()
     {
         $user = Auth::user();
