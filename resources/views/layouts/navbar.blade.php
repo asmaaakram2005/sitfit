@@ -4,7 +4,7 @@
     <div class="sf-navbar-container">
         <!-- Logo -->
         <a href="{{ route('home') }}" class="sf-brand" aria-label="SitFit Home">
-            <img src="{{ asset('images/sitfit_logo.png') }}" alt="SitFit Logo" class="sf-logo">
+            <img src="{{ asset('images/sitfit_logo_nav.png') }}" alt="SitFit Logo" class="sf-logo">
         </a>
 
         <!-- Desktop Navigation -->
