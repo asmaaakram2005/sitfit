@@ -31,6 +31,13 @@ class TeamSeeder extends Seeder
                 'track'     => 'Front-End',
                 'email'     => 'karimmuhammed1221@gmail.com',
             ],
+            [
+                'name'      => 'Yasmina Mohamed Abdelrauf',
+                'position'  => 'member',
+                'community' => 'WEB Development',
+                'track'     => 'Front-End',
+                'email'     => 'yasooymohamed3217@gmail.com',
+            ],
             
         ];
 

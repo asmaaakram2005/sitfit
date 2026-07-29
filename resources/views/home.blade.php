@@ -7,21 +7,10 @@
 @endsection
 
 
-@section('title')
-
-<!-- write The title here like 'Home page' with out anything just string. "Ahmed" -->
-
-@endsection
+@section('title', 'SitFit')
 
 
 @section('content')
-
-<!-- Write all codes of page here without write <html> or <body>. "Ahmed" -->
-@section('content')
-
-<!-- Write all codes of page here without write <html> or <body>. "Ahmed" -->
-
-
            <!-- Hero Section -->
 <section class="hero-section">
     <div class="hero-container">
@@ -314,23 +303,35 @@
         <div class="gallery-card">
             
             <div class="thumbnails-wrapper">
-                <div class="thumb-card active" onclick="updateMainImage(this, '{{ asset('images/chairr1.png') }}', false)">
+                <div class="thumb-card active" 
+                    data-src="{{ asset('images/chairr1.png') }}" 
+                    data-is360="false" 
+                    onclick="handleThumbClick(this)">
                     <img src="{{ asset('images/chairr1.png') }}" alt="Main View">
                     <span class="thumb-label">Front</span>
                 </div>
                 
-                <div class="thumb-card" onclick="updateMainImage(this, '{{ asset('images/chairrr2.png') }}', false)">
+                <div class="thumb-card" 
+                    data-src="{{ asset('images/chairrr2.png') }}" 
+                    data-is360="false" 
+                    onclick="handleThumbClick(this)">
                     <img src="{{ asset('images/chairrr2.png') }}" alt="Side Profile">
                     <span class="thumb-label">Side</span>
                 </div>
 
-                <div class="thumb-card" onclick="updateMainImage(this, '{{ asset('images/chaair3.png') }}', false)">
+                <div class="thumb-card" 
+                    data-src="{{ asset('images/chaair3.png') }}" 
+                    data-is360="false" 
+                    onclick="handleThumbClick(this)">
                     <img src="{{ asset('images/chaair3.png') }}" alt="Lumbar Support">
                     <span class="thumb-label">Back</span>
                 </div>
 
-                <div class="thumb-card thumb-360" onclick="updateMainImage(this, '{{ asset('images/chairrr4.png') }}', true)">
-                    <div class="badge-360-icon"><i class="fa-solid fa-rotate"></i> </div>
+                <div class="thumb-card thumb-360" 
+                    data-src="{{ asset('images/chairrr4.png') }}" 
+                    data-is360="true" 
+                    onclick="handleThumbClick(this)">
+                    <div class="badge-360-icon"><i class="fa-solid fa-rotate"></i></div>
                     <img src="{{ asset('images/chairrr4.png') }}" alt="">
                 </div>
             </div>
@@ -359,33 +360,52 @@
 </div>
 
 <script>
+    // 1. الدالة التي تتلقى الضغط من الكروت وقراءة بيانات الصورة
+    function handleThumbClick(element) {
+        const src = element.getAttribute('data-src');
+        const is360 = element.getAttribute('data-is360') === 'true';
+        
+        updateMainImage(element, src, is360);
+    }
+
+    // 2. الدالة المسؤولة عن تحديث الصورة الرئيسية والبادج والزر النشط
     function updateMainImage(element, src, is360) {
-        // 1. Update Main Image Source
         const mainImg = document.getElementById('currentMainImg');
         const badge = document.getElementById('interactiveBadge');
         
-        mainImg.src = src;
-
-        // 2. Toggle 360 Badge
-        if (is360) {
-            badge.style.display = 'inline-flex';
-        } else {
-            badge.style.display = 'none';
+        if (mainImg) {
+            mainImg.src = src;
         }
 
-        // 3. Update Active Thumbnail Styling
+        if (badge) {
+            badge.style.display = is360 ? 'inline-flex' : 'none';
+        }
+
+        // تحديث الكارت النشط
         document.querySelectorAll('.thumb-card').forEach(card => card.classList.remove('active'));
-        element.classList.add('active');
+        if (element) {
+            element.classList.add('active');
+        }
     }
 
+    // 3. فتح وتكبير الصورة (Lightbox)
     function openFullZoom() {
-        const currentSrc = document.getElementById('currentMainImg').src;
-        document.getElementById('lightboxImg').src = currentSrc;
-        document.getElementById('imageLightbox').classList.add('open');
+        const mainImg = document.getElementById('currentMainImg');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxModal = document.getElementById('imageLightbox');
+        
+        if (mainImg && lightboxImg && lightboxModal) {
+            lightboxImg.src = mainImg.src;
+            lightboxModal.classList.add('open');
+        }
     }
 
+    // 4. إغلاق تكبير الصورة
     function closeFullZoom() {
-        document.getElementById('imageLightbox').classList.remove('open');
+        const lightboxModal = document.getElementById('imageLightbox');
+        if (lightboxModal) {
+            lightboxModal.classList.remove('open');
+        }
     }
 </script>
 <!-- 8️⃣ Customer Reviews Section -->
@@ -668,5 +688,4 @@
 
     </div>
 </section>
-@endsection
 @endsection
