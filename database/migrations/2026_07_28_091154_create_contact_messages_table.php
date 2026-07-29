@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('addresses', function (Blueprint $table) {
+        Schema::create('contact_messages', function (Blueprint $table) {
 
             $table->id();
 
@@ -19,14 +19,11 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnDelete();
 
-            $table->string('label');
-            $table->string('country');
-            $table->string('city');
-            $table->string('street');
-            $table->string('building_number')->nullable();
-            $table->string('floor')->nullable();
-            $table->string('apartment_number')->nullable();
-            $table->string('postal_code')->nullable();
+            $table->string('subject');
+
+            $table->text('message');
+
+            $table->boolean('is_read')->default(false);
 
             $table->timestamps();
         });
@@ -37,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('addresses');
+        Schema::dropIfExists('contact_messages');
     }
 };

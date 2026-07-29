@@ -47,7 +47,7 @@
 
         {{-- Action Buttons --}}
         <div class="success-actions">
-            <a href="#" class="btn-secondary">View My Orders</a>
+            <a href="{{route('profile.orders')}}" class="btn-secondary">View My Orders</a>
             <a href="{{route('products.index')}}" class="btn-primary">Continue Shopping</a>
         </div>
 

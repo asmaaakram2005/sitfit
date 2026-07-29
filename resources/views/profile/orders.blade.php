@@ -9,11 +9,9 @@
 
 
 
-@section('title')
+@section('title', 'My Orders')
 
-<!-- write The title here like 'Home page' with out anything just string. "Ahmed" -->
-   My Orders
-@endsection
+   
 
 
 
@@ -23,6 +21,7 @@
 <!-- Write all codes of page here without write <html> or <body>. "Ahmed" -->
    
    {{-- TEMPORARY DUMMY DATA FOR DEVELOPMENT  "sondos"--}}
+<<<<<<< HEAD
 @php
     $orders = collect([
         // [
@@ -62,6 +61,8 @@
         // ],
     ]);
 @endphp
+=======
+>>>>>>> 4f20b7c18643f9f75fb2f4ce5c9ce522047d9839
 
 <main class="sf-orders-container">
     <header class="sf-orders-header">
@@ -69,7 +70,7 @@
         <p class="sf-orders-subtitle">Track all your previous orders.</p>
     </header>
 
-    @if(isset($orders) && count($orders) > 0)
+    @if($orders->isNotEmpty())
         <!-- Orders Grid Section -->
         <section class="sf-orders-grid">
             @foreach($orders as $order)
@@ -78,26 +79,33 @@
                 @endphp
                 <article class="sf-order-card">
                     <div class="sf-order-card-header">
-                        <span class="sf-order-number">Order #{{ is_array($order) ? $order['id'] : $order->id }}</span>
+                        <span class="sf-order-number">Order #{{ str_pad($order->id, 5, '0', STR_PAD_LEFT) }}</span>
                         <span class="sf-status-badge {{ $statusClass }}">
-                            {{ is_array($order) ? $order['status'] : $order->status }}
+                            {{ ucfirst($order->status) }}
                         </span>
                     </div>
                     <div class="sf-order-card-body">
                         <div class="sf-order-meta">
                             <span class="sf-meta-label">Date:</span>
-                            <span class="sf-meta-value">{{ is_array($order) ? $order['date'] : $order->date }}</span>
+                            <span class="sf-meta-value">
+                                {{ $order->created_at->format('d M Y') }}
+                            </span>
                         </div>
                         <div class="sf-order-meta">
                             <span class="sf-meta-label">Items:</span>
-                            <span class="sf-meta-value">
-                                {{ is_array($order) ? $order['items'] : $order->items }} 
-                                {{ (is_array($order) ? $order['items'] : $order->items) > 1 ? 'Products' : 'Product' }}
-                            </span>
+                                @php
+                                    $itemsCount = $order->orderItems->sum('quantity');
+                                @endphp
+                                <span class="sf-meta-value"></span>
+                                    {{ $itemsCount }}
+                                    {{ $order->orderItems->count() > 1 ? 'Products' : 'Product' }}
+                                </span>
                         </div>
                         <div class="sf-order-total">
                             <span class="sf-total-label">Total:</span>
-                            <span class="sf-total-amount">{{ is_array($order) ? $order['total'] : $order->total }}</span>
+                            <span class="sf-total-amount">
+                                {{ number_format($order->total_price,2) }} EGP
+                            </span>
                         </div>
                     </div>
                 </article>
@@ -113,9 +121,8 @@
             </div>
             <h2 class="sf-empty-title">You don't have any orders yet.</h2>
             <p class="sf-empty-subtitle">Start shopping to see your orders here.</p>
-            <a href="#" class="sf-shop-btn">Shop Now</a>
+            <a href="{{ route('products.index') }}" class="sf-shop-btn">Shop Now</a>
         </section>
     @endif
-</main>
 </main>
 @endsection
