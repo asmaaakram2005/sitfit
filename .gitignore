@@ -17,5 +17,3 @@ chroma_db/
 # OS
 .DS_Store
 Thumbs.db
-# test-loader
-test_loader.py
