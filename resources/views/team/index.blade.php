@@ -31,27 +31,29 @@
                             <th>Email</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td class="col-id">#01</td>
-                            <td>
-                                <div class="member-profile">
-                                    <div class="avatar-glow">K</div>
-                                    <div class="member-details">
-                                        <span class="member-name">Karim Muhammed</span>
+                    @foreach($teamMembers as $teamMember)
+                        <tbody>
+                            <tr>
+                                <td class="col-id">{{$teamMember->id}}</td>
+                                <td>
+                                    <div class="member-profile">
+                                        <div class="avatar-glow">{{ $teamMember->first_letter }}</div>
+                                        <div class="member-details">
+                                            <span class="member-name">{{$teamMember->name}}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td><span class="badge badge-position">Member</span></td>
-                            <td><span class="community-tag">Web Development</span></td>
-                            <td><span class="badge badge-track">Front-End</span></td>
-                            <td>
-                                <a href="mailto:karim@sitfit.com" class="email-link">
-                                    karim@sitfit.com
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
+                                </td>
+                                <td><span class="badge badge-position">{{$teamMember->position}}</span></td>
+                                <td><span class="community-tag">{{$teamMember->community}}</span></td>
+                                <td><span class="badge badge-track">{{$teamMember->track}}</span></td>
+                                <td>
+                                    <a href="mailto:karim@sitfit.com" class="email-link">
+                                        {{$teamMember->email}}
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    @endforeach    
                 </table>
             </div>
         </div>

@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             ProductSeeder::class,
             ProductImageSeeder::class,
+            TeamSeeder::class,
             ]);
            
         

@@ -13,6 +13,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\AuthenticatedSessionController;
+use App\Http\Controllers\TeamController;
 
 // ================= Admin Controllers =================
 use App\Http\Controllers\Admin\AdminController;
@@ -42,7 +43,7 @@ Route::get('/products', [ProductController::class, 'index'])
 Route::get('/products/{product}', [ProductController::class, 'show'])
     ->name('products.show');
 
-Route::view('/team', 'team.index')
+Route::get('/team', [TeamController::class, 'index'])
     ->name('team.index');
 
 
