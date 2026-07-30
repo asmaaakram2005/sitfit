@@ -51,15 +51,16 @@
     <div class="chat-body">
         <p>Hi! How can we help you?</p>
     </div>
+    <form>
+        @csrf
+        <div class="chat-footer">
+            <input type="text" placeholder="Type your message...">
 
-    <div class="chat-footer">
-        <input type="text" placeholder="Type your message...">
-
-        <button class="send-btn">
-            <i class="fa-solid fa-paper-plane"></i>
-        </button>
-    </div>
-
+            <button class="send-btn" type="submit">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </div>
+    </form>
 </div>
 
 <script src="{{ asset('js/chat-widget.js') }}"></script>
