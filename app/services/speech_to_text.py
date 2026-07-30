@@ -25,7 +25,7 @@ def speech_to_text(audio_file) -> str:
         uploaded_file = client.files.upload(file=temp_path)
 
         response = client.models.generate_content(
-            model="gemini-2.5-flash",
+            model="gemini-3.5-flash",
             contents=[
                 "Transcribe this audio exactly as text.",
                 uploaded_file
