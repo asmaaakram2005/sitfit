@@ -41,6 +41,8 @@ class TeamSeeder extends Seeder
                 'community' => 'WEB Development',
                 'track'     => 'Front-End',
                 'email'     => 'yasooymohamed3217@gmail.com',
+                'linkedin'  => 'https://www.linkedin.com/in/yasmina-mohamed-7b1a42368?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+                'github'    => 'https://github.com/Yasminamohamed-45',
             ],
             
         ];

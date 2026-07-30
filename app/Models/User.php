@@ -12,6 +12,7 @@ use App\Models\Address;
 use App\Models\Order;
 use App\Models\CartItem;
 use App\Models\Review;
+use App\Enums\UserRole;
 
 class User extends Authenticatable
 {
@@ -77,6 +78,12 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'role' => UserRole::class
         ];
+    }
+
+    public function isAdmin(): bool
+    {
+        return $this->role === UserRole::ADMIN;
     }
 }
