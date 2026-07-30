@@ -26,7 +26,12 @@ class Product extends Model
         'frame_material',
         'upholstery',
         'recline_range',
-        'long_description',   
+        'long_description',
+        'Smart Features',
+        'AI Posture Tracking',
+        'Silent Vibration Alerts',
+        'Companion App',
+        'Universal Ergonomic Fit Features'
     ];
 
         public function getRouteKeyName()
