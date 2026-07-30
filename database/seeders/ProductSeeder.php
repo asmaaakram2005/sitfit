@@ -51,5 +51,29 @@ class ProductSeeder extends Seeder
             ]
 
         );
+
+        Product::firstOrCreate(
+            [
+                'slug' => 'sitfit-pro-cushion', 
+            ],
+            [
+                'name' => 'SitFit Pro Cushion',
+                'description' => 'Premium posture corrector cushion for long-term office work.',
+                'price' => 1200,
+                'material' => 'Memory Foam & Breathable Fabric',
+                'weight_capacity' => 'Up to 150 kg',
+                'warranty' => '2-Year Warranty',
+                'compatibility' => 'Fits All Office & Gaming Chairs',
+                'frame_material' => 'Ultra-dense Memory Foam Core',
+                'upholstery' => 'Premium Breathable Mesh',
+                'recline_range' => 'Full Lumbar Support (90°)',
+                'long_description' => 'Advanced posture correction cushion designed for professionals who sit for over 8 hours a day.',
+                'image_1' => 'images/products/sitfit-pro_1.jpeg',
+                'image_2' => 'images/products/sitfit-pro_2.jpeg',
+                'image_3' => 'images/products/sitfit-pro_3.jpeg',
+                'stock' => 50,
+                'is_active' => true,
+            ]
+        );
     }
 }
