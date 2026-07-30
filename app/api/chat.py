@@ -11,9 +11,10 @@ def chat(request: ChatRequest):
     Text Chat Endpoint for Laravel Integration.
     """
     answer = ask_chatbot(
-        question=request.question,
-        history=request.history,
-    )
+    request.user_id,
+    request.question,
+    request.history,
+)
 
     return ChatResponse(
         user_id=request.user_id,

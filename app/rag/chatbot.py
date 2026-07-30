@@ -1,3 +1,5 @@
+import time
+
 from google import genai
 from google.genai import types
 
@@ -13,10 +15,15 @@ except Exception:
     retriever = None
 
 
-def ask_chatbot(question: str, history=None) -> str:
+def ask_chatbot(
+    user_id: str,
+    question: str,
+    history=None,
+) -> str:
     """
-    Answer user questions using RAG + Gemini with System Instructions.
+    Answer user questions using RAG + Gemini.
     """
+
     global retriever
 
     if not question.strip():
@@ -26,7 +33,7 @@ def ask_chatbot(question: str, history=None) -> str:
         if retriever is None:
             retriever = get_retriever()
 
-        # 1. Retrieve relevant documents from ChromaDB
+        # Retrieve relevant documents
         documents = retriever.invoke(question)
 
         if not documents:
@@ -34,37 +41,49 @@ def ask_chatbot(question: str, history=None) -> str:
 
         context = "\n\n".join(doc.page_content for doc in documents)
 
-        # 2. Limit history to last 6 messages to optimize token usage & preserve recent context
+        # Last 6 messages only
         conversation_context = ""
-        if history:
-            recent_history = history[-6:]
-            for msg in recent_history:
-                role_label = "User" if msg.role == "user" else "Assistant"
-                conversation_context += f"{role_label}: {msg.content}\n"
 
-        # 3. Construct current query payload
+        if history:
+            for msg in history[-6:]:
+                role = "User" if msg.role == "user" else "Assistant"
+                conversation_context += f"{role}: {msg.content}\n"
+
         user_prompt = f"""
+User ID:
+{user_id}
+
 Conversation History:
 {conversation_context if conversation_context else "None"}
 
-Retrieved Documentation Context:
+Retrieved Documentation:
 {context}
 
 Current Question:
 {question}
 """
 
-        # 4. Generate Content using system_instruction and standard gemini-1.5-flash model
-        response = client.models.generate_content(
-            model="gemini-1.5-flash",
-            contents=user_prompt,
-            config=types.GenerateContentConfig(
-                system_instruction=SYSTEM_PROMPT,
-                temperature=0.3,
-            )
-        )
+        # Retry if Gemini is busy
+        for _ in range(3):
+            try:
+                response = client.models.generate_content(
+                    model="gemini-flash-latest",
+                    contents=user_prompt,
+                    config=types.GenerateContentConfig(
+                        system_instruction=SYSTEM_PROMPT,
+                        temperature=0.3,
+                    ),
+                )
 
-        return response.text or "لم يتم إنشاء إجابة."
+                return response.text or "لم يتم إنشاء إجابة."
+
+            except Exception as e:
+                if "503" in str(e):
+                    time.sleep(2)
+                    continue
+                raise
+
+        return "Gemini is currently busy. Please try again."
 
     except Exception as e:
         return f"حدث خطأ أثناء معالجة الطلب: {str(e)}"
