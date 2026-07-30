@@ -1,5 +1,5 @@
-from typing import List, Literal
-from pydantic import BaseModel
+from typing import List, Literal, Optional
+from pydantic import BaseModel, Field
 
 
 class Message(BaseModel):
@@ -8,17 +8,18 @@ class Message(BaseModel):
 
 
 class ChatRequest(BaseModel):
-    """
-    User request model.
-    """
-
+    user_id: str = Field(..., description="Unique Identifier for the user from Laravel DB")
     question: str
-    history: List[Message] = []
+    history: Optional[List[Message]] = Field(default_factory=list)
 
 
 class ChatResponse(BaseModel):
-    """
-    Chatbot response model.
-    """
+    user_id: str
+    
+    answer: str
 
+
+class VoiceChatResponse(BaseModel):
+    user_id: str
+   
     answer: str

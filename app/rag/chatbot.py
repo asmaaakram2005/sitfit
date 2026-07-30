@@ -1,4 +1,5 @@
 from google import genai
+from google.genai import types
 
 from app.config import settings
 from app.prompts.system_prompt import SYSTEM_PROMPT
@@ -14,63 +15,56 @@ except Exception:
 
 def ask_chatbot(question: str, history=None) -> str:
     """
-    Answer user questions using RAG + Gemini.
+    Answer user questions using RAG + Gemini with System Instructions.
     """
-
     global retriever
 
     if not question.strip():
         return "Please enter a valid question."
 
     try:
-
         if retriever is None:
             retriever = get_retriever()
 
-        # Retrieve relevant documents
+        # 1. Retrieve relevant documents from ChromaDB
         documents = retriever.invoke(question)
 
         if not documents:
-            return "I couldn't find relevant information in the SitFit documentation."
+            return "عذراً، لم أجد معلومات متعلقة بهذا السؤال في وثائق SitFit."
 
-        # Context
-        context = "\n\n".join(
-            document.page_content
-            for document in documents
-        )
+        context = "\n\n".join(doc.page_content for doc in documents)
 
-        # Build conversation history
-        conversation = ""
-
+        # 2. Limit history to last 6 messages to optimize token usage & preserve recent context
+        conversation_context = ""
         if history:
-            for message in history:
+            recent_history = history[-6:]
+            for msg in recent_history:
+                role_label = "User" if msg.role == "user" else "Assistant"
+                conversation_context += f"{role_label}: {msg.content}\n"
 
-                if message.role == "user":
-                    conversation += f"User: {message.content}\n"
-
-                else:
-                    conversation += f"Assistant: {message.content}\n"
-
-        # Final Prompt
-        prompt = f"""
-{SYSTEM_PROMPT}
-
+        # 3. Construct current query payload
+        user_prompt = f"""
 Conversation History:
-{conversation}
+{conversation_context if conversation_context else "None"}
 
-Retrieved Context:
+Retrieved Documentation Context:
 {context}
 
 Current Question:
 {question}
 """
 
+        # 4. Generate Content using system_instruction and standard gemini-1.5-flash model
         response = client.models.generate_content(
-            model="gemini-3.5-flash",
-            contents=prompt,
+            model="gemini-1.5-flash",
+            contents=user_prompt,
+            config=types.GenerateContentConfig(
+                system_instruction=SYSTEM_PROMPT,
+                temperature=0.3,
+            )
         )
 
-        return response.text or "No response generated."
+        return response.text or "لم يتم إنشاء إجابة."
 
     except Exception as e:
-        return f"Error: {str(e)}"
+        return f"حدث خطأ أثناء معالجة الطلب: {str(e)}"
