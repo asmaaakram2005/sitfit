@@ -103,3 +103,30 @@ html {
     color: #001F3F;
     cursor: pointer;
 }
+
+.chat-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #001F3F;
+    border-bottom: 0.0625rem solid #f0f0f0;
+}
+
+.chat-body {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.chat-body p {
+    color: #7a7a7a;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    max-width: 14rem;
+}
