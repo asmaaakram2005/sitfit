@@ -72,22 +72,29 @@
                     <li>
                         <i class="fa-solid fa-envelope"></i>
                         <a href="mailto:support@sitfit.com">
-                            support@sitfit.com
+                             SitFit@gmail.com
                         </a>
                     </li>
 
-                    <li>
+                    <!-- <li>
                         <i class="fa-solid fa-phone"></i>
                         <a href="tel:+18005557483">
                             +1 (800) 555-SITFIT
                         </a>
-                    </li>
+                    </li> -->
 
                     <li>
                         <i class="fa-solid fa-location-dot"></i>
                         <span>
-                            100 Health Tech Way, Suite 400
+                            Giza, Egypt
                         </span>
+                    </li>
+
+                     <li>
+                        <i class="fa-solid fa-clock"></i>
+                        <a href="tel:+18005557483">
+                           Full-time (Sunday – Thursday, 9:00 AM – 5:00 PM)
+                        </a>
                     </li>
                 </ul>
             </div>

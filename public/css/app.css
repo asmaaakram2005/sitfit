@@ -29,3 +29,77 @@ html {
 }
 
 /* ================================  End-Scrolling ======================================== */
+
+/* {{-- Chat Widget --}} */
+.chat-btn {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    border: none;
+    border-radius: 50%;
+    background: #9DC183;
+    color: #001F3F;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.chat-box {
+    position: fixed;
+    bottom: 6rem;
+    right: 1.5rem;
+    width: 20rem;
+    height: 25rem;
+    background: #fff;
+    border-radius: 1rem;
+    z-index: 1000;
+    box-shadow: 0 0.5rem 2rem rgba(0,0,0,0.15);
+
+    display: none;
+    flex-direction: column;
+}
+
+.chat-box.active {
+    display: flex;
+}
+
+.chat-body {
+    flex: 1;
+    padding: 1rem;
+}
+
+.chat-footer {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-top: 0.0625rem solid #eee;
+    gap: 0.5rem;
+}
+
+.chat-footer{
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-top: 0.0625rem solid #eee;
+    gap: 0.5rem;
+}
+
+.chat-footer input{
+    flex: 1;
+    border: 0.0625rem solid #ddd;
+    border-radius: 2rem;
+    padding: 0.75rem 1rem;
+    outline: none;
+}
+
+.send-btn{
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: 50%;
+    background: #9DC183;
+    color: #001F3F;
+    cursor: pointer;
+}
