@@ -74,10 +74,10 @@
                         </div>
 
                         <div class="specs-preview">
-                            <div class="spec-item"><strong>Material:</strong> Premium Breathable Mesh</div>
-                            <div class="spec-item"><strong>Weight Cap:</strong> Up to 150 kg</div>
-                            <div class="spec-item"><strong>Battery Life:</strong> Up to 7 Days</div>
-                            <div class="spec-item"><strong>Warranty:</strong> 3 Years Full Coverage</div>
+                            <div class="spec-item"><strong>Material:</strong> {{$product->material}}</div>
+                            <div class="spec-item"><strong>Weight Cap:</strong> {{$product->weight_capacity}}</div>
+                            <div class="spec-item"><strong>compatibility</strong> {{$product->compatibility}}</div>
+                            <div class="spec-item"><strong>Warranty:</strong> {{$product->warranty}}</div>
                         </div>
 
                         <div class="card-actions">

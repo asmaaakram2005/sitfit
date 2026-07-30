@@ -102,10 +102,7 @@
             <h2 class="section-title">Product Description</h2>
             <div class="description-content">
                 <p>
-                    The SitFit Smart Chair is engineered specifically for individuals who spend extended periods at their desk. Built with medical-grade ergonomics in mind, it uses micro-sensors embedded in the backrest to detect improper lumbar positioning and subtle slouching.
-                </p>
-                <p>
-                    Connect the chair to the SitFit Companion App to receive customized posture reports, set movement reminders, and adjust the firmness of the lumbar cushion automatically based on your body weight and seating position.
+                    {{ $product->long_description }}
                 </p>
             </div>
         </div>
@@ -114,28 +111,20 @@
             <h2 class="section-title">Technical Specifications</h2>
             <table class="specs-table">
                 <tr>
-                    <th>Frame Material</th>
-                    <td>Reinforced Aluminum & High-Density Polymer</td>
+                    <th>compatibility</th>
+                    <td>{{ $product->compatibility }}</td>
                 </tr>
                 <tr>
-                    <th>Upholstery</th>
-                    <td>Breathable Korean Mesh & Memory Foam Base</td>
+                    <th>frame_material</th>
+                    <td>{{$product->frame_material}}</td>
                 </tr>
                 <tr>
-                    <th>Recline Range</th>
-                    <td>90° - 135° Lockable Angle Adjustment</td>
+                    <th>upholstery</th>
+                    <td>{{$product->upholstery}}</td>
                 </tr>
                 <tr>
-                    <th>Smart Features</th>
-                    <td>Haptic Posture Alerts, Mobile App Integration</td>
-                </tr>
-                <tr>
-                    <th>Battery</th>
-                    <td>Li-ion Rechargeable (3000 mAh) — Up to 7 Days per charge</td>
-                </tr>
-                <tr>
-                    <th>Maximum Capacity</th>
-                    <td>150 kg (330 lbs)</td>
+                    <th>Srecline_range</th>
+                    <td>{{$product->recline_range}}</td>
                 </tr>
             </table>
         </div>
