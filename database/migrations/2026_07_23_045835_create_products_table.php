@@ -36,6 +36,22 @@ return new class extends Migration
 
             $table->timestamps();
 
+            $table->text('material');
+
+            $table->text('weight_capacity');
+
+            $table->text('warranty');
+
+            $table->text('compatibility');
+
+            $table->text('frame_material');
+
+            $table->text('upholstery');
+
+            $table->text('recline_range');
+
+            $table->text('long_description');
+
         });
     
     }

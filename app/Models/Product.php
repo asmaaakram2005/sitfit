@@ -19,6 +19,14 @@ class Product extends Model
         'image_2',
         'image_3',
         'is_active',
+        'material',
+        'weight_capacity',
+        'warranty',
+        'compatibility',
+        'frame_material',
+        'upholstery',
+        'recline_range',
+        'long_description',   
     ];
 
         public function getRouteKeyName()
