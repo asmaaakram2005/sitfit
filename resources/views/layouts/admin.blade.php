@@ -28,10 +28,9 @@
 
         <!-- Sidebar Navigation -->
         <aside class="sidebar" id="sidebar">
-            <div class="sidebar-logo">
-                <i class="fa-solid fa-chair"></i>
-                <span>SitFit</span>
-            </div>
+           <div class="sidebar-logo">
+    <img src="{{ asset('images/sitfit_logo_admin.png') }}" alt="SitFit Logo">
+</div>
 
             <nav class="sidebar-nav">
                 <a href="#" class="nav-item {{ request()->is('admin') ? 'active' : '' }}">

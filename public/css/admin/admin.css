@@ -408,3 +408,10 @@ section.page-content {
 .sidebar.collapsed + .main-content {
     margin-left: var(--sidebar-collapsed-width);
 }
+
+.sidebar-logo img {
+    width: 8rem;
+    height: 2.5rem;
+    display: block;
+    margin: 0;
+}
