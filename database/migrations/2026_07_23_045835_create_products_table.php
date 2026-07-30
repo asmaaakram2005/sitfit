@@ -52,6 +52,16 @@ return new class extends Migration
 
             $table->text('long_description');
 
+            $table->text('Smart Features');
+
+            $table->text('AI Posture Tracking');
+
+            $table->text('Silent Vibration Alerts');
+
+            $table->text('Companion App');
+
+            $table->text('Universal Ergonomic Fit Features');
+
         });
     
     }
