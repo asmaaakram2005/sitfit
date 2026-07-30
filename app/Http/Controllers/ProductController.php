@@ -13,8 +13,7 @@ class ProductController extends Controller
     public function index()
     {
         // جلب المنتجات مع الصور + حساب متوسط التقييم + إجمالي عدد التقييمات لكل منتج
-        $products = Product::with('images')
-                           ->withAvg('reviews', 'rating')
+        $products = Product::withAvg('reviews', 'rating')
                            ->withCount('reviews')
                            ->get();
 

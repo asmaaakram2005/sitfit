@@ -25,6 +25,12 @@ class ProductSeeder extends Seeder
 
                 'price' => 1499.99,
 
+                'image_1' => 'images/products/sitfit-smart-support_1.jpeg',
+
+                'image_2' => 'images/products/sitfit-smart-support_2.jpeg',
+
+                'image_3' => 'images/products/sitfit-smart-support_3.jpeg',
+
                 'stock' => 100,
 
                 'is_active' => true,

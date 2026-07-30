@@ -314,36 +314,29 @@
             
             <div class="thumbnails-wrapper">
                 <div class="thumb-card active" 
-                    data-src="{{ asset('images/chairr1.png') }}" 
+                    data-src="{{ asset($product->image_1) }}" 
                     data-is360="false" 
                     onclick="handleThumbClick(this)">
-                    <img src="{{ asset('images/chairr1.png') }}" alt="Main View">
+                    <img src="{{ asset($product->image_1) }}" alt="Main View">
                     <span class="thumb-label">Front</span>
                 </div>
                 
                 <div class="thumb-card" 
-                    data-src="{{ asset('images/chairrr2.png') }}" 
+                    data-src="{{ asset($product->image_2) }}" 
                     data-is360="false" 
                     onclick="handleThumbClick(this)">
-                    <img src="{{ asset('images/chairrr2.png') }}" alt="Side Profile">
+                    <img src="{{ asset($product->image_2) }}" alt="Side Profile">
                     <span class="thumb-label">Side</span>
                 </div>
 
                 <div class="thumb-card" 
-                    data-src="{{ asset('images/chaair3.png') }}" 
+                    data-src="{{ asset($product->image_3) }}" 
                     data-is360="false" 
                     onclick="handleThumbClick(this)">
-                    <img src="{{ asset('images/chaair3.png') }}" alt="Lumbar Support">
+                    <img src="{{ asset($product->image_3) }}" alt="Lumbar Support">
                     <span class="thumb-label">Back</span>
                 </div>
 
-                <div class="thumb-card thumb-360" 
-                    data-src="{{ asset('images/chairrr4.png') }}" 
-                    data-is360="true" 
-                    onclick="handleThumbClick(this)">
-                    <div class="badge-360-icon"><i class="fa-solid fa-rotate"></i></div>
-                    <img src="{{ asset('images/chairrr4.png') }}" alt="">
-                </div>
             </div>
 
             <div class="main-display-box" onclick="openFullZoom()">
@@ -351,7 +344,7 @@
                     <i class="fa-solid fa-arrows-spin"></i> 
                 </div>
 
-                <img id="currentMainImg" src="{{ asset('images/chairr1.png') }}" alt="SitFit Ergonomic Chair Cushion" class="hero-product-img">
+                <img id="currentMainImg" src="{{ asset($product->image_1) }}" alt="SitFit Ergonomic Chair Cushion" class="hero-product-img">
                 
                 <div class="zoom-overlay">
                     <i class="fa-solid fa-magnifying-glass-plus"></i>

@@ -16,12 +16,12 @@
             
             <div class="product-gallery">
                 <div class="main-image-box">
-                    <img id="main-product-img" src="{{ asset('images/'.$product->images->get(0)->image) }}" alt="SitFit Smart Chair">
+                    <img id="main-product-img" src="{{ $product->image_1 }}" alt="SitFit Smart Chair">
                 </div>
                 <div class="thumbnails-grid">
-                    <img class="thumbnail active" src="{{ asset('images/'.$product->images->get(0)->image) }}" onclick="changeImage(this.src)">
-                    <img class="thumbnail" src="{{ asset('images/'.$product->images->get(1)->image) }}" onclick="changeImage(this.src)">
-                    <img class="thumbnail" src="{{ asset('images/'.$product->images->get(2)->image) }}" onclick="changeImage(this.src)">
+                    <img class="thumbnail active" src="{{ $product->image_1 }}" onclick="changeImage(this.src)">
+                    <img class="thumbnail" src="{{ $product->image_2 }}" onclick="changeImage(this.src)">
+                    <img class="thumbnail" src="{{ $product->image_3 }}" onclick="changeImage(this.src)">
                 </div>
             </div>
 

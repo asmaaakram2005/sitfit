@@ -30,7 +30,7 @@
                     
 
                     <div class="card-media">
-                        <img class="img-main" src="{{ asset('images/'.$product->images->get(0)->image) }}" alt="{{ $product->name }}">
+                        <img class="img-main" src="{{ $product->image_1 }}" alt="{{ $product->name }}">
                     </div>
 
                     <div class="card-details">

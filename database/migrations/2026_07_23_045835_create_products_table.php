@@ -22,6 +22,12 @@ return new class extends Migration
 
             $table->text('description');
 
+            $table->text('image_1');
+
+            $table->text('image_2');
+
+            $table->text('image_3');
+
             $table->decimal('price', 10, 2);
 
             $table->integer('stock');
