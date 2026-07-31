@@ -40,7 +40,7 @@
             @foreach($users as $user)
                 <div class="user-card">
                     <div class="card-header">
-                        <img src="{{ asset($user->image) }}" alt="{{ $user->name }}" class="user-avatar">
+                        <img src="{{ $user->image ?? asset('images/default-avatar.png') }}" alt="{{ $user->name }}" class="user-avatar">
                         <h2 class="user-name">{{ $user->name }}</h2>
                         <a href="mailto:{{ $user->email }}" class="user-email">{{ $user->email }}</a>
                     </div>
