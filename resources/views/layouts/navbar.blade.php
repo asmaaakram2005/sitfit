@@ -70,7 +70,7 @@
  <div class="sf-mobile-profile-menu">
     <a href="{{ route('profile.edit') }}">
         <i class="fa-solid fa-user-pen"></i>
-        <span>Edit Profile</span>
+        <span> Profile</span>
     </a>
 
     <a href="#">
@@ -85,13 +85,13 @@
 </div>
 
 </div>
-                    <form method="POST" action="{{ route('logout') }}" class="sf-logout-form">
+                    <!-- <form method="POST" action="{{ route('logout') }}" class="sf-logout-form">
                         @csrf
                         <button type="submit" class="sf-btn sf-btn-danger">
                             <i class="fa-solid fa-right-from-bracket"></i>
                             <span>Logout</span>
                         </button>
-                    </form>
+                    </form> -->
                 @endauth
             </div>
         </nav>
@@ -119,8 +119,8 @@
 
     <div class="sf-profile-menu">
     <a href="{{ route('profile.edit') }}">
-        <i class="fa-solid fa-user-pen"></i>
-        Edit Profile
+        <i class="fa-solid fa-user"></i>
+           Profile
     </a>
 
     <a href="{{ route('profile.address') }}">
@@ -134,7 +134,17 @@
     </a>
 </div>
 </div>
-                 <form action="{{ route('logout') }}" method="post" class="sf-logout-form">
+
+     @if(auth()->check() && auth()->user()->isAdmin())
+
+    <a href="{{ route('admin.dashboard') }}"
+       class="sf-btn sf-btn-primary">
+        <i class="fa-solid fa-gear"></i>
+        <span>Admin</span>
+    </a>
+
+     @endif
+                 <!-- <form action="{{ route('logout') }}" method="post" class="sf-logout-form">
                    @csrf
                    @method('DELETE')
 
@@ -142,7 +152,7 @@
                         <i class="fa-solid fa-right-from-bracket"></i>
                         <span>Logout</span>
                        </button>
-                 </form>
+                 </form> -->
             @endauth
         </div>
 
