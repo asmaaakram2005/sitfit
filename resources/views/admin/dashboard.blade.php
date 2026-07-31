@@ -338,7 +338,7 @@
     </div>
 
     <!-- Quick Actions Section -->
-    <section class="dashboard-card quick-actions-card">
+    <!-- <section class="dashboard-card quick-actions-card">
         <div class="card-header">
             <div>
                 <h2 class="card-title">Quick Actions</h2>
@@ -356,6 +356,6 @@
                 <i class="fas fa-user-gear"></i> Manage Users
             </button>
         </div>
-    </section>
+    </section> -->
 </div>
 @endsection

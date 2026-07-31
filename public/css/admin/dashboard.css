@@ -94,7 +94,7 @@
 /* --- 1. Statistics Section --- */
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
     gap: 1.25rem;
 }
 
@@ -182,7 +182,7 @@
 
 .revenue-body {
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     gap: 2rem;
     align-items: center;
 }
@@ -311,7 +311,7 @@
 /* --- Split Layout Grid --- */
 .dashboard-split {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
     gap: 1.5rem;
 }
 
@@ -525,36 +525,3 @@
     transform: translateY(-2px);
 }
 
-/* --- Responsive Design --- */
-@media (max-width: 1024px) {
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .dashboard-split {
-        grid-template-columns: 1fr;
-    }
-    
-    .revenue-body {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 640px) {
-    .dashboard-wrapper {
-        padding: 1rem;
-    }
-
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .actions-group {
-        flex-direction: column;
-    }
-
-    .btn {
-        width: 100%;
-        justify-content: center;
-    }
-}

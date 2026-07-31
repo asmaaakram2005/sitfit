@@ -160,7 +160,7 @@
 
                 <div class="why-card">
                     <h3>Free Express Shipping</h3>
-                    <p>Enjoy free nationwide shipping and a 30-day risk-free trial on all products.</p>
+                    <p>Enjoy free nationwide shipping and a 30-day risk-free trial on .</p>
                 </div>
             </div>
         </section>

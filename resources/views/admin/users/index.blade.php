@@ -81,14 +81,14 @@ $users = [
                 <input type="text" placeholder="Search by name, email..." class="search-input">
             </div>
 
-            <div class="filter-box">
+            <!-- <div class="filter-box">
                 <i class="fa-solid fa-filter filter-icon"></i>
                 <select class="filter-select">
                     <option value="all">All Statuses</option>
                     <option value="active">Most Orders</option>
                     <option value="recent">Newest Joined</option>
                 </select>
-            </div>
+            </div> -->
         </div>
     </header>
 
@@ -125,18 +125,18 @@ $users = [
                             <span class="info-value">{{ $user['joined'] }}</span>
                         </div>
                     </div>
-
+<!-- 
                     <div class="card-footer">
                         <a href="#" class="btn-view">
                             <i class="fa-solid fa-eye"></i> View Profile
                         </a>
-                    </div>
+                    </div> -->
                 </div>
             @endforeach
         </div>
 
         <!-- Pagination UI -->
-        <nav class="pagination-wrapper" aria-label="Users pagination">
+        <!-- <nav class="pagination-wrapper" aria-label="Users pagination">
             <ul class="pagination">
                 <li class="page-item disabled">
                     <a class="page-link" href="#" tabindex="-1"><i class="fa-solid fa-chevron-left"></i> Previous</a>
@@ -148,7 +148,7 @@ $users = [
                     <a class="page-link" href="#">Next <i class="fa-solid fa-chevron-right"></i></a>
                 </li>
             </ul>
-        </nav>
+        </nav> -->
     @else
         <!-- Empty State Component -->
         <div class="empty-state">

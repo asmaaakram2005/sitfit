@@ -51,14 +51,14 @@ $messages = [
                 <input type="text" class="search-input" placeholder="Search sender, email, or subject...">
             </div>
 
-            <div class="filter-wrapper">
+            <!-- <div class="filter-wrapper">
                 <i class="fa-solid fa-filter filter-icon"></i>
                 <select class="filter-select">
                     <option value="all">All Messages</option>
                     <option value="newest">Newest First</option>
                     <option value="oldest">Oldest First</option>
                 </select>
-            </div>
+            </div> -->
         </div>
     </header>
 
@@ -100,7 +100,7 @@ $messages = [
         </div>
 
         <!-- Pagination UI -->
-        <nav class="pagination-wrapper" aria-label="Messages pagination">
+        <!-- <nav class="pagination-wrapper" aria-label="Messages pagination">
             <ul class="pagination">
                 <li class="page-item disabled">
                     <a href="#" class="page-link"><i class="fa-solid fa-chevron-left"></i> Previous</a>
@@ -118,7 +118,7 @@ $messages = [
                     <a href="#" class="page-link">Next <i class="fa-solid fa-chevron-right"></i></a>
                 </li>
             </ul>
-        </nav>
+        </nav> -->
     @else
         <!-- Empty State UI -->
         <div class="empty-state">
