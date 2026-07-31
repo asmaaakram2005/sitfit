@@ -11,12 +11,26 @@
     
     <!-- Top Action Nav -->
     <div class="details-top-nav">
-        <a href="{{ url('admin/orders') }}" class="btn-back">
+        <a href="{{ route('admin.orders.index') }}" class="btn-back">
             <i class="fa-solid fa-arrow-left"></i> Back to Orders
         </a>
-        <button class="btn-change-status">
-            <i class="fa-solid fa-pen-to-square"></i> Change Status
-        </button>
+
+        <!-- Status Update Form -->
+        <form action="{{ route('admin.orders.updateStatus', $order) }}" method="POST" class="status-form-wrapper" id="statusForm">
+            @csrf
+            @method('PATCH')
+            
+            <div class="status-select-group">
+                <select name="status" class="status-select-input" onchange="document.getElementById('statusForm').submit();">
+                    @foreach(['pending', 'processing', 'shipped', 'delivered', 'cancelled'] as $statusOption)
+                        <option value="{{ $statusOption }}" {{ strtolower($order->status) === $statusOption ? 'selected' : '' }}>
+                            {{ ucfirst($statusOption) }}
+                        </option>
+                    @endforeach
+                </select>
+                <i class="fa-solid fa-pen-to-square select-icon"></i>
+            </div>
+        </form>
     </div>
 
     <!-- Main Header Card -->
@@ -24,8 +38,8 @@
         <div class="header-card-left">
             <div class="order-title">
                 <h2>Order #{{ str_pad($order->id, 5, '0', STR_PAD_LEFT) }}</h2>
-                <span class="status-badge status-{{ $order->status }}">
-                    {{ $order->status }}
+                <span class="status-badge status-{{ strtolower($order->status) }}">
+                    {{ ucfirst($order->status) }}
                 </span>
             </div>
             <p class="order-subtitle">
@@ -36,40 +50,6 @@
 
     <!-- Details Grid -->
     <div class="details-layout-grid">
-        <!-- Main Column: Products & Payments -->
-        <!-- <div class="details-main-column"> -->
-            <!-- Products Section -->
-            <!-- <div class="detail-card">
-                <div class="card-header-title">
-                    <i class="fa-solid fa-bag-shopping"></i> Order Items
-                </div>
-
-            </div> -->
-
-            <!-- Payment Info Section -->
-            <!-- <div class="detail-card">
-                <div class="card-header-title">
-                    <i class="fa-solid fa-credit-card"></i> Payment Information
-                </div>
-                <div class="info-grid">
-                    <div class="info-group">
-                        <span class="info-label">Payment Method</span>
-                        <span class="info-value">{{ $order['payment_method'] }}</span>
-                    </div>
-                    <div class="info-group">
-                        <span class="info-label">Payment Status</span>
-                        <span class="payment-badge-paid">
-                            <i class="fa-solid fa-circle-check"></i> {{ $order['payment_status'] }}
-                        </span>
-                    </div>
-                    <div class="info-group">
-                        <span class="info-label">Total Amount</span>
-                        <span class="info-value highlight-price">{{ $order->total_price}}</span>
-                    </div>
-                </div>
-            </div> -->
-        <!-- </div> -->
-
         <!-- Side Column: Customer Info & Summary -->
         <div class="details-side-column">
             <!-- Customer Section -->
@@ -90,7 +70,6 @@
                         <span class="info-label">Phone Number</span>
                         <span class="info-value">{{ $order->user->phone }}</span>
                     </div>
-
                 </div>
             </div>
 
@@ -99,14 +78,31 @@
                 <div class="card-header-title">
                     <i class="fa-solid fa-receipt"></i> Order Summary
                 </div>
-                    <hr class="summary-divider">
-                    <div class="summary-row total-row">
-                        <span>Total</span>
-                        <span>{{ $order->total_price }}</span>
-                    </div>
+                <hr class="summary-divider">
+                <div class="summary-row total-row">
+                    <span>Total</span>
+                    <span>{{ $order->total_price }}</span>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+{{-- SweetAlert Toast for Success --}}
+@if(session('success'))
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Updated!',
+        text: "{{ session('success') }}",
+        timer: 2500,
+        showConfirmButton: false,
+        toast: true,
+        position: 'top-end',
+        timerProgressBar: true
+    });
+</script>
+@endif
+
 @endsection

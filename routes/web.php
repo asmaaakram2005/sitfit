@@ -196,22 +196,23 @@ Route::prefix('admin')
             ->name('dashboard');
 
 
-
         // Products
+    Route::controller(AdminProductController::class)
+        ->prefix('products')
+        ->name('products.')
+        ->group(function () {
 
-        Route::controller(AdminProductController::class)
-            ->prefix('products')
-            ->name('products.')
-            ->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/', 'store')->name('store');
+            
+            Route::get('/{product}/edit', 'edit')->name('edit');
+            // 🟢 أضف هذا السطر لتنفيذ التحديث
+            Route::put('/{product}', 'update')->name('update');
+            
+            Route::delete('/{product}', 'destroy')->name('destroy');
 
-                Route::get('/', 'index')->name('index');
-
-                Route::get('/create', 'create')->name('create');
-
-                Route::get('/{product}/edit', 'edit')->name('edit');
-
-            });
-
+    });
 
 
         // Orders
@@ -224,6 +225,8 @@ Route::prefix('admin')
                 Route::get('/', 'index')->name('index');
 
                 Route::get('/{order}', 'show')->name('show');
+
+                Route::patch('/{order}/status', 'updateStatus')->name('updateStatus');
 
             });
 
@@ -250,7 +253,30 @@ Route::prefix('admin')
 
         // logout
 
-         Route::delete('/logout', [AdminController::class, 'destroy'])
+        Route::delete('/logout', [AdminController::class, 'destroy'])
             ->name('logout');
+
+
+        // Reviews
+        Route::controller(AdminReviewController::class)
+        ->prefix('reviews')
+        ->name('reviews.')
+        ->group(function () {
+
+            Route::get('/', 'index')->name('index');
+            Route::delete('/{review}', 'destroy')->name('destroy');
+
+        });
+
+        // Contacts
+        Route::controller(AdminContactController::class)
+            ->prefix('contacts')
+            ->name('contacts.')
+            ->group(function () {
+
+                Route::get('/', 'index')->name('index');
+                Route::delete('/{contact}', 'destroy')->name('destroy');
+
+        });
 
     });

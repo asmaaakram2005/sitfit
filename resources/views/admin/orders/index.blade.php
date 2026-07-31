@@ -33,52 +33,74 @@
         </div>
     </div>
 
-    <!-- Order Cards Grid -->
-    <div class="orders-grid">
-        @foreach($orders as $order)
-        <div class="order-card">
-            <div class="order-card-header">
-                <span class="order-id">#{{ str_pad($order->id, 5, '0', STR_PAD_LEFT) }}</span>
-                <span class="status-badge status-{{ strtolower($order->status) }}">
-                    {{ $order->status }}
-                </span>
-            </div>
+    <!-- Orders Table Container -->
+    <div class="table-responsive">
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <!-- <th>Items</th> -->
+                    <th>Total Amount</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($orders as $order)
+                    <tr>
+                        <!-- Order ID -->
+                        <td>
+                            <span class="order-id">#{{ str_pad($order->id, 5, '0', STR_PAD_LEFT) }}</span>
+                        </td>
 
-            <div class="order-card-body">
-                <div class="customer-info">
-                    <img
-                    src="{{ asset($order->user->image ?? 'images/default-avatar.png') }}"
-                    alt="{{ $order->user->name }}"
-                    class="customer-avatar">ّ
-                    <div>
-                        <h3 class="customer-name">{{ $order->user->name }}</h3>
-                        <p class="customer-email">{{ $order->user->email }}</p>
-                    </div>
-                </div>
+                        <!-- Customer Info -->
+                        <td>
+                            <div class="customer-info">
+                                <img
+                                    src="{{ asset($order->user->image ?? 'images/default-avatar.png') }}"
+                                    alt="{{ $order->user->name }}"
+                                    class="customer-avatar">
+                                <div>
+                                    <h3 class="customer-name">{{ $order->user->name }}</h3>
+                                    <p class="customer-email">{{ $order->user->email }}</p>
+                                </div>
+                            </div>
+                        </td>
 
-                <div class="order-details-meta">
-                    <div class="meta-item">
-                        <span class="meta-label">Date</span>
-                        <span class="meta-value"><i class="fa-regular fa-calendar"></i> {{ $order->created_at->diffForHumans() }}</span>
-                    </div>
-                    <!-- <div class="meta-item">
-                        <span class="meta-label">Items</span>
-                        <span class="meta-value"><i class="fa-solid fa-box"></i> {{ $order->items }} {{ $order->items > 1 ? 'Products' : 'Product' }}</span>
-                    </div> -->
-                </div>
-            </div>
+                        <!-- Status Badge -->
+                        <td>
+                            <span class="status-badge status-{{ strtolower($order->status) }}">
+                                {{ $order->status }}
+                            </span>
+                        </td>
 
-            <div class="order-card-footer">
-                <div class="total-container">
-                    <span class="total-label">Total Amount</span>
-                    <span class="total-amount">{{ $order->total_price }}</span>
-                </div>
-                <a href="{{ route('admin.orders.show',$order) }}" class="btn-view-details">
-                    <i class="fa-solid fa-eye"></i> View Details
-                </a>
-            </div>
-        </div>
-        @endforeach
+                        <!-- Date -->
+                        <td>
+                            <span class="meta-value"><i class="fa-regular fa-calendar"></i> {{ $order->created_at->diffForHumans() }}</span>
+                        </td>
+
+                        <!-- Items Count (Commented out as in original layout) -->
+                        <!-- <td>
+                            <span class="meta-value"><i class="fa-solid fa-box"></i> {{ $order->items }} {{ $order->items > 1 ? 'Products' : 'Product' }}</span>
+                        </td> -->
+
+                        <!-- Total Amount -->
+                        <td>
+                            <span class="total-amount">{{ $order->total_price }}</span>
+                        </td>
+
+                        <!-- Action Button -->
+                        <td>
+                            <a href="{{ route('admin.orders.show', $order) }}" class="btn-view-details">
+                                <i class="fa-solid fa-eye"></i> View Details
+                            </a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 
     <!-- Pagination -->

@@ -22,7 +22,7 @@
             @foreach($products as $product)
     
                 <div class="product-card">
-                        @if ($product->stock > 0)
+                        @if ($product->is_active)
                             <span class="stock-badge in-stock">In Stock</span>
                         @else
                             <span class="stock-badge out-stock">Out of Stock</span>

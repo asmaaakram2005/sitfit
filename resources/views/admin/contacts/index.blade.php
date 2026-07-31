@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-  
+
 <div class="contacts-container">
     <!-- Header Section -->
     <header class="contacts-header">
@@ -22,15 +22,6 @@
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
                 <input type="text" class="search-input" placeholder="Search sender, email, or subject...">
             </div>
-
-            <!-- <div class="filter-wrapper">
-                <i class="fa-solid fa-filter filter-icon"></i>
-                <select class="filter-select">
-                    <option value="all">All Messages</option>
-                    <option value="newest">Newest First</option>
-                    <option value="oldest">Oldest First</option>
-                </select>
-            </div> -->
         </div>
     </header>
 
@@ -45,17 +36,38 @@
                                 <i class="fa-solid fa-user"></i>
                             </div>
                             <div class="sender-details">
-                                <h3 class="sender-name">{{ $msg->user->name }}</h3>
-                                <a href="mailto:{{ $msg->user->email }}" class="sender-email">{{ $msg->user->email }}</a>
+                                <h3 class="sender-name">{{ $msg->user->name ?? $msg->name ?? 'Guest User' }}</h3>
+                                <a href="mailto:{{ $msg->user->email ?? $msg->email }}" class="sender-email">
+                                    {{ $msg->user->email ?? $msg->email }}
+                                </a>
                             </div>
                         </div>
 
                         <div class="message-meta">
                             <span class="message-date">
                                 <i class="fa-regular fa-calendar"></i>
-                                {{ $msg->created_at->calendar() }}
+                                {{ $msg->created_at ? $msg->created_at->calendar() : 'N/A' }}
                             </span>
-                            <button type="button" class="btn-delete" title="Delete Message" aria-label="Delete Message">
+
+                            {{-- Hidden Form for Delete Message --}}
+                            <form 
+                                id="delete-contact-form-{{ $msg->id }}" 
+                                action="{{ route('admin.contacts.destroy', $msg->id) }}" 
+                                method="POST" 
+                                style="display: none;">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+
+                            {{-- Delete Button using Data Attributes --}}
+                            <button 
+                                type="button" 
+                                class="btn-delete" 
+                                title="Delete Message" 
+                                aria-label="Delete Message"
+                                data-id="{{ $msg->id }}"
+                                data-sender="{{ $msg->user->name ?? $msg->name ?? 'User' }}"
+                                onclick="confirmDeleteContact(this)">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
                         </div>
@@ -70,27 +82,6 @@
                 </article>
             @endforeach
         </div>
-
-        <!-- Pagination UI -->
-        <!-- <nav class="pagination-wrapper" aria-label="Messages pagination">
-            <ul class="pagination">
-                <li class="page-item disabled">
-                    <a href="#" class="page-link"><i class="fa-solid fa-chevron-left"></i> Previous</a>
-                </li>
-                <li class="page-item active">
-                    <a href="#" class="page-link">1</a>
-                </li>
-                <li class="page-item">
-                    <a href="#" class="page-link">2</a>
-                </li>
-                <li class="page-item">
-                    <a href="#" class="page-link">3</a>
-                </li>
-                <li class="page-item">
-                    <a href="#" class="page-link">Next <i class="fa-solid fa-chevron-right"></i></a>
-                </li>
-            </ul>
-        </nav> -->
     @else
         <!-- Empty State UI -->
         <div class="empty-state">
@@ -102,4 +93,47 @@
         </div>
     @endif
 </div>
+
+{{-- SweetAlert2 CDN --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+function confirmDeleteContact(button) {
+    const contactId = button.getAttribute('data-id');
+    const senderName = button.getAttribute('data-sender');
+
+    Swal.fire({
+        title: 'Delete Message?',
+        text: `Are you sure you want to delete the message from "${senderName}"? This action cannot be undone!`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e63946',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Yes, Delete It',
+        cancelButtonText: 'Cancel',
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById(`delete-contact-form-${contactId}`).submit();
+        }
+    });
+}
+</script>
+
+{{-- Success Toast Notification --}}
+@if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Deleted!',
+        text: "{{ session('success') }}",
+        timer: 3000,
+        showConfirmButton: false,
+        toast: true,
+        position: 'top-end',
+        timerProgressBar: true
+    });
+</script>
+@endif
+
 @endsection

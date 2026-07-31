@@ -295,3 +295,46 @@
     width: 100%;
     grid-column: 1 / -1;
 }
+
+.status-form-wrapper {
+    display: inline-block;
+}
+
+.status-select-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.status-select-input {
+    appearance: none;
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 8px 36px 8px 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.status-select-input:hover {
+    border-color: #9ca3af;
+    background-color: #f9fafb;
+}
+
+.status-select-input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.select-icon {
+    position: absolute;
+    right: 12px;
+    pointer-events: none;
+    color: #6b7280;
+    font-size: 13px;
+}

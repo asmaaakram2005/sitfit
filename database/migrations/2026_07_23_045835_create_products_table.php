@@ -18,39 +18,39 @@ return new class extends Migration
 
             $table->string('name');
 
-            $table->string('slug')->unique();
+            $table->string('slug')->unique()->nullable();
 
             $table->text('description');
 
-            $table->text('image_1');
+            $table->text('image_1')->nullable();
 
-            $table->text('image_2');
+            $table->text('image_2')->nullable();
 
-            $table->text('image_3');
+            $table->text('image_3')->nullable();
 
             $table->decimal('price', 10, 2);
 
-            $table->integer('stock');
+            $table->integer('stock')->nullable();
 
             $table->boolean('is_active')->default(true);
 
             $table->timestamps();
 
-            $table->text('material');
+            $table->text('material')->nullable();
 
-            $table->text('weight_capacity');
+            $table->text('weight_capacity')->nullable();
 
-            $table->text('warranty');
+            $table->text('warranty')->nullable();
 
-            $table->text('compatibility');
+            $table->text('compatibility')->nullable();
 
-            $table->text('frame_material');
+            $table->text('frame_material')->nullable();
 
-            $table->text('upholstery');
+            $table->text('upholstery')->nullable();
 
-            $table->text('recline_range');
+            $table->text('recline_range')->nullable();
 
-            $table->text('long_description');
+            $table->text('long_description')->nullable();
 
             $table->text('Smart_Features')->nullable();
 

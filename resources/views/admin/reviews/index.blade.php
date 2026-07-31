@@ -7,7 +7,6 @@
 @endsection
 
 @section('content')
-   
     <div class="reviews-dashboard">
         {{-- Page Header --}}
         <header class="reviews-header">
@@ -22,17 +21,6 @@
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
                     <input type="text" class="search-input" placeholder="Search product or reviewer...">
                 </div>
-                <!-- <div class="filter-box">
-                    <i class="fa-solid fa-filter filter-icon"></i>
-                    <select class="filter-select">
-                        <option value="all">All Ratings</option>
-                        <option value="5">5 Stars</option>
-                        <option value="4">4 Stars</option>
-                        <option value="3">3 Stars</option>
-                        <option value="2">2 Stars</option>
-                        <option value="1">1 Star</option>
-                    </select>
-                </div> -->
             </div>
         </header>
 
@@ -44,17 +32,34 @@
                         <div class="card-header">
                             <div class="user-info">
                                 <div class="avatar-circle">
-                                    {{ strtoupper(substr($review->user->name, 0, 1)) }}
+                                    {{ strtoupper(substr($review->user->name ?? 'U', 0, 1)) }}
                                 </div>
                                 <div class="user-details">
-                                    <h3 class="user-name">{{ $review->user->name }}</h3>
+                                    <h3 class="user-name">{{ $review->user->name ?? 'Unknown User' }}</h3>
                                     <span class="product-tag">
-                                        <i class="fa-solid fa-box"></i> {{ $review->product->name }}
+                                        <i class="fa-solid fa-box"></i> {{ $review->product->name ?? 'Product' }}
                                     </span>
                                 </div>
                             </div>
                             
-                            <button type="button" class="btn-delete" title="Delete Review">
+                            {{-- Hidden Form for Delete Review --}}
+                            <form 
+                                id="delete-review-form-{{ $review->id }}" 
+                                action="{{ route('admin.reviews.destroy', $review->id) }}" 
+                                method="POST" 
+                                style="display: none;">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+
+                            {{-- Delete Button using Data Attributes --}}
+                            <button 
+                                type="button" 
+                                class="btn-delete" 
+                                title="Delete Review"
+                                data-id="{{ $review->id }}"
+                                data-name="{{ $review->user->name ?? 'User' }}"
+                                onclick="confirmDeleteReview(this)">
                                 <i class="fa-solid fa-trash-can"></i>
                             </button>
                         </div>
@@ -62,47 +67,26 @@
                         <div class="card-body">
                             <div class="rating-bar">
                                 <div class="stars" aria-label="{{ $review->rating }} out of 5 stars">
-                                      @for($i = 1; $i <= 5; $i++)
-                                      @if($i <= $review->rating)
-                                      <i class="fa-solid fa-star star-filled"></i>
-                                       @else
-                                      <i class="fa-solid fa-star star-empty"></i>
-                                      @endif
-                                      @endfor
-                                     </div>
+                                    @for($i = 1; $i <= 5; $i++)
+                                        @if($i <= $review->rating)
+                                            <i class="fa-solid fa-star star-filled"></i>
+                                        @else
+                                            <i class="fa-solid fa-star star-empty"></i>
+                                        @endif
+                                    @endfor
+                                </div>
                                 <span class="review-date">
-                                    <i class="fa-regular fa-calendar"></i> {{ $review->created_at->calendar() }}
+                                    <i class="fa-regular fa-calendar"></i> {{ $review->created_at ? $review->created_at->format('M d, Y') : 'N/A' }}
                                 </span>
                             </div>
 
                             <div class="comment-wrapper">
-                                <p class="review-comment">{{ $review->comment}}</p>
+                                <p class="review-comment">{{ $review->comment }}</p>
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
-
-            {{-- Pagination --}}
-            <!-- <nav class="pagination-wrapper" aria-label="Reviews Pagination">
-                <ul class="pagination">
-                    <li class="page-item disabled">
-                        <a href="#" class="page-link"><i class="fa-solid fa-chevron-left"></i> Previous</a>
-                    </li>
-                    <li class="page-item active">
-                        <a href="#" class="page-link">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a href="#" class="page-link">Next <i class="fa-solid fa-chevron-right"></i></a>
-                    </li>
-                </ul>
-            </nav> -->
         @else
             {{-- Empty State Component --}}
             <div class="empty-state">
@@ -114,4 +98,51 @@
             </div>
         @endif
     </div>
+
+{{-- SweetAlert2 CDN --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+function confirmDeleteReview(button) {
+    const reviewId = button.getAttribute('data-id');
+    const userName = button.getAttribute('data-name');
+
+    Swal.fire({
+        title: 'Delete Review?',
+        text: `Are you sure you want to delete the review by "${userName}"? This action cannot be undone!`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e63946',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Yes, Delete It',
+        cancelButtonText: 'Cancel',
+        reverseButtons: true,
+        customClass: {
+            confirmButton: 'btn btn-danger',
+            cancelButton: 'btn btn-secondary'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById(`delete-review-form-${reviewId}`).submit();
+        }
+    });
+}
+</script>
+
+{{-- Success Toast Notification --}}
+@if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Deleted!',
+        text: "{{ session('success') }}",
+        timer: 3000,
+        showConfirmButton: false,
+        toast: true,
+        position: 'top-end',
+        timerProgressBar: true
+    });
+</script>
+@endif
+
 @endsection

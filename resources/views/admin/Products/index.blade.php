@@ -8,7 +8,6 @@
 
 @section('content')
 
-
 <div class="admin-products-container">
     <!-- Page Header -->
     <header class="page-header">
@@ -30,16 +29,7 @@
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
             <input type="text" placeholder="Search products..." class="search-input">
         </div>
-        <!-- <div class="filter-box">
-            <i class="fa-solid fa-filter filter-icon"></i>
-            <select class="filter-select">
-                <option value="">All Categories</option>
-                <option value="chairs">Office Chairs</option>
-                <option value="desks">Desks</option>
-                <option value="accessories">Accessories</option>
-            </select>
-        </div>
-    </div> -->
+    </div>
 
     <!-- Products Grid -->
     @if($products->isNotEmpty())
@@ -48,19 +38,11 @@
                 <article class="product-card">
                     <div class="card-image-wrapper">
                         <img src="{{ asset($product->image_1) }}" alt="{{ $product->name }}" class="product-image">
-                       @if ($product->is_active)
-                            <span class="status-badge status-active">
-                            Active
-                            </span>
-                       @else
-                            <span class="status-badge status-out">
-                            Not Active
-                            </span>
+                        @if ($product->is_active)
+                            <span class="status-badge status-active">Active</span>
+                        @else
+                            <span class="status-badge status-out">Not Active</span>
                         @endif
-                        
-
-
-
                     </div>
 
                     <div class="card-body">
@@ -70,52 +52,43 @@
                         <div class="product-details">
                             <div class="detail-item">
                                 <span class="detail-label">Price</span>
-                                <span class="detail-value price-value">{{ $product->price }}</span>
+                                <span class="detail-value price-value">{{ number_format($product->price, 2) }} EGP</span>
                             </div>
                             <div class="detail-item">
                                 <span class="detail-label">Stock</span>
-                                <span class="detail-value">{{ $product->stock }} units</span>
+                                <span class="detail-value">{{ $product->stock ?? 0 }} units</span>
                             </div>
                         </div>
 
                         <div class="meta-info">
                             <i class="fa-regular fa-calendar"></i>
-                            <span>Added: {{ $product->created_at->calendar() }}</span>
+                            <span>Added: {{ $product->created_at ? $product->created_at->format('M d, Y') : 'N/A' }}</span>
                         </div>
                     </div>
 
                     <div class="card-footer">
-                        <button class="action-btn edit-btn" title="Edit Product">
+                        <a href="{{ route('admin.products.edit', $product) }}" class="action-btn edit-btn" title="Edit Product">
                             <i class="fa-solid fa-pen-to-square"></i>
-                        </button>
-                        <button class="action-btn delete-btn" title="Delete Product">
+                        </a>
+
+                        {{-- Hidden Form for Delete --}}
+                        <form 
+                            id="delete-product-form-{{ $product->slug }}" 
+                            action="{{ route('admin.products.destroy', $product) }}" 
+                            method="POST" 
+                            style="display: none;">
+                            @csrf
+                            @method('DELETE')
+                        </form>
+
+                        {{-- Delete Button --}}
+                        <button type="button" class="action-btn delete-btn" title="Delete Product" onclick="confirmDelete('{{ $product->slug }}', '{{ addslashes($product->name) }}')">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </div>
                 </article>
             @endforeach
         </div>
-
-        <!-- Pagination -->
-        <!-- <nav class="pagination-wrapper" aria-label="Products Pagination">
-            <ul class="pagination">
-                <li class="page-item disabled">
-                    <a href="#" class="page-link"><i class="fa-solid fa-chevron-left"></i> Previous</a>
-                </li>
-                <li class="page-item active">
-                    <a href="#" class="page-link">1</a>
-                </li>
-                <li class="page-item">
-                    <a href="#" class="page-link">2</a>
-                </li>
-                <li class="page-item">
-                    <a href="#" class="page-link">3</a>
-                </li>
-                <li class="page-item">
-                    <a href="#" class="page-link">Next <i class="fa-solid fa-chevron-right"></i></a>
-                </li>
-            </ul>
-        </nav> -->
     @else
         <!-- Empty State -->
         <div class="empty-state">
@@ -127,4 +100,49 @@
         </div>
     @endif
 </div>
+
+{{-- SweetAlert2 CDN --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+function confirmDelete(slug, productName) {
+    Swal.fire({
+        title: 'Delete Product?',
+        text: `Are you sure you want to delete "${productName}"? This action cannot be undone!`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#e63946',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Yes, Delete It',
+        cancelButtonText: 'Cancel',
+        reverseButtons: true,
+        background: '#ffffff',
+        customClass: {
+            confirmButton: 'btn btn-danger',
+            cancelButton: 'btn btn-secondary'
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById(`delete-product-form-${slug}`).submit();
+        }
+    });
+}
+</script>
+
+{{-- Success Notification Toast --}}
+@if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: "{{ session('success') }}",
+        timer: 3000,
+        showConfirmButton: false,
+        toast: true,
+        position: 'top-end',
+        timerProgressBar: true
+    });
+</script>
+@endif
+
 @endsection

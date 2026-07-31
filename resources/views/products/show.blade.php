@@ -53,7 +53,7 @@
 
                 <div class="price-box">
                     <span class="price">{{ $product->price }} EGP</span>
-                    @if ($product->stock > 0)
+                    @if ($product->is_active)
                         <span class="stock-status in-stock">In Stock & Ready to Ship</span>
                     @else
                         <span class="stock-status out-stock">Out of stock</span>

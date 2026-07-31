@@ -34,47 +34,51 @@
         </div>
     </header>   
 
-    <!-- Cards Grid -->
+    <!-- Users Table -->
     @if(count($users) > 0)
-        <div class="users-grid">
-            @foreach($users as $user)
-                <div class="user-card">
-                    <div class="card-header">
-                        <img src="{{ asset($user->image) }}" alt="{{ $user->name }}" class="user-avatar">
-                        <h2 class="user-name">{{ $user->name }}</h2>
-                        <a href="mailto:{{ $user->email }}" class="user-email">{{ $user->email }}</a>
-                    </div>
+        <div class="table-responsive">
+            <table class="users-table">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Email</th>
+                        <th><i class="fa-solid fa-phone info-icon"></i> Phone</th>
+                        <th><i class="fa-solid fa-bag-shopping info-icon"></i> Orders</th>
+                        <th><i class="fa-solid fa-calendar-days info-icon"></i> Joined</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($users as $user)
+                        <tr>
+                            <!-- User Name & Avatar -->
+                            <td class="user-cell">
+                                <img src="{{ asset($user->image) }}" alt="{{ $user->name }}" class="user-avatar">
+                                <span class="user-name">{{ $user->name }}</span>
+                            </td>
 
-                    <div class="card-body">
-                        <div class="info-row">
-                            <span class="info-label">
-                                <i class="fa-solid fa-phone info-icon"></i> Phone
-                            </span>
-                            <span class="info-value">{{ $user->phone }}</span>
-                        </div>
+                            <!-- Email -->
+                            <td>
+                                <a href="mailto:{{ $user->email }}" class="user-email">{{ $user->email }}</a>
+                            </td>
 
-                        <div class="info-row">
-                            <span class="info-label">
-                                <i class="fa-solid fa-bag-shopping info-icon"></i> Orders
-                            </span>
-                            <span class="info-value badge">{{ $user->orders->count() }}</span>
-                        </div>
+                            <!-- Phone -->
+                            <td class="info-value">
+                                {{ $user->phone }}
+                            </td>
 
-                        <div class="info-row">
-                            <span class="info-label">
-                                <i class="fa-solid fa-calendar-days info-icon"></i> Joined
-                            </span>
-                            <span class="info-value">{{ $user->created_at->calendar() }}</span>
-                        </div>
-                    </div>
-<!-- 
-                    <div class="card-footer">
-                        <a href="#" class="btn-view">
-                            <i class="fa-solid fa-eye"></i> View Profile
-                        </a>
-                    </div> -->
-                </div>
-            @endforeach
+                            <!-- Orders Count -->
+                            <td>
+                                <span class="info-value badge">{{ $user->orders->count() }}</span>
+                            </td>
+
+                            <!-- Joined Date -->
+                            <td class="info-value">
+                                {{ $user->created_at->calendar() }}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
 
         <!-- Pagination UI -->
