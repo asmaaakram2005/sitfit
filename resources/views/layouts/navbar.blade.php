@@ -68,8 +68,8 @@
     </button>
 
  <div class="sf-mobile-profile-menu">
-    <a href="{{ route('profile.edit') }}">
-        <i class="fa-solid fa-user-pen"></i>
+    <a href="{{ route('profile.index') }}">
+        <i class="fa-solid fa-user"></i>
         <span> Profile</span>
     </a>
 

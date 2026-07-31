@@ -195,33 +195,92 @@
                     </fieldset>
 
                     {{-- Payment Method --}}
-                    <fieldset class="form-section">
-                        <legend class="section-title">Payment Method</legend>
-                        <div class="options-grid">
-                            <label class="option-card">
-                                <input type="radio" name="payment_method" value="cod" checked>
-                                <div class="option-content">
-                                    <span class="option-title">Cash On Delivery</span>
-                                    <span class="option-desc">Pay upon receiving your chair</span>
-                                </div>
-                            </label>
-                            <label class="option-card">
-                                <input type="radio" name="payment_method" value="card">
-                                <div class="option-content">
-                                    <span class="option-title">Credit Card</span>
-                                    <span class="option-desc">Visa, Mastercard, or AMEX</span>
-                                </div>
-                            </label>
-                            <label class="option-card">
-                                <input type="radio" name="payment_method" value="vodafone">
-                                <div class="option-content">
-                                    <span class="option-title">Vodafone Cash</span>
-                                    <span class="option-desc">Pay instantly via e-wallet</span>
-                                </div>
-                            </label>
-                        </div>
-                    </fieldset>
+<fieldset class="form-section">
+    <legend class="section-title">Payment Method</legend>
 
+    <div class="options-grid">
+
+        {{-- Cash --}}
+        <label class="option-card">
+            <input type="radio" name="payment_method" value="cod" checked>
+            <div class="option-content">
+                <span class="option-title">Cash On Delivery</span>
+                <span class="option-desc">Pay upon receiving your chair</span>
+            </div>
+        </label>
+
+         {{-- Vodafone --}}
+        <label class="option-card">
+            <input type="radio" name="payment_method" value="vodafone">
+            <div class="option-content">
+                <span class="option-title">Vodafone Cash</span>
+                <span class="option-desc">Pay instantly via e-wallet</span>
+            </div>
+        </label>
+
+        {{-- Credit Card --}}
+        <label class="option-card">
+            <input type="radio" name="payment_method" value="card">
+            <div class="option-content">
+                <span class="option-title">Credit Card</span>
+                <span class="option-desc">Visa, Mastercard, or AMEX</span>
+            </div>
+        </label>
+
+       
+
+    </div>
+
+    {{-- Credit Card Fields --}}
+    <div id="card-fields" style="display:none; margin-top:1.5rem;">
+
+        <div class="form-group">
+            <label for="card_number">Card Number</label>
+            <input
+                type="text"
+                id="card_number"
+                name="card_number"
+                value="{{ old('card_number') }}"
+                placeholder="Enter 16-digit card number">
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label for="card_holder">Card Holder</label>
+                <input
+                    type="text"
+                    id="card_holder"
+                    name="card_holder"
+                    value="{{ old('card_holder') }}"
+                    placeholder="Name on Card">
+            </div>
+
+            <div class="form-group">
+                <label for="expiry_date">Expiry Date</label>
+                <input
+                    type="month"
+                    id="expiry_date"
+                    name="expiry_date"
+                    value="{{ old('expiry_date') }}">
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label for="cvv">CVV</label>
+            <input
+                type="password"
+                id="cvv"
+                name="cvv"
+                maxlength="4"
+                value="{{ old('cvv') }}"
+                placeholder="Enter 3 or 4-digit CVV">
+        </div>
+
+    </div>
+
+</fieldset>
                     {{-- Security Badges --}}
                     <div class="security-badges">
                         <div class="badge-item">
@@ -332,4 +391,54 @@
         </div>
     </div>
 </main>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    const methods = document.querySelectorAll('input[name="payment_method"]');
+    const cardFields = document.getElementById('card-fields');
+
+    const cardNumber = document.getElementById('card_number');
+    const cardHolder = document.getElementById('card_holder');
+    const expiryDate = document.getElementById('expiry_date');
+    const cvv = document.getElementById('cvv');
+
+    function toggleCardFields() {
+
+        const payment = document.querySelector('input[name="payment_method"]:checked').value;
+
+        if (payment === 'card') {
+
+            cardFields.style.display = 'block';
+
+            cardNumber.required = true;
+            cardHolder.required = true;
+            expiryDate.required = true;
+            cvv.required = true;
+
+        } else {
+
+            cardFields.style.display = 'none';
+
+            cardNumber.required = false;
+            cardHolder.required = false;
+            expiryDate.required = false;
+            cvv.required = false;
+
+            cardNumber.value = '';
+            cardHolder.value = '';
+            expiryDate.value = '';
+            cvv.value = '';
+        }
+    }
+
+    methods.forEach(method => {
+        method.addEventListener('change', toggleCardFields);
+    });
+
+    toggleCardFields();
+
+});
+</script>
 @endsection
