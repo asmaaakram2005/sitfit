@@ -7,65 +7,7 @@
 @endsection
 
 @section('content')
-  @php
-$users = [
-    [
-        'id' => 1,
-        'image' => 'https://ui-avatars.com/api/?name=John+Doe&background=001F3F&color=fff',
-        'name' => 'John Doe',
-        'email' => 'john.doe@example.com',
-        'phone' => '+1 (555) 019-2834',
-        'orders' => 12,
-        'joined' => 'July 20, 2026'
-    ],
-    [
-        'id' => 2,
-        'image' => 'https://ui-avatars.com/api/?name=Sarah+Jenkins&background=9DC183&color=fff',
-        'name' => 'Sarah Jenkins',
-        'email' => 'sarah.j@example.com',
-        'phone' => '+1 (555) 014-9921',
-        'orders' => 8,
-        'joined' => 'June 15, 2026'
-    ],
-    [
-        'id' => 3,
-        'image' => 'https://ui-avatars.com/api/?name=Michael+Brown&background=001F3F&color=fff',
-        'name' => 'Michael Brown',
-        'email' => 'm.brown@example.com',
-        'phone' => '+1 (555) 017-8832',
-        'orders' => 3,
-        'joined' => 'May 04, 2026'
-    ],
-    [
-        'id' => 4,
-        'image' => 'https://ui-avatars.com/api/?name=Emma+Wilson&background=9DC183&color=fff',
-        'name' => 'Emma Wilson',
-        'email' => 'emma.w@example.com',
-        'phone' => '+1 (555) 012-3344',
-        'orders' => 19,
-        'joined' => 'April 22, 2026'
-    ],
-    [
-        'id' => 5,
-        'image' => 'https://ui-avatars.com/api/?name=Alex+Rivera&background=001F3F&color=fff',
-        'name' => 'Alex Rivera',
-        'email' => 'arivera@example.com',
-        'phone' => '+1 (555) 018-5566',
-        'orders' => 1,
-        'joined' => 'March 11, 2026'
-    ],
-    [
-        'id' => 6,
-        'image' => 'https://ui-avatars.com/api/?name=Lisa+Ray&background=9DC183&color=fff',
-        'name' => 'Lisa Ray',
-        'email' => 'lisa.ray@example.com',
-        'phone' => '+1 (555) 011-7788',
-        'orders' => 6,
-        'joined' => 'January 30, 2026'
-    ]
-];
-@endphp
-
+  
 <div class="users-dashboard">
     <!-- Header Section -->
     <header class="page-header">
@@ -98,9 +40,9 @@ $users = [
             @foreach($users as $user)
                 <div class="user-card">
                     <div class="card-header">
-                        <img src="{{ $user['image'] }}" alt="{{ $user['name'] }}" class="user-avatar">
-                        <h2 class="user-name">{{ $user['name'] }}</h2>
-                        <a href="mailto:{{ $user['email'] }}" class="user-email">{{ $user['email'] }}</a>
+                        <img src="{{ asset($user->image) }}" alt="{{ $user->name }}" class="user-avatar">
+                        <h2 class="user-name">{{ $user->name }}</h2>
+                        <a href="mailto:{{ $user->email }}" class="user-email">{{ $user->email }}</a>
                     </div>
 
                     <div class="card-body">
@@ -108,21 +50,21 @@ $users = [
                             <span class="info-label">
                                 <i class="fa-solid fa-phone info-icon"></i> Phone
                             </span>
-                            <span class="info-value">{{ $user['phone'] }}</span>
+                            <span class="info-value">{{ $user->phone }}</span>
                         </div>
 
                         <div class="info-row">
                             <span class="info-label">
                                 <i class="fa-solid fa-bag-shopping info-icon"></i> Orders
                             </span>
-                            <span class="info-value badge">{{ $user['orders'] }}</span>
+                            <span class="info-value badge">{{ $user->orders->count() }}</span>
                         </div>
 
                         <div class="info-row">
                             <span class="info-label">
                                 <i class="fa-solid fa-calendar-days info-icon"></i> Joined
                             </span>
-                            <span class="info-value">{{ $user['joined'] }}</span>
+                            <span class="info-value">{{ $user->created_at->calendar() }}</span>
                         </div>
                     </div>
 <!-- 
