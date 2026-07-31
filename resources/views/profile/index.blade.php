@@ -14,11 +14,11 @@
     <!-- Page Header -->
     <header class="profile-header">
         <h1 class="profile-title">My Profile</h1>
-        <p class="profile-subtitle">Manage your account information.</p>
+        <p class="profile-subtitle"> View your personal details and account settings.</p>
     </header>
 
     <!-- Avatar Section -->
-    <div class="avatar-section">
+    <!-- <div class="avatar-section">
         <div class="avatar-wrapper">
             <img 
                 src="{{ auth()->user()->image }}" 
@@ -26,7 +26,7 @@
                 class="avatar-image"
             >
         </div>
-    </div>
+    </div> -->
 
     <div class="profile-form">
         <!-- Personal Information Card -->
@@ -86,9 +86,9 @@
             <form action="{{ route('logout') }}" method="POST" style="width: 100%; max-width: 16rem;">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="save-btn" style="background-color: var(--primary-color); color: #ffffff;">
-                    Logout
-                </button>
+                <button type="submit" class="save-btn logout-btn">
+    Logout
+</button>
             </form>
         </div>
     </div>

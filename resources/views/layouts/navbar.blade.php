@@ -85,6 +85,15 @@
 </div>
 
 </div>
+         @if(auth()->check() && auth()->user()->isAdmin())
+
+        <a href="{{ route('admin.dashboard') }}"
+       class="sf-btn sf-btn-primary">
+        <i class="fa-solid fa-gear"></i>
+        <span>Admin</span>
+        </a>
+
+     @endif
                     <!-- <form method="POST" action="{{ route('logout') }}" class="sf-logout-form">
                         @csrf
                         <button type="submit" class="sf-btn sf-btn-danger">

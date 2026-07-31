@@ -63,7 +63,8 @@
                     <span>Reviews</span>
                 </a>
 
-                <a href="{{ route('admin.contacts.index') }}" class="nav-item {{ request()->is('admin/messages*') ? 'active' : '' }}">
+                <a href="{{ route('admin.contacts.index') }}" 
+                    class="nav-item {{ request()->is('admin/contacts*') ? 'active' : '' }}">
                     <i class="fa-solid fa-envelope"></i>
                     <span>Contact Messages</span>
                 </a>
