@@ -32,7 +32,7 @@
                 </select>
             </div> -->
         </div>
-    </header>
+    </header>   
 
     <!-- Cards Grid -->
     @if(count($users) > 0)
