@@ -7,52 +7,7 @@
 @endsection
 
 @section('content')
-   {{-- Dummy Data Array --}}
-    @php
-        $reviews = [
-            [
-                'id' => 1,
-                'user' => 'John Doe',
-                'product' => 'Ergonomic Office Chair',
-                'stars' => 5,
-                'comment' => 'Very comfortable chair with excellent lumbar support! Assembly was straightforward, and the materials feel high-end. Highly recommend for long work hours.',
-                'date' => 'July 20, 2026'
-            ],
-            [
-                'id' => 2,
-                'user' => 'Sarah Jenkins',
-                'product' => 'SitFit Smart Desk Lamp',
-                'stars' => 4,
-                'comment' => 'Great illumination options with adjustable warm/cold tones. The touch sensor can be slightly sensitive, but overall a solid purchase.',
-                'date' => 'July 18, 2026'
-            ],
-            [
-                'id' => 3,
-                'user' => 'Michael Chen',
-                'product' => 'Orthopedic Seat Cushion',
-                'stars' => 5,
-                'comment' => 'Saved my back during remote working days. Takes a day or two to get used to, but now I cannot work without it.',
-                'date' => 'July 15, 2026'
-            ],
-            [
-                'id' => 4,
-                'user' => 'Emily Watson',
-                'product' => 'Active Sitting Balance Stool',
-                'stars' => 3,
-                'comment' => 'Decent build quality, but takes some getting used to. Wish the height adjustment mechanism had a wider range.',
-                'date' => 'July 10, 2026'
-            ],
-            [
-                'id' => 5,
-                'user' => 'David Miller',
-                'product' => 'Ergonomic Office Chair',
-                'stars' => 5,
-                'comment' => 'Best chair I have owned! Prompt delivery, great packaging, and top-notch customer support.',
-                'date' => 'July 05, 2026'
-            ]
-        ];
-    @endphp
-
+   
     <div class="reviews-dashboard">
         {{-- Page Header --}}
         <header class="reviews-header">
@@ -89,12 +44,12 @@
                         <div class="card-header">
                             <div class="user-info">
                                 <div class="avatar-circle">
-                                    {{ strtoupper(substr($review['user'], 0, 1)) }}
+                                    {{ strtoupper(substr($review->user->name, 0, 1)) }}
                                 </div>
                                 <div class="user-details">
-                                    <h3 class="user-name">{{ $review['user'] }}</h3>
+                                    <h3 class="user-name">{{ $review->user->name }}</h3>
                                     <span class="product-tag">
-                                        <i class="fa-solid fa-box"></i> {{ $review['product'] }}
+                                        <i class="fa-solid fa-box"></i> {{ $review->product->name }}
                                     </span>
                                 </div>
                             </div>
@@ -106,22 +61,22 @@
 
                         <div class="card-body">
                             <div class="rating-bar">
-                                <div class="stars" aria-label="{{ $review['stars'] }} out of 5 stars">
-                                    @for($i = 1; $i <= 5; $i++)
-                                        @if($i <= $review['stars'])
-                                            <i class="fa-solid fa-star star-filled"></i>
-                                        @else
-                                            <i class="fa-solid fa-star star-empty"></i>
-                                        @endif
-                                    @endfor
-                                </div>
+                                <div class="stars" aria-label="{{ $review->rating }} out of 5 stars">
+                                      @for($i = 1; $i <= 5; $i++)
+                                      @if($i <= $review->rating)
+                                      <i class="fa-solid fa-star star-filled"></i>
+                                       @else
+                                      <i class="fa-solid fa-star star-empty"></i>
+                                      @endif
+                                      @endfor
+                                     </div>
                                 <span class="review-date">
-                                    <i class="fa-regular fa-calendar"></i> {{ $review['date'] }}
+                                    <i class="fa-regular fa-calendar"></i> {{ $review->created_at->calendar() }}
                                 </span>
                             </div>
 
                             <div class="comment-wrapper">
-                                <p class="review-comment">{{ $review['comment'] }}</p>
+                                <p class="review-comment">{{ $review->comment}}</p>
                             </div>
                         </div>
                     </div>

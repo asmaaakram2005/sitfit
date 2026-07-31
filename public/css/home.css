@@ -3,7 +3,7 @@
    ========================================== */
 
 .hero-section {
-    background-color: #fdfdefee; 
+    background-color: #fdfdefee;
     padding: 80px 20px;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     position: relative;
@@ -14,7 +14,7 @@
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1.1fr; 
+    grid-template-columns: 1fr 1.1fr;
     gap: 50px;
     align-items: center;
 }
@@ -28,7 +28,7 @@
 }
 
 .hero-content h1 .highlight {
-    color: #586547; 
+    color: #586547;
 }
 
 /* الوصف */
@@ -128,6 +128,7 @@
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -139,30 +140,48 @@
         opacity: 0;
         transform: scale(0.92);
     }
+
     to {
         opacity: 1;
         transform: scale(1);
     }
 }
 
-.hero-content h1 { animation: fadeInUp 0.8s ease-out forwards; }
-.hero-description { animation: fadeInUp 0.8s ease-out 0.2s forwards; opacity: 0; }
-.hero-buttons { animation: fadeInUp 0.8s ease-out 0.4s forwards; opacity: 0; }
-.hero-image-wrapper { animation: zoomIn 0.9s ease-out 0.15s forwards; opacity: 0; }
+.hero-content h1 {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.hero-description {
+    animation: fadeInUp 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+.hero-buttons {
+    animation: fadeInUp 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+}
+
+.hero-image-wrapper {
+    animation: zoomIn 0.9s ease-out 0.15s forwards;
+    opacity: 0;
+}
 
 @media (max-width: 992px) {
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
     }
+
     .hero-description {
         margin-left: auto;
         margin-right: auto;
     }
+
     .hero-buttons {
         justify-content: center;
     }
 }
+
 /* ==========================================
    ⚠️ The Problem Section (Final Updated Version)
    ========================================== */
@@ -364,7 +383,7 @@
 .transform-card {
     flex: 1;
     background: #ffffff !important;
-    border: 2px solid #9DC183 !important; 
+    border: 2px solid #9DC183 !important;
     border-radius: 2rem;
     padding: 2rem 1.5rem;
     text-align: center;
@@ -413,7 +432,7 @@
 
 .transform-img-box {
     width: 100%;
-    height: 190px; 
+    height: 190px;
     border-radius: 1rem;
     overflow: hidden;
     margin-bottom: 1.2rem;
@@ -423,7 +442,7 @@
 .transform-img-box img {
     width: 100% !important;
     height: 100% !important;
-    object-fit: contain !important; 
+    object-fit: contain !important;
     border-radius: 1rem !important;
     display: block;
     transition: transform 0.35s ease;
@@ -509,17 +528,19 @@
     .transformation-grid {
         flex-direction: column;
     }
+
     .transform-arrow {
         transform: rotate(90deg);
         margin: 0.5rem 0;
     }
 }
+
 /* ==========================================
    4. Features Section (Text & Icon Color Change Only)
    ========================================== */
 .features-section {
     padding: 30px 20px 0px 20px;
-    background-color: #f2f7f7 !important; 
+    background-color: #f2f7f7 !important;
     position: relative;
 }
 
@@ -552,7 +573,8 @@
     font-family: 'Comfortaa', cursive, sans-serif;
     font-size: 2.6rem;
     font-weight: 700;
-    color: #001F3F !important; /* Deep Navy */
+    color: #001F3F !important;
+    /* Deep Navy */
     margin-bottom: 12px;
 }
 
@@ -603,7 +625,8 @@
     font-family: 'Comfortaa', cursive, sans-serif;
     font-size: 1.25rem;
     font-weight: 700 !important;
-    color: #001F3F !important; /* Deep Navy */
+    color: #001F3F !important;
+    /* Deep Navy */
     margin: 0 0 12px 0;
     transition: color 0.35s ease;
 }
@@ -611,7 +634,8 @@
 .feature-card p {
     font-family: 'Poppins', sans-serif;
     font-size: 0.95rem;
-    font-weight: 600 !important; /* Bold */
+    font-weight: 600 !important;
+    /* Bold */
     color: rgba(0, 31, 63, 0.8) !important;
     line-height: 1.6;
     margin: 0;
@@ -627,7 +651,8 @@
 
 .feature-card:hover h3,
 .feature-card:hover p {
-    color: #6b9350 !important; /* لون النص يتغير للأخضر */
+    color: #6b9350 !important;
+    /* لون النص يتغير للأخضر */
 }
 
 .feature-card:hover .icon-box {
@@ -648,7 +673,7 @@
 
 .feature-card.active h3,
 .feature-card.active p {
-    color: #6b9350 !important; 
+    color: #6b9350 !important;
 }
 
 /* Responsive */
@@ -657,11 +682,13 @@
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
 @media (max-width: 640px) {
     .features-grid {
         grid-template-columns: 1fr;
     }
 }
+
 /* ==========================================
    🎨 How It Works Styles & Interactive Effects
    ========================================== */
@@ -845,14 +872,16 @@
     .steps-timeline {
         flex-direction: column;
     }
+
     .step-connector {
         transform: rotate(90deg);
         margin: 0.5rem 0;
     }
 }
+
 :root {
-    --sp-main-green: #9DC183; 
-    --sp-dark-navy: #001F3F;  
+    --sp-main-green: #9DC183;
+    --sp-dark-navy: #001F3F;
     --sp-text-color: #333;
     --sp-white: #ffffff;
     --sp-border-radius: 15px;
@@ -1019,7 +1048,7 @@
 }
 
 .main-display-box:hover .hero-product-img {
-    transform: scale(1.05); 
+    transform: scale(1.05);
 }
 
 /* 360 Badge on Main Display */
@@ -1107,12 +1136,32 @@
 
 /* Responsive Handling */
 @media (max-width: 992px) {
-    .preview-header { max-width: 90%; }
-    .gallery-card { flex-direction: column-reverse; gap: 1.5rem; }
-    .thumbnails-wrapper { width: 100%; flex-direction: row; justify-content: center; }
-    .thumb-card { width: 22%; height: 9vh; }
-    .main-display-box { width: 100%; height: 40vh; }
+    .preview-header {
+        max-width: 90%;
+    }
+
+    .gallery-card {
+        flex-direction: column-reverse;
+        gap: 1.5rem;
+    }
+
+    .thumbnails-wrapper {
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .thumb-card {
+        width: 22%;
+        height: 9vh;
+    }
+
+    .main-display-box {
+        width: 100%;
+        height: 40vh;
+    }
 }
+
 /* ==========================================
    8. Customer Reviews Section (FULL & Complete Styles)
    ========================================== */
@@ -1162,9 +1211,10 @@
 }
 
 .main-title:hover {
-    color: #0056b3 !important; /* أزرق */
+    color: #0056b3 !important;
+    /* أزرق */
     transform: translateY(-4px) scale(1.03) !important;
-    text-shadow: 0 8px 20px rgba(0, 86, 179, 0.3) !important; 
+    text-shadow: 0 8px 20px rgba(0, 86, 179, 0.3) !important;
 }
 
 .sub-title-hover {
@@ -1178,9 +1228,9 @@
 }
 
 .sub-title-hover:hover {
-    color: #6b9350 !important; 
-    transform: translateY(-4px) !important; 
-    text-shadow: 0 5px 15px rgba(107, 147, 80, 0.25) !important; 
+    color: #6b9350 !important;
+    transform: translateY(-4px) !important;
+    text-shadow: 0 5px 15px rgba(107, 147, 80, 0.25) !important;
 }
 
 .rating-summary-card {
@@ -1201,7 +1251,7 @@
     background: #ffffff !important;
     border-color: #0056b3 !important;
     transform: translateY(-5px) scale(1.03) !important;
-    box-shadow: 0 12px 30px rgba(0, 86, 179, 0.25) !important; 
+    box-shadow: 0 12px 30px rgba(0, 86, 179, 0.25) !important;
 }
 
 .rating-summary-card:hover .score-num {
@@ -1525,15 +1575,34 @@ textarea.form-control {
 
 /* Responsive */
 @media (max-width: 992px) {
-    .reviews-grid { grid-template-columns: repeat(2, 1fr); }
-    .form-grid { grid-template-columns: 1fr; }
+    .reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 640px) {
-    .reviews-grid { grid-template-columns: 1fr; }
-    .rating-summary-card { flex-direction: column; gap: 0.5rem; border-radius: 1.5rem; }
-    .rating-count { border-left: none; padding-left: 0; border-top: 1px solid rgba(0, 31, 63, 0.1); padding-top: 0.5rem; }
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rating-summary-card {
+        flex-direction: column;
+        gap: 0.5rem;
+        border-radius: 1.5rem;
+    }
+
+    .rating-count {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid rgba(0, 31, 63, 0.1);
+        padding-top: 0.5rem;
+    }
 }
+
 /* ==========================================
    9. FAQ Section Styles (Professional & Clean)
    ========================================== */
@@ -1546,7 +1615,7 @@ textarea.form-control {
 
 .faq-container {
     width: 90%;
-    max-width: 850px; 
+    max-width: 850px;
     margin: 0 auto;
 }
 
@@ -1642,21 +1711,21 @@ textarea.form-control {
 /* --- ACTIVE / OPEN STATE --- */
 .faq-item.active {
     background: #ffffff !important;
-    border-color: #0056b3 !important; 
+    border-color: #0056b3 !important;
     box-shadow: 0 10px 25px rgba(0, 86, 179, 0.12);
 }
 
 .faq-item.active .faq-question {
-    color: #0056b3 !important; 
+    color: #0056b3 !important;
 }
 
 .faq-item.active .faq-icon {
-    transform: rotate(180deg); 
+    transform: rotate(180deg);
     color: #0056b3 !important;
 }
 
 .faq-item.active .faq-answer {
-    max-height: 200px; 
+    max-height: 200px;
 }
 
 /* Hover Effects on Closed Items */
@@ -1664,6 +1733,7 @@ textarea.form-control {
     border-color: #9DC183 !important;
     transform: translateY(-2px);
 }
+
 /* ==========================================
    10. Team Section Styles (Professional & Fixed Layout)
    ========================================== */
@@ -1726,7 +1796,8 @@ textarea.form-control {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between; /* تحافظ على محاذاة الأزرار تحت */
+    justify-content: space-between;
+    /* تحافظ على محاذاة الأزرار تحت */
     transition: all 0.35s ease !important;
     box-shadow: 0 10px 30px rgba(0, 31, 63, 0.02);
 }
@@ -1746,7 +1817,7 @@ textarea.form-control {
     object-fit: cover;
     border: 3px solid #6b9350;
     transition: transform 0.35s ease;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 /* Member Info */
@@ -1764,17 +1835,20 @@ textarea.form-control {
     line-height: 1.3;
     transition: color 0.35s ease;
     /* 🟢 التعديل المطلوب لضبط المحاذاة */
-    min-height: 3rem;           /* حجز ارتفاع ثنائي السطور لجميع الكروت */
+    min-height: 3rem;
+    /* حجز ارتفاع ثنائي السطور لجميع الكروت */
     display: flex;
-    align-items: center;        /* توسيط الاسم رأسياً لو كان سطر واحد */
-    justify-content: center;   /* توسيط الاسم أفقياً */
+    align-items: center;
+    /* توسيط الاسم رأسياً لو كان سطر واحد */
+    justify-content: center;
+    /* توسيط الاسم أفقياً */
 }
 
 .team-position {
     font-family: 'Poppins', sans-serif;
     font-size: 0.85rem;
     font-weight: 700;
-    color: #6b9350 !important; 
+    color: #6b9350 !important;
     display: block;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -1784,7 +1858,7 @@ textarea.form-control {
     font-family: 'Poppins', sans-serif;
     font-size: 0.85rem;
     font-weight: 600;
-    color: #1c3957 !important; 
+    color: #1c3957 !important;
     display: block;
     margin-bottom: 0.3rem;
 }
@@ -1821,7 +1895,7 @@ textarea.form-control {
 }
 
 .social-btn:hover {
-    background: #6b9350; 
+    background: #6b9350;
     color: #ffffff;
     border-color: #6b9350;
     transform: translateY(-3px);
@@ -1831,8 +1905,8 @@ textarea.form-control {
 .team-card:hover {
     transform: translateY(-6px);
     background: #ffffff !important;
-    border-color: #6b9350 !important; 
-    box-shadow: 0 15px 35px rgba(107, 147, 80, 0.18) !important; 
+    border-color: #6b9350 !important;
+    box-shadow: 0 15px 35px rgba(107, 147, 80, 0.18) !important;
 }
 
 .team-card:hover .team-avatar {
@@ -1840,16 +1914,20 @@ textarea.form-control {
 }
 
 .team-card:hover .team-info h3 {
-    color: #6b9350 !important; 
+    color: #6b9350 !important;
 }
 
 /* Responsive Breakpoints */
 @media (max-width: 1024px) {
-    .team-grid { grid-template-columns: repeat(2, 1fr); }
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 640px) {
-    .team-grid { grid-template-columns: 1fr; }
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* ==========================================
@@ -1865,7 +1943,8 @@ textarea.form-control {
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
-    background-color: #001F3F; /* اللون الأزرق الداكن الخاص بالهوية */
+    background-color: #001F3F;
+    /* اللون الأزرق الداكن الخاص بالهوية */
     color: #ffffff !important;
     padding: 0.9rem 2.2rem;
     border-radius: 2rem;
@@ -1880,7 +1959,8 @@ textarea.form-control {
 
 /* تأثير الـ Hover باللون الأخضر المميز للموقع */
 .btn-team-more:hover {
-    background-color: #6b9350; /* اللون الأخضر */
+    background-color: #6b9350;
+    /* اللون الأخضر */
     transform: translateY(-3px);
     box-shadow: 0 12px 25px rgba(107, 147, 80, 0.3);
 }
@@ -1892,4 +1972,52 @@ textarea.form-control {
 
 .btn-team-more:hover i {
     transform: translateX(5px);
+}
+
+/* ==========================================
+   ⬇️ أضف الكود ده في آخر ملف home.css
+   Scroll Animations — SitFit
+   ========================================== */
+
+/* الحالة الأولية: مخفي قبل الـ scroll */
+.sf-anim-left {
+    opacity: 0;
+    transform: translateX(-80px);
+}
+
+.sf-anim-right {
+    opacity: 0;
+    transform: translateX(80px);
+}
+
+.sf-anim-up {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+/* fade فقط — للعناصر اللي عندها transform تاني زي scale */
+.sf-anim-fade {
+    opacity: 0;
+}
+
+/* Transition مشترك لكل أنواع الأنيميشن */
+.sf-anim-left,
+.sf-anim-right,
+.sf-anim-up,
+.sf-anim-fade {
+    will-change: opacity, transform;
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* الحالة المرئية: JavaScript بيضيف الكلاس ده */
+.sf-visible {
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
+}
+
+/* استثناء خاص: الكارت الأوسط في Solution عنده scale(1.03) */
+/* لازم نرجعله الـ scale بعد ما يظهر */
+.solution-card-highlight.sf-visible {
+    transform: scale(1.03) !important;
 }

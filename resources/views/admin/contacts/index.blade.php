@@ -7,35 +7,7 @@
 @endsection
 
 @section('content')
-    @php
-$messages = [
-    [
-        'id' => 1,
-        'name' => 'John Doe',
-        'email' => 'john@example.com',
-        'subject' => 'Order Status Inquiry',
-        'message' => 'I placed an order (Order #4928) three days ago and haven\'t received a tracking update yet. Could you please check the status for me? I need this item before next weekend.',
-        'date' => 'July 28, 2026'
-    ],
-    [
-        'id' => 2,
-        'name' => 'Sarah Jenkins',
-        'email' => 'sarah.j@fitmail.com',
-        'subject' => 'Size Exchange Request',
-        'message' => 'Hello team, I received the SitFit Athletic Hoodie today in size Medium, but it runs a bit tighter than expected around the shoulders. I would like to exchange it for a Large. What is the return process for this?',
-        'date' => 'July 26, 2026'
-    ],
-    [
-        'id' => 3,
-        'name' => 'Michael Chen',
-        'email' => 'mchen@workplace.org',
-        'subject' => 'Bulk Corporate Discount',
-        'message' => 'We are considering ordering custom SitFit fitness gear for our corporate wellness program (around 75 employees). Do you offer bulk discounts or corporate customization services? Looking forward to hearing back.',
-        'date' => 'July 20, 2026'
-    ]
-];
-@endphp
-
+  
 <div class="contacts-container">
     <!-- Header Section -->
     <header class="contacts-header">
@@ -63,9 +35,9 @@ $messages = [
     </header>
 
     <!-- Messages Container -->
-    @if(count($messages) > 0)
+    @if(count($contacts) > 0)
         <div class="messages-list">
-            @foreach($messages as $msg)
+            @foreach($contacts as $msg)
                 <article class="message-card">
                     <div class="message-header">
                         <div class="sender-info">
@@ -73,15 +45,15 @@ $messages = [
                                 <i class="fa-solid fa-user"></i>
                             </div>
                             <div class="sender-details">
-                                <h3 class="sender-name">{{ $msg['name'] }}</h3>
-                                <a href="mailto:{{ $msg['email'] }}" class="sender-email">{{ $msg['email'] }}</a>
+                                <h3 class="sender-name">{{ $msg->name }}</h3>
+                                <a href="mailto:{{ $msg->email }}" class="sender-email">{{ $msg->email }}</a>
                             </div>
                         </div>
 
                         <div class="message-meta">
                             <span class="message-date">
                                 <i class="fa-regular fa-calendar"></i>
-                                {{ $msg['date'] }}
+                                {{ $msg->created_at->calendar() }}
                             </span>
                             <button type="button" class="btn-delete" title="Delete Message" aria-label="Delete Message">
                                 <i class="fa-solid fa-trash"></i>
@@ -90,9 +62,9 @@ $messages = [
                     </div>
 
                     <div class="message-body">
-                        <h4 class="message-subject">{{ $msg['subject'] }}</h4>
+                        <h4 class="message-subject">{{ $msg->subject }}</h4>
                         <div class="message-content">
-                            <p>{{ $msg['message'] }}</p>
+                            <p>{{ $msg->message }}</p>
                         </div>
                     </div>
                 </article>
