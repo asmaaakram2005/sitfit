@@ -47,9 +47,9 @@
             <div class="order-card-body">
                 <div class="customer-info">
                     <img
-    src="{{ $order->user->image ?? asset('images/default-avatar.png') }}"
-    alt="{{ $order->user->name }}"
-    class="customer-avatar">ّ
+                    src="{{ $order->user->image ?? asset('images/default-avatar.png') }}"
+                    alt="{{ $order->user->name }}"
+                    class="customer-avatar">ّ
                     <div>
                         <h3 class="customer-name">{{ $order->user->name }}</h3>
                         <p class="customer-email">{{ $order->user->email }}</p>
