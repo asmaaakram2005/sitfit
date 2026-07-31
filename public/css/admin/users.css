@@ -344,3 +344,13 @@ body {
     cursor: not-allowed;
     background-color: var(--bg-slate);
 }
+
+
+.user-avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent-green);
+    display: block;
+}
