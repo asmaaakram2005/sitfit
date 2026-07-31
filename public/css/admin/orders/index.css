@@ -327,3 +327,12 @@
         width: 100%;
     }
 }
+
+.customer-avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 0.125rem solid #E2E8F0;
+    flex-shrink: 0;
+}
