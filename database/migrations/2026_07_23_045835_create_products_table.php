@@ -52,15 +52,23 @@ return new class extends Migration
 
             $table->text('long_description');
 
-            $table->text('Smart Features')->nullable();
+            $table->text('Smart_Features')->nullable();
 
-            $table->text('AI Posture Tracking')->nullable();
+            $table->text('AI_Posture_Tracking')->nullable();
 
-            $table->text('Silent Vibration Alerts')->nullable();
+            $table->text('Silent_Vibration_Alerts')->nullable();
 
-            $table->text('Companion App')->nullable();
+            $table->text('Companion_App')->nullable();
 
-            $table->text('Universal Ergonomic Fit Features')->nullable();
+            $table->text('Universal_Ergonomic_Fit_Features')->nullable();
+
+            $table->text('feature_1')->nullable();
+
+            $table->text('feature_2')->nullable();
+
+            $table->text('feature_3')->nullable();
+
+
 
         });
     

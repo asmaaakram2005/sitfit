@@ -21,7 +21,7 @@
     <div class="avatar-section">
         <div class="avatar-wrapper">
             <img 
-                src="{{ auth()->user()->avatar ? asset('storage/' . auth()->user()->avatar) : asset('images/default-avatar.png') }}" 
+                src="{{ auth()->user()->image }}" 
                 alt="{{ auth()->user()->name }}" 
                 class="avatar-image"
             >
@@ -85,6 +85,7 @@
             <!-- Logout Form & Button -->
             <form action="{{ route('logout') }}" method="POST" style="width: 100%; max-width: 16rem;">
                 @csrf
+                @method('DELETE')
                 <button type="submit" class="save-btn" style="background-color: var(--primary-color); color: #ffffff;">
                     Logout
                 </button>

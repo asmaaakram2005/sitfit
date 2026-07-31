@@ -48,15 +48,20 @@
         Support
     </div>
 
-    <div class="chat-body">
-        <p>Hi! How can we help you?</p>
+    {{-- أضفنا ID للـ body --}}
+    <div class="chat-body" id="chat-body">
+        <div class="message bot-message">
+            <p>Hi! How can we help you?</p>
+        </div>
     </div>
-    <form>
+
+    {{-- أضفنا ID للـ Form والـ Input --}}
+    <form id="chat-form">
         @csrf
         <div class="chat-footer">
-            <input type="text" placeholder="Type your message...">
+            <input type="text" id="chat-input" placeholder="Type your message..." required autocomplete="off">
 
-            <button class="send-btn" type="submit">
+            <button class="send-btn" type="submit" id="send-btn">
                 <i class="fa-solid fa-paper-plane"></i>
             </button>
         </div>
@@ -64,15 +69,6 @@
 </div>
 
 <script src="{{ asset('js/chat-widget.js') }}"></script>
-
-<script>
-    const btn = document.querySelector('.chat-btn');
-    const box = document.querySelector('.chat-box');
-
-    btn.addEventListener('click', () => {
-        box.classList.toggle('active');
-    });
-</script>
 
 </body>
 

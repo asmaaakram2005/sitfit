@@ -15,6 +15,7 @@ use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ChatController;
 
 // ================= Admin Controllers =================
 use App\Http\Controllers\Admin\AdminController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\ReviewController as AdminReviewController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
+use App\Http\Controllers\ChatbotController;
 
 
 
@@ -32,7 +34,11 @@ use App\Http\Controllers\Admin\ContactController as AdminContactController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+// =======================================================
+// ChatBot
+// =======================================================
 
+Route::post('/chat/send', [ChatbotController::class, 'sendMessage'])->name('chat.send');
 
 // =======================================================
 // Public Pages
@@ -47,6 +53,8 @@ Route::get('/products/{product}', [ProductController::class, 'show'])
 Route::get('/team', [TeamController::class, 'index'])
     ->name('team.index');
 
+Route::post('/chat', ChatController::class)
+    ->name('chat');
 
 
 // =======================================================
@@ -115,6 +123,8 @@ Route::middleware('auth')->group(function () {
     // ================= Profile =================
 
     Route::controller(ProfileController::class)->group(function () {
+
+        Route::get('/profile', 'index')->name('profile.index');
 
         Route::get('/profile/edit', 'edit')->name('profile.edit');
 
@@ -237,5 +247,10 @@ Route::prefix('admin')
 
         Route::get('/contacts', [AdminContactController::class, 'index'])
             ->name('contacts.index');
+
+        // logout
+
+         Route::delete('/logout', [AdminController::class, 'destroy'])
+            ->name('logout');
 
     });

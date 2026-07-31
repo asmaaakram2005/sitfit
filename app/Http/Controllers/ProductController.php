@@ -27,7 +27,6 @@ class ProductController extends Controller
     {
         // تحميل الصور والريفيوهات مع أصحابها + حساب متوسط التقييم وعدد التقييمات للمنتج ده
         $product->load([
-            'images',
             'reviews.user', // يجيب التقييمات الخاصة بالمنتج مع بيانات اليوزر اللي كتب التقييم
         ])
         ->loadAvg('reviews', 'rating')

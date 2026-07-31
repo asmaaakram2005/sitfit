@@ -66,9 +66,9 @@
                 </p>
 
                 <div class="features-preview" style="margin-bottom: 25px;">
-                    <span class="feature-tag">Adaptive Lumbar Support</span>
-                    <span class="feature-tag">Bluetooth 5.0 Sync</span>
-                    <span class="feature-tag">3D Adjustable Armrests</span>
+                    <span class="feature-tag">{{ $product->feature_1 }}</span>
+                    <span class="feature-tag">{{ $product->feature_2 }}</span>
+                    <span class="feature-tag">{{ $product->feature_3 }}</span>
                 </div>
 
                 <!-- <div class="quantity-selector">
@@ -136,25 +136,25 @@
                 <div class="feature-item">
                     <div class="feature-number">01</div>
                     <h3>AI Posture Tracking</h3>
-                    <p>Monitors your seated position 50 times per second to prevent back strain.</p>
+                    <p>{{ $product->AI_Posture_Tracking }}</p>
                 </div>
 
                 <div class="feature-item">
                     <div class="feature-number">02</div>
                     <h3>Silent Vibration Alerts</h3>
-                    <p>Gently reminds you to adjust your posture without disrupting your workflow.</p>
+                    <p>{{ $product->Silent_Vibration_Alerts }}</p>
                 </div>
 
                 <div class="feature-item">
                     <div class="feature-number">03</div>
                     <h3>Companion App</h3>
-                    <p>Track daily posture scores and set personalized health goals effortlessly.</p>
+                    <p>{{$product->Companion_App}}</p>
                 </div>
 
                 <div class="feature-item">
                     <div class="feature-number">04</div>
                     <h3>Custom Fit Adjustments</h3>
-                    <p>Fully adjustable height, seat depth, headrest, and 4D armrests.</p>
+                    <p>{{$product->Universal_Ergonomic_Fit_Features}}</p>
                 </div>
 
             </div>

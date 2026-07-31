@@ -142,18 +142,78 @@
 
     <!-- Statistics Section -->
     <section class="stats-grid">
-        @foreach($stats as $stat)
+       
             <div class="stat-card">
-                <div class="stat-icon icon-{{ $stat['color'] }}">
-                    <i class="{{ $stat['icon'] }}"></i>
+                <div class="stat-icon icon-navy">
+                    <i class="fas fa-chair"></i>
                 </div>
                 <div class="stat-details">
-                    <span class="stat-title">{{ $stat['title'] }}</span>
-                    <h3 class="stat-value">{{ $stat['value'] }}</h3>
-                    <span class="stat-subtitle">{{ $stat['subtitle'] }}</span>
+                    <span class="stat-title">Products</span>
+                    <h3 class="stat-value">{{ $total_Products }}</h3>
+                    <span class="stat-subtitle"></span>
                 </div>
             </div>
-        @endforeach
+
+
+            <div class="stat-card">
+                <div class="stat-icon icon-navy">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <div class="stat-details">
+                    <span class="stat-title">oredrs</span>
+                    <h3 class="stat-value">{{ $total_orders }}</h3>
+                    <span class="stat-subtitle"></span>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-icon icon-navy">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="stat-details">
+                    <span class="stat-title">users</span>
+                    <h3 class="stat-value">{{ $total_users }}</h3>
+                    <span class="stat-subtitle"></span>
+                </div>
+
+
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon icon-sage">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="stat-details">
+                    <span class="stat-title">Reviews status</span>
+                    <h3 class="stat-value">{{ $pendingOrders }}</h3>
+                    <span class="stat-subtitle">pending</span>
+                </div>
+
+                
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon icon-sage">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="stat-details">
+                    <span class="stat-title">Reviews</span>
+                    <h3 class="stat-value">{{ $total_reviews }}</h3>
+                    <span class="stat-subtitle"></span>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-icon icon-sage">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="stat-details">
+                    <span class="stat-title">company Rating</span>
+                    <h3 class="stat-value">{{ $companyRating }}</h3>
+                    <span class="stat-subtitle">The AVG</span>
+                </div>
+            </div>
+        
     </section>
 
     <!-- Revenue Section -->

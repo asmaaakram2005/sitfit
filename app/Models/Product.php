@@ -27,11 +27,14 @@ class Product extends Model
         'upholstery',
         'recline_range',
         'long_description',
-        'Smart Features',
-        'AI Posture Tracking',
-        'Silent Vibration Alerts',
-        'Companion App',
-        'Universal Ergonomic Fit Features'
+        'Smart_Features',
+        'AI_Posture_Tracking',
+        'Silent_Vibration_Alerts',
+        'Companion_App',
+        'Universal_Ergonomic_Fit_Features',
+        'feature_1',
+        'feature_2',
+        'feature_3',
     ];
 
         public function getRouteKeyName()
@@ -52,9 +55,5 @@ class Product extends Model
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
-    }
-    public function images()
-    {
-        return $this->hasMany(ProductImage::class);
     }
 }

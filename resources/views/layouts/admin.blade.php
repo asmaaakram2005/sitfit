@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     {{-- Title Yield --}}
-    <title>@yield('title', 'Admin Dashboard') - SitFit</title>
+    <title>@yield('title', 'Admin Dashboard') | SitFit</title>
 
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -33,42 +33,51 @@
 </div>
 
             <nav class="sidebar-nav">
-                <a href="#" class="nav-item {{ request()->is('admin') ? 'active' : '' }}">
+                <a href="{{ route('home') }}" class="nav-item ">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Home</span>
+                </a>
+
+                <a href="{{ route('admin.dashboard') }}" class="nav-item {{ request()->is('admin') ? 'active' : '' }}">
                     <i class="fa-solid fa-chart-pie"></i>
                     <span>Dashboard</span>
                 </a>
 
-                <a href="#" class="nav-item {{ request()->is('admin/products*') ? 'active' : '' }}">
+                <a href="{{ route('admin.products.index') }}" class="nav-item {{ request()->is('admin/products*') ? 'active' : '' }}">
                     <i class="fa-solid fa-boxes-stacked"></i>
                     <span>Products</span>
                 </a>
 
-                <a href="#" class="nav-item {{ request()->is('admin/orders*') ? 'active' : '' }}">
+                <a href="{{ route('admin.orders.index') }}" class="nav-item {{ request()->is('admin/orders*') ? 'active' : '' }}">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span>Orders</span>
                 </a>
 
-                <a href="#" class="nav-item {{ request()->is('admin/users*') ? 'active' : '' }}">
+                <a href="{{ route('admin.users.index') }}" class="nav-item {{ request()->is('admin/users*') ? 'active' : '' }}">
                     <i class="fa-solid fa-users"></i>
                     <span>Users</span>
                 </a>
 
-                <a href="#" class="nav-item {{ request()->is('admin/reviews*') ? 'active' : '' }}">
+                <a href="{{ route('admin.reviews.index') }}" class="nav-item {{ request()->is('admin/reviews*') ? 'active' : '' }}">
                     <i class="fa-solid fa-star"></i>
                     <span>Reviews</span>
                 </a>
 
-                <a href="#" class="nav-item {{ request()->is('admin/messages*') ? 'active' : '' }}">
+                <a href="{{ route('admin.contacts.index') }}" class="nav-item {{ request()->is('admin/messages*') ? 'active' : '' }}">
                     <i class="fa-solid fa-envelope"></i>
                     <span>Contact Messages</span>
                 </a>
             </nav>
 
             <div class="sidebar-footer">
-                <a href="#" class="nav-item logout-link">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    <span>Logout</span>
-                </a>
+                <form action="{{ route('admin.logout') }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="nav-item logout-link">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>Logout</span>
+                    </button>
+                </form>
             </div>
         </aside>
 
@@ -88,19 +97,19 @@
 
                 <div class="topbar-actions">
                     <!-- Notification Bell -->
-                    <div class="notification-wrapper">
+                    <!-- <div class="notification-wrapper">
                         <button class="icon-btn" aria-label="Notifications">
                             <i class="fa-regular fa-bell"></i>
                             <span class="badge">3</span>
                         </button>
-                    </div>
+                    </div> -->
 
                     <!-- User Profile Card -->
                     <div class="admin-profile">
-                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=9DC183&color=001F3F&bold=true" alt="Admin Profile" class="profile-img">
+                        <img src="{{ auth()->user()->image }}" alt="Admin Profile" class="profile-img">
                         <div class="profile-info">
-                            <span class="profile-name">Alex Morgan</span>
-                            <span class="profile-role">Administrator</span>
+                            <span class="profile-name">{{ auth()->user()->name }}</span>
+                            <span class="profile-role">{{ auth()->user()->role }}</span>
                         </div>
                     </div>
                 </div>

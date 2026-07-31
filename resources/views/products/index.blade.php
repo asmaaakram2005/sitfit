@@ -68,9 +68,9 @@
                         </div>
 
                         <div class="features-preview">
-                            <span class="feature-tag">Posture Correction</span>
-                            <span class="feature-tag">Smart Sensors</span>
-                            <span class="feature-tag">App Integration</span>
+                            <span class="feature-tag">{{ $product->feature_1 }}</span>
+                            <span class="feature-tag">{{ $product->feature_2 }}</span>
+                            <span class="feature-tag">{{ $product->feature_3 }}</span>
                         </div>
 
                         <div class="specs-preview">
@@ -169,7 +169,7 @@
             <h2>Not Sure Which Product Is Right For You?</h2>
             <p>Our ergonomics experts are available 24/7 to help you choose the perfect fit for your workspace setup.</p>
             <div class="cta-buttons">
-                <a href="#" class="btn btn-primary">Contact Support</a>
+                <a href="{{route('contact.index')}}" class="btn btn-primary">Contact Support</a>
                 <a href="#" class="btn btn-outline">Take Ergonomic Quiz</a>
             </div>
         </section>

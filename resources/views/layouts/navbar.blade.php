@@ -118,7 +118,7 @@
     </button>
 
     <div class="sf-profile-menu">
-    <a href="{{ route('profile.edit') }}">
+    <a href="{{ route('profile.index') }}">
         <i class="fa-solid fa-user"></i>
            Profile
     </a>
