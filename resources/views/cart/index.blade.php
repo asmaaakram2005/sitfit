@@ -61,7 +61,7 @@ Shopping Cart
 
                     <div class="item-img">
 
-                        <img src="{{ asset('images/' . optional($item->product->images->first())->image) }}"
+                        <img src="{{ $item->product->image_1 }}"
                              alt="{{ $item->product->name }}">
 
                     </div>
@@ -321,7 +321,7 @@ Shopping Cart
 
                 <div class="recommended-thumb">
 
-                    <img src="{{ asset('images/' . optional($product->images->first())->image) }}"
+                    <img src="{{ $product->image_1 }}"
                          alt="{{ $product->name }}">
 
                 </div>

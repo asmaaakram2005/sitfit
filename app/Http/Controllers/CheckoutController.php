@@ -48,7 +48,7 @@ class CheckoutController extends Controller
         }
 
         $cartItems = CartItem::where('user_id', $user->id)
-            ->with('product.images')
+            ->with('product')
             ->get();
 
         if ($cartItems->isEmpty()) {
