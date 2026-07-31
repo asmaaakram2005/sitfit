@@ -99,19 +99,10 @@
                 <div class="card-header-title">
                     <i class="fa-solid fa-receipt"></i> Order Summary
                 </div>
-                <div class="summary-body">
-                    <div class="summary-row">
-                        <span>Subtotal</span>
-                        <span>{{ $order['subtotal'] }}</span>
-                    </div>
-                    <div class="summary-row">
-                        <span>Shipping</span>
-                        <span>{{ $order['shipping'] }}</span>
-                    </div>
                     <hr class="summary-divider">
                     <div class="summary-row total-row">
                         <span>Total</span>
-                        <span>{{ $order['total'] }}</span>
+                        <span>{{ $order->total_price }}</span>
                     </div>
                 </div>
             </div>
