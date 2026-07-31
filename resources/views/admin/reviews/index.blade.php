@@ -67,7 +67,7 @@
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
                     <input type="text" class="search-input" placeholder="Search product or reviewer...">
                 </div>
-                <div class="filter-box">
+                <!-- <div class="filter-box">
                     <i class="fa-solid fa-filter filter-icon"></i>
                     <select class="filter-select">
                         <option value="all">All Ratings</option>
@@ -77,7 +77,7 @@
                         <option value="2">2 Stars</option>
                         <option value="1">1 Star</option>
                     </select>
-                </div>
+                </div> -->
             </div>
         </header>
 
@@ -129,7 +129,7 @@
             </div>
 
             {{-- Pagination --}}
-            <nav class="pagination-wrapper" aria-label="Reviews Pagination">
+            <!-- <nav class="pagination-wrapper" aria-label="Reviews Pagination">
                 <ul class="pagination">
                     <li class="page-item disabled">
                         <a href="#" class="page-link"><i class="fa-solid fa-chevron-left"></i> Previous</a>
@@ -147,7 +147,7 @@
                         <a href="#" class="page-link">Next <i class="fa-solid fa-chevron-right"></i></a>
                     </li>
                 </ul>
-            </nav>
+            </nav> -->
         @else
             {{-- Empty State Component --}}
             <div class="empty-state">

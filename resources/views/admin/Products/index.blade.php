@@ -30,7 +30,7 @@
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
             <input type="text" placeholder="Search products..." class="search-input">
         </div>
-        <div class="filter-box">
+        <!-- <div class="filter-box">
             <i class="fa-solid fa-filter filter-icon"></i>
             <select class="filter-select">
                 <option value="">All Categories</option>
@@ -39,7 +39,7 @@
                 <option value="accessories">Accessories</option>
             </select>
         </div>
-    </div>
+    </div> -->
 
     <!-- Products Grid -->
     @if($products->isNotEmpty())
@@ -100,7 +100,7 @@
         </div>
 
         <!-- Pagination -->
-        <nav class="pagination-wrapper" aria-label="Products Pagination">
+        <!-- <nav class="pagination-wrapper" aria-label="Products Pagination">
             <ul class="pagination">
                 <li class="page-item disabled">
                     <a href="#" class="page-link"><i class="fa-solid fa-chevron-left"></i> Previous</a>
@@ -118,7 +118,7 @@
                     <a href="#" class="page-link">Next <i class="fa-solid fa-chevron-right"></i></a>
                 </li>
             </ul>
-        </nav>
+        </nav> -->
     @else
         <!-- Empty State -->
         <div class="empty-state">

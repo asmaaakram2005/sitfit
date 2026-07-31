@@ -60,7 +60,7 @@
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
                 <input type="text" placeholder="Search by Order ID or Customer..." class="search-input">
             </div>
-            <div class="filter-box">
+            <!-- <div class="filter-box">
                 <i class="fa-solid fa-filter filter-icon"></i>
                 <select class="filter-select">
                     <option value="">All Statuses</option>
@@ -69,7 +69,7 @@
                     <option value="Completed">Completed</option>
                     <option value="Cancelled">Cancelled</option>
                 </select>
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -121,7 +121,7 @@
     </div>
 
     <!-- Pagination -->
-    <div class="pagination-wrapper">
+    <!-- <div class="pagination-wrapper">
         <ul class="pagination">
             <li class="page-item disabled">
                 <a class="page-link" href="#"><i class="fa-solid fa-chevron-left"></i> Previous</a>
@@ -133,6 +133,6 @@
                 <a class="page-link" href="#">Next <i class="fa-solid fa-chevron-right"></i></a>
             </li>
         </ul>
-    </div>
+    </div> -->
 </div>
 @endsection
