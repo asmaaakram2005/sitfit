@@ -87,8 +87,9 @@
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="save-btn logout-btn">
-    Logout
-</button>
+                    <i class="fa-solid fa-right-from-bracket" style="margin-right: 7px;"></i>
+                    Logout
+                </button>
             </form>
         </div>
     </div>

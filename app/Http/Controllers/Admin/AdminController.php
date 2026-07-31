@@ -21,6 +21,8 @@ class AdminController extends Controller
         $total_orders = Order::count() ;
         $pendingOrders = Order::where('status', 'pending')->get()->count();
         $companyRating = number_format(Review::avg('rating') ?? 0, 1);
+        $orders = Order::take(5)->get();
+        $users = User::latest()->take(3)->get();
 
         return view('admin.dashboard', [
             'total_users' => $total_users,
@@ -29,6 +31,8 @@ class AdminController extends Controller
             'total_orders' => $total_orders,
             'pendingOrders' => $pendingOrders,
             'companyRating' => $companyRating,
+            'orders' => $orders,
+            'users' => $users,
         ]);
     }
 

@@ -7,129 +7,7 @@
 @endsection
 
 @section('content')
-  
-
-    @php
-    $stats = [
-        [
-            'title' => 'Total Products',
-            'value' => '124',
-            'subtitle' => '50 Products Available',
-            'icon' => 'fas fa-chair',
-            'color' => 'navy'
-        ],
-        [
-            'title' => 'Total Orders',
-            'value' => '1,280',
-            'subtitle' => '+18% from last month',
-            'icon' => 'fas fa-shopping-cart',
-            'color' => 'navy'
-        ],
-        [
-            'title' => 'Total Users',
-            'value' => '3,450',
-            'subtitle' => '+120 new this week',
-            'icon' => 'fas fa-users',
-            'color' => 'navy'
-        ],
-        [
-            'title' => 'Pending Orders',
-            'value' => '42',
-            'subtitle' => 'Requires processing',
-            'icon' => 'fas fa-clock',
-            'color' => 'sage'
-        ],
-        [
-            'title' => 'Total Reviews',
-            'value' => '890',
-            'subtitle' => '4.8 avg rating',
-            'icon' => 'fas fa-star',
-            'color' => 'sage'
-        ],
-        [
-            'title' => 'Total Revenue',
-            'value' => '$98,450',
-            'subtitle' => '+24% overall growth',
-            'icon' => 'fas fa-wallet',
-            'color' => 'sage'
-        ],
-    ];
-
-    $orders = [
-        [
-            'id' => '#ORD-7829',
-            'customer' => 'Ahmed Hassan',
-            'avatar' => 'AH',
-            'status' => 'Pending',
-            'badge' => 'status-pending',
-            'total' => '$150.00',
-            'date' => 'Today, 02:45 PM'
-        ],
-        [
-            'id' => '#ORD-7828',
-            'customer' => 'Sara Mohamed',
-            'avatar' => 'SM',
-            'status' => 'Delivered',
-            'badge' => 'status-delivered',
-            'total' => '$220.00',
-            'date' => 'Yesterday'
-        ],
-        [
-            'id' => '#ORD-7827',
-            'customer' => 'Omar Farooq',
-            'avatar' => 'OF',
-            'status' => 'Processing',
-            'badge' => 'status-processing',
-            'total' => '$450.00',
-            'date' => 'Oct 24, 2026'
-        ],
-        [
-            'id' => '#ORD-7826',
-            'customer' => 'Lina Mahmoud',
-            'avatar' => 'LM',
-            'status' => 'Delivered',
-            'badge' => 'status-delivered',
-            'total' => '$310.00',
-            'date' => 'Oct 23, 2026'
-        ],
-        [
-            'id' => '#ORD-7825',
-            'customer' => 'Khaled Ali',
-            'avatar' => 'KA',
-            'status' => 'Pending',
-            'badge' => 'status-pending',
-            'total' => '$185.00',
-            'date' => 'Oct 23, 2026'
-        ],
-    ];
-
-    $users = [
-        [
-            'name' => 'John Doe',
-            'email' => 'john.doe@example.com',
-            'joined' => 'Joined Today',
-            'avatar' => 'JD'
-        ],
-        [
-            'name' => 'Fatima Al-Sayed',
-            'email' => 'fatima@example.com',
-            'joined' => 'Joined Yesterday',
-            'avatar' => 'FA'
-        ],
-        [
-            'name' => 'Michael Smith',
-            'email' => 'm.smith@example.com',
-            'joined' => 'Joined 3 days ago',
-            'avatar' => 'MS'
-        ],
-        [
-            'name' => 'Nour El-Din',
-            'email' => 'nour@example.com',
-            'joined' => 'Joined 5 days ago',
-            'avatar' => 'NE'
-        ],
-    ];
-@endphp
+   
 
 <div class="dashboard-wrapper">
     <!-- Header Summary -->
@@ -217,7 +95,7 @@
     </section>
 
     <!-- Revenue Section -->
-    <section class="dashboard-card revenue-card">
+    <!-- <section class="dashboard-card revenue-card">
         <div class="card-header">
             <div>
                 <h2 class="card-title">Revenue Overview</h2>
@@ -265,7 +143,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Content Split Layout -->
     <div class="dashboard-split">
@@ -292,20 +170,20 @@
                     <tbody>
                         @foreach($orders as $order)
                             <tr>
-                                <td class="order-id">{{ $order['id'] }}</td>
+                                <td class="order-id">{{ $order->id }}</td>
                                 <td>
                                     <div class="user-meta">
-                                        <div class="avatar-circle avatar-small">{{ $order['avatar'] }}</div>
-                                        <span>{{ $order['customer'] }}</span>
+                                        <div class="avatar-circle avatar-small">{{ Str::take($order->user->name, 1) }}</div>
+                                        <span>{{ $order->user_id }}</span>
                                     </div>
                                 </td>
                                 <td>
-                                    <span class="status-badge {{ $order['badge'] }}">
-                                        {{ $order['status'] }}
+                                    <span class="status-badge status-{{ $order->status }}">
+                                        {{ $order->status }}
                                     </span>
                                 </td>
-                                <td class="order-total">{{ $order['total'] }}</td>
-                                <td class="order-date">{{ $order['date'] }}</td>
+                                <td class="order-total">{{ $order->total_price }}</td>
+                                <td class="order-date">{{ $order->created_at->diffForHumans() }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -325,12 +203,12 @@
             <div class="users-list">
                 @foreach($users as $user)
                     <div class="user-item">
-                        <div class="avatar-circle">{{ $user['avatar'] }}</div>
+                        <div class="avatar-circle">{{ Str::take($user->name, 1) }}</div>
                         <div class="user-info">
-                            <h4 class="user-name">{{ $user['name'] }}</h4>
-                            <span class="user-email">{{ $user['email'] }}</span>
+                            <h4 class="user-name">{{ $user->name }}</h4>
+                            <span class="user-email">{{ $user->email }}</span>
                         </div>
-                        <span class="user-joined">{{ $user['joined'] }}</span>
+                        <span class="user-joined">{{ $user->created_at->calendar() }}</span>
                     </div>
                 @endforeach
             </div>

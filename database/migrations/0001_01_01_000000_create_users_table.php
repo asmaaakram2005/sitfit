@@ -20,7 +20,7 @@ return new class extends Migration
 
             $table->string('phone' , 20)->unique();
 
-            $table->string('image', 255)->default('images/default-profile.png');
+            $table->string('image', 255)->default('images/adminPhoto/user.png');
 
             $table->enum('role', ['customer', 'admin'])->default('customer');
 
