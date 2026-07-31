@@ -107,7 +107,7 @@
 
                     <!-- User Profile Card -->
                     <div class="admin-profile">
-                        <img src="{{ auth()->user()->image }}" alt="Admin Profile" class="profile-img">
+                        <img src="{{ asset(auth()->user()->image) }}" alt="Admin Profile" class="profile-img">
                         <div class="profile-info">
                             <span class="profile-name">{{ auth()->user()->name }}</span>
                             <span class="profile-role">{{ auth()->user()->role }}</span>

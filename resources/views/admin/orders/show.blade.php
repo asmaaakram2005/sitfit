@@ -37,17 +37,17 @@
     <!-- Details Grid -->
     <div class="details-layout-grid">
         <!-- Main Column: Products & Payments -->
-        <div class="details-main-column">
+        <!-- <div class="details-main-column"> -->
             <!-- Products Section -->
-            <div class="detail-card">
+            <!-- <div class="detail-card">
                 <div class="card-header-title">
                     <i class="fa-solid fa-bag-shopping"></i> Order Items
                 </div>
 
-            </div>
+            </div> -->
 
             <!-- Payment Info Section -->
-            <div class="detail-card">
+            <!-- <div class="detail-card">
                 <div class="card-header-title">
                     <i class="fa-solid fa-credit-card"></i> Payment Information
                 </div>
@@ -67,8 +67,8 @@
                         <span class="info-value highlight-price">{{ $order->total_price}}</span>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div> -->
+        <!-- </div> -->
 
         <!-- Side Column: Customer Info & Summary -->
         <div class="details-side-column">

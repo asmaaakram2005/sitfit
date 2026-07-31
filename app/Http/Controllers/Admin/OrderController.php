@@ -16,7 +16,10 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        return view('admin.orders.show',[
+        // جلب العناصر والمنتج المرتبط بكل عنصر
+        $order->load('orderItems.product');
+
+        return view('admin.orders.show', [
             'order' => $order,
         ]);
     }

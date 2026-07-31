@@ -45,8 +45,8 @@
                                 <i class="fa-solid fa-user"></i>
                             </div>
                             <div class="sender-details">
-                                <h3 class="sender-name">{{ $msg->name }}</h3>
-                                <a href="mailto:{{ $msg->email }}" class="sender-email">{{ $msg->email }}</a>
+                                <h3 class="sender-name">{{ $msg->user->name }}</h3>
+                                <a href="mailto:{{ $msg->user->email }}" class="sender-email">{{ $msg->user->email }}</a>
                             </div>
                         </div>
 
