@@ -19,7 +19,7 @@ class ProductSeeder extends Seeder
             [
                 'name' => 'SitFit Pro Cushion',
                 'description' => 'Premium posture corrector cushion for long-term office work.',
-                'price' => 1200,
+                'price' => 2500,
                 'material' => 'High-Grade Molded ABS / Polypropylene Plastic — Durable, flexible, and lightweight injection-molded structure engineered for long-term daily use.',
                 'weight_capacity' => 'Up to 130 – 150 kg',
                 'warranty' => '1-Year Full Warranty (Electronic & Mechanical Defects)',

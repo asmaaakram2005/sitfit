@@ -8,37 +8,7 @@
 
 @section('content')
     <div class="orders-container">
-    @php
-    $order = [
-        'id' => 1001,
-        'customer_name' => 'John Doe',
-        'customer_email' => 'john@example.com',
-        'customer_phone' => '+1 (555) 234-5678',
-        'address' => '742 Evergreen Terrace, Springfield, OR 97477',
-        'date' => 'July 20, 2026',
-        'status' => 'Pending',
-        'payment_method' => 'Credit Card (Visa ending in 4242)',
-        'payment_status' => 'Paid',
-        'subtotal' => '$460.00',
-        'shipping' => '$39.00',
-        'total' => '$499.00',
-        'products' => [
-            [
-                'name' => 'SitFit Ergonomic Smart Chair Pro',
-                'image' => 'https://via.placeholder.com/80',
-                'quantity' => 1,
-                'price' => '$350.00'
-            ],
-            [
-                'name' => 'Posture Correction Lumbar Cushion',
-                'image' => 'https://via.placeholder.com/80',
-                'quantity' => 2,
-                'price' => '$55.00'
-            ]
-        ]
-    ];
-    @endphp
-
+    
     <!-- Top Action Nav -->
     <div class="details-top-nav">
         <a href="{{ url('admin/orders') }}" class="btn-back">
@@ -53,13 +23,13 @@
     <div class="details-header-card">
         <div class="header-card-left">
             <div class="order-title">
-                <h2>Order #{{ $order['id'] }}</h2>
-                <span class="status-badge status-{{ strtolower($order['status']) }}">
-                    {{ $order['status'] }}
+                <h2>Order #{{ str_pad($order->id, 5, '0', STR_PAD_LEFT) }}</h2>
+                <span class="status-badge status-{{ $order->status }}">
+                    {{ $order->status }}
                 </span>
             </div>
             <p class="order-subtitle">
-                Placed on <strong>{{ $order['date'] }}</strong> by <strong>{{ $order['customer_name'] }}</strong>
+                Placed on <strong>{{ $order->created_at->diffForHumans() }}</strong> by <strong>{{ $order->user->name }}</strong>
             </p>
         </div>
     </div>
@@ -73,23 +43,7 @@
                 <div class="card-header-title">
                     <i class="fa-solid fa-bag-shopping"></i> Order Items
                 </div>
-                <div class="products-list">
-                    @foreach($order['products'] as $product)
-                    <div class="product-item">
-                        <img src="{{ $product['image'] }}" alt="{{ $product['name'] }}" class="product-image">
-                        <div class="product-info">
-                            <h4 class="product-name">{{ $product['name'] }}</h4>
-                            <p class="product-unit-price">Unit Price: {{ $product['price'] }}</p>
-                        </div>
-                        <div class="product-quantity">
-                            <span>Qty: <strong>{{ $product['quantity'] }}</strong></span>
-                        </div>
-                        <div class="product-total">
-                            ${{ number_format((float)str_replace('$', '', $product['price']) * $product['quantity'], 2) }}
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
+
             </div>
 
             <!-- Payment Info Section -->
@@ -110,7 +64,7 @@
                     </div>
                     <div class="info-group">
                         <span class="info-label">Total Amount</span>
-                        <span class="info-value highlight-price">{{ $order['total'] }}</span>
+                        <span class="info-value highlight-price">{{ $order->total_price}}</span>
                     </div>
                 </div>
             </div>
@@ -126,20 +80,17 @@
                 <div class="customer-detail-body">
                     <div class="info-group">
                         <span class="info-label">Full Name</span>
-                        <span class="info-value">{{ $order['customer_name'] }}</span>
+                        <span class="info-value">{{ $order->user->name }}</span>
                     </div>
                     <div class="info-group">
                         <span class="info-label">Email Address</span>
-                        <span class="info-value">{{ $order['customer_email'] }}</span>
+                        <span class="info-value">{{ $order->user->email }}</span>
                     </div>
                     <div class="info-group">
                         <span class="info-label">Phone Number</span>
-                        <span class="info-value">{{ $order['customer_phone'] }}</span>
+                        <span class="info-value">{{ $order->user->phone }}</span>
                     </div>
-                    <div class="info-group">
-                        <span class="info-label">Shipping Address</span>
-                        <span class="info-value address-text">{{ $order['address'] }}</span>
-                    </div>
+
                 </div>
             </div>
 

@@ -14,8 +14,10 @@ class OrderController extends Controller
         ]);
     }
 
-    public function show($order)
+    public function show(Order $order)
     {
-        return view('admin.orders.show');
+        return view('admin.orders.show',[
+            'order' => $order,
+        ]);
     }
 }
