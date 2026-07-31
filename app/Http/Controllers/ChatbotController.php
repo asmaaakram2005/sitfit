@@ -17,9 +17,12 @@ class ChatbotController extends Controller
 
         try {
             // كود إرسال الطلب لـ API الـ AI
-            $response = Http::timeout(30)->post("{$baseUrl}/chat", [
-                'message' => $request->input('message'),
-            ]);
+          $response = Http::timeout(30)->post("{$baseUrl}/chat", [
+            'user_id' => auth()->id() ?? 'guest',
+            'question' => $request->input('message'),
+            'history' => $request->input('history', []),
+                ]);
+            
 
             if ($response->successful()) {
                 return response()->json($response->json());
