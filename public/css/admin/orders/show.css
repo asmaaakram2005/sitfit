@@ -290,3 +290,8 @@
         text-align: right;
     }
 }
+
+.details-side-column {
+    width: 100%;
+    grid-column: 1 / -1;
+}

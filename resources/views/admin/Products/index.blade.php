@@ -85,9 +85,6 @@
                     </div>
 
                     <div class="card-footer">
-                        <button class="action-btn view-btn" title="View Details">
-                            <i class="fa-solid fa-eye"></i>
-                        </button>
                         <button class="action-btn edit-btn" title="Edit Product">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </button>
