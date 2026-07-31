@@ -94,7 +94,7 @@ aside.sidebar {
     z-index: 1000;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start; 
     transition: var(--transition);
     box-shadow: var(--shadow-lg);
 }
